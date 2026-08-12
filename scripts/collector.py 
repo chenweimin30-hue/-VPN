@@ -7,13 +7,12 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 SOURCES = [
     'https://raw.githubusercontent.com/TheSpeedX/SOCKS-List/master/http.txt',
     'https://raw.githubusercontent.com/ShiftyTR/Proxy-List/master/HTTP.txt',
-    # 你可以补充更多来源
 ]
 
 OUTPUT_FILE = 'proxies.txt'
 TIMEOUT = 5
 MAX_WORKERS = 30
-MAX_LATENCY = 3000  # 毫秒
+MAX_LATENCY = 3000
 
 def test_proxy(proxy):
     try:
@@ -24,7 +23,7 @@ def test_proxy(proxy):
         start = time.time()
         sock = socket.create_connection((host, port), timeout=TIMEOUT)
         sock.close()
-        latency = (time.time() - start) * 1000  # ms
+        latency = (time.time() - start) * 1000
         if latency <= MAX_LATENCY:
             return f"{host}:{port}"
     except:
@@ -50,9 +49,7 @@ def main():
         print(f"Fetching {url}")
         proxies = fetch_source(url)
         all_raw.update(proxies)
-
     print(f"Total raw proxies: {len(all_raw)}")
-
     good = []
     with ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
         futures = {executor.submit(test_proxy, p): p for p in all_raw}
@@ -61,10 +58,8 @@ def main():
             if result:
                 good.append(result)
                 print(f"Good: {result}")
-
     with open(OUTPUT_FILE, 'w') as f:
         f.write('\n'.join(good))
-
     print(f"Done, saved {len(good)} proxies.")
 
 if __name__ == '__main__':
