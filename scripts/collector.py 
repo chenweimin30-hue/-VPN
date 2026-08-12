@@ -12,7 +12,7 @@ SOURCES = [
 OUTPUT_FILE = 'proxies.txt'
 TIMEOUT = 5
 MAX_WORKERS = 30
-MAX_LATENCY = 3000
+MAX_LATENCY = 3000  # 毫秒
 
 def test_proxy(proxy):
     try:
