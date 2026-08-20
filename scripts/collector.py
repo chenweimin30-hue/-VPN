@@ -1,125 +1,133 @@
-#!/usr/bin/env python3
+
 import requests
-import time
-import socket
-from concurrent.futures import ThreadPoolExecutor, as_completed
-
-SOURCES = [
-    'https://raw.githubusercontent.com/TheSpeedX/SOCKS-List/master/http.txt',
-    'https://raw.githubusercontent.com/ShiftyTR/Proxy-List/master/HTTP.txt',
+ 
+资料来源 = [
+    “https://raw.githubusercontent.com/TheSpeedX/SOCKS-List/master/http.txt”
+    “https://raw.githubusercontent.com/ShiftyTR/Proxy-List/master/HTTP.txt”
 ]
-
+ 
 OUTPUT_FILE = 'proxies.txt'
-TIMEOUT = 5
-MAX_WORKERS = 30
-MAX_LATENCY = 3000
-MAX_PROXIES_TO_TEST = 800  # 单次最多测试的代理数量，防止源过大导致跑太久
-GLOBAL_TIME_BUDGET = 240   # 整个测试阶段最多跑 240 秒（4分钟），超时直接收工
-
-def test_proxy(proxy):
-    try:
-        if '://' in proxy:
-            proxy = proxy.split('://')[1]
-        parts = proxy.split(':')
-        if len(parts) != 2:
-            return None
-        host, port = parts[0], int(parts[1])
-        start = time.time()
-        sock = socket.create_connection((host, port), timeout=TIMEOUT)
-        sock.close()
-        latency = (time.time() - start) * 1000
-        if latency <= MAX_LATENCY:
-            return f"{host}:{port}"
-    except Exception:
-        pass
-    return None
-
-def fetch_source(url):
-    try:
-        r = requests.get(url, timeout=10)
-        r.raise_for_status()
-        lines = r.text.splitlines()
-        proxies = []
-        for line in lines:
-            line = line.strip()
-            if line and not line.startswith('#'):
-                proxies.append(line)
-        return proxies
-    except Exception as e:
-        print(f"Failed to fetch {url}: {e}")
-        return []
-
-def main():
-    all_raw = set()
-    for url in SOURCES:
-        print(f"Fetching {url}")
-        proxies = fetch_source(url)
-        all_raw.update(proxies)
-    print(f"Total raw proxies: {len(all_raw)}")
-
-    # 限制测试数量，避免代理源过大导致整体运行时间失控
-    all_raw = list(all_raw)
-    if len(all_raw) > MAX_PROXIES_TO_TEST:
-        print(f"Too many proxies ({len(all_raw)}), sampling {MAX_PROXIES_TO_TEST}")
-        all_raw = all_raw[:MAX_PROXIES_TO_TEST]
-
-    good = []
-    start_time = time.time()
-    with ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
-        futures = {executor.submit(test_proxy, p): p for p in all_raw}
-        for future in as_completed(futures):
-            # 全局时间预算保护：超时直接停止等待剩余任务，拿现有结果收工
-            if time.time() - start_time > GLOBAL_TIME_BUDGET:
-                print(f"Time budget ({GLOBAL_TIME_BUDGET}s) exceeded, stopping early with {len(good)} good proxies so far.")
-                break
-            result = future.result()
-            if result:
-                good.append(result)
-                print(f"Good: {result}")
-
-    with open(OUTPUT_FILE, 'w') as f:
-        f.write('\n'.join(good))
-    print(f"Done, saved {len(good)} good proxies.")
-
+ 
+def fetch_source（URL）：
+    试试：
+        r = 请求。get（URL，超时=10）
+        R。raise_for_status（）
+        线 = r。短信。分线（）
+        代理 = []
+        for line in lines：
+            线 = 线。条（）
+            if line and not 。开篇（'#'）：
+                代理。附录（行）
+        返回 代理
+    除非 例外 as e：
+        print（f“Failed to fetch {url}： {e}”）
+        回归 []
+ 
+def main（）：
+    all_raw = set（）
+    for url in SOURCES：
+        print（f“Fetching {url}”）
+        代理 = fetch_source（URL）
+        all_raw。更新（代理）
+    print（f“总原始代理数： {len（all_raw）}”）
+ 
+    # 不再对第三方服务器发起连通性测试(socket连接探测)，
+    # 仅做抓取、去重、格式整理，符合 GitHub Actions 使用条款。
+    good = Sorted（all_raw）
+ 
+    with open（OUTPUT_FILE， 'w'） as f：
+        f。写（'\n'.加入（善））
+    print（f“已完成，保存了{len（good）}代理（未测试）。”）
+ 
     # ========== 自动生成 Clash 配置文件 ==========
-    if not good:
-        print("No good proxies, skipping Clash config generation.")
-        return
-
-    print("Generating clash_config.yaml...")
+    如果 不 好：
+        print（“无代理，跳过 Clash 配置生成。”）
+        回归
+ 
+    print（“生成clash_config.yaml...”）
     clash_proxies = []
-    for idx, proxy in enumerate(good, 1):
-        server, port = proxy.split(':')
-        clash_proxies.append(
-f"""  - name: "Proxy{idx}"
+    for idx， proxy in enumerate（good， 1）：
+        if '：' 不在 proxy：
+            继续
+        服务器，port = proxy。rsplit（'：'， 1）
+
+
+f“”“ - 名称：”Proxy{idx}”
+
     type: http
-    server: {server}
-    port: {port}""")
+ 服务器：{server}
+ port： {port}“”“”） 
+ 
 
-    group_proxy_list = '\n'.join([
-        f'      - "Proxy{idx}"' for idx in range(1, len(good)+1)])
 
-    clash_content = f"""mixed-port: 7890
-allow-lan: false
-mode: rule
-log-level: info
 
-proxies:
-{chr(10).join(clash_proxies)}
 
-proxy-groups:
-  - name: "PROXY"
-    type: select
-    proxies:
-      - DIRECT
+
+
+
+    clash_content = f“”“混合端口：7890
+
+
+
+
+模式：规则
+日志层面：信息
+ 
+代理：
+
+
+
+
+
+
+代理群：
+ - 名称：“代理”
+ 类型：选择
+代理：
+ - 直接
 {group_proxy_list}
+ 
+规则：          
 
-rules:
-  - 'MATCH,PROXY'
-"""
-    with open('clash_config.yaml', 'w') as f:
-        f.write(clash_content)
-    print(f"clash_config.yaml generated with {len(good)} proxies!")
 
-if __name__ == '__main__':
-    main()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
