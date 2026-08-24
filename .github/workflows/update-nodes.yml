@@ -1,0 +1,35 @@
+name: 自动更新节点配置
+
+# 只做"下载订阅 + 解析 + 生成 yaml + 提交"，不对节点做任何批量连通性探测，
+# 避免重蹈之前账号因批量 socket 测试被限制的问题。
+
+on:
+  schedule:
+    - cron: "0 */6 * * *"   # 每 6 小时跑一次（UTC 时间，北京时间 = UTC+8）
+  workflow_dispatch: {}      # 允许在 Actions 页面手动点一下立即跑一次
+
+permissions:
+  contents: write            # 需要这个权限才能把新配置提交回仓库
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 拉取仓库
+        uses: actions/checkout@v4
+
+      - name: 配置 Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: 抓取节点并生成配置
+        run: python3 fetch_nodes.py --out clash_config_latest.yaml --limit 300
+
+      - name: 提交更新（如果有变化）
+        run: |
+          git config user.name "auto-updater"
+          git config user.email "actions@users.noreply.github.com"
+          git add clash_config_latest.yaml seen_nodes.json
+          git diff --cached --quiet || git commit -m "自动更新节点 $(date -u '+%Y-%m-%d %H:%M UTC')"
+          git push
