@@ -363,13 +363,17 @@ def test_nodes(nodes, concurrency: int, timeout: float):
 # ---------------------------------------------------------------------------
 
 def yaml_str(s: str) -> str:
-    s = str(s).replace("\\", "\\\\").replace('"', '\\"')
+    s = str(s)
+    # YAML 不允许大部分控制字符，即使包在引号里也不行；节点名字/备注这些字段来自
+    # 第三方数据源，偶尔会混进乱七八糟的字节，这里统一清掉，避免生成非法 yaml
+    s = "".join(ch for ch in s if ch == "\t" or ord(ch) >= 0x20)
+    s = s.replace("\\", "\\\\").replace('"', '\\"')
     return f'"{s}"'
 
 
 def dump_proxy(n: dict) -> str:
     parts = [f"{k}: {yaml_str(v) if isinstance(v, str) else v}" for k, v in n.items()
-              if k not in ("ws-opts", "grpc-opts")]
+              if k not in ("ws-opts", "grpc-opts", "_raw")]
     line = "  - {" + ", ".join(parts)
     if "ws-opts" in n:
         wo = n["ws-opts"]
@@ -435,7 +439,9 @@ def build_v2ray_sub(nodes, out_path: str):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--out", default="clash_config_new.yaml", help="输出文件名")
-    ap.add_argument("--limit", type=int, default=300, help="最多保留多少个节点（太多客户端加载会卡）")
+    ap.add_argument("--limit", type=int, default=0,
+                     help="最多保留多少个节点，默认 0 表示不限制、全部抓进来。"
+                          "客户端节点太多可能加载慢，想控制数量的话自己传个数字，比如 --limit 300")
     ap.add_argument("--test", action="store_true",
                      help="对节点做 TCP 连通性测速，过滤掉连不上的、按延迟排序（只建议在本地/自己的机器上用，见 README）")
     ap.add_argument("--test-concurrency", type=int, default=20, help="测速并发数，默认 20")
@@ -492,7 +498,7 @@ def main():
     if args.test:
         nodes = test_nodes(nodes, args.test_concurrency, args.test_timeout)
 
-    if len(nodes) > args.limit:
+    if args.limit and len(nodes) > args.limit:
         nodes = nodes[: args.limit]
         print(f"截取前 {args.limit} 个写入配置")
 
