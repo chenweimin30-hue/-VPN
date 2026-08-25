@@ -229,6 +229,7 @@ def parse_all(raw_text: str):
             if line.startswith(prefix):
                 node = fn(line)
                 if node:
+                    node["_raw"] = line  # 保留原始链接，供生成 v2ray 通用订阅用
                     nodes.append(node)
                 break
     return nodes
@@ -420,6 +421,17 @@ def build_yaml(nodes, out_path: str):
         f.write("\n".join(lines) + "\n")
 
 
+def build_v2ray_sub(nodes, out_path: str):
+    """生成 v2rayN / v2rayNG / NekoBox 等通用的订阅格式：
+    原始 vmess://、vless://、trojan://、ss:// 链接拼一起，整体 base64 编码。"""
+    raws = [n["_raw"] for n in nodes if n.get("_raw")]
+    blob = "\n".join(raws).encode("utf-8")
+    b64 = base64.b64encode(blob).decode("ascii")
+    with open(out_path, "w", encoding="utf-8") as f:
+        f.write(b64)
+    return len(raws)
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--out", default="clash_config_new.yaml", help="输出文件名")
@@ -436,6 +448,9 @@ def main():
                      help="历史记录保留几天后自动过期（默认 7 天），过期的节点如果还活着会重新出现")
     ap.add_argument("--reset-history", action="store_true",
                      help='清空历史记录后重新开始记（相当于把之前"见过"的节点全部忘掉）')
+    ap.add_argument("--out-v2ray", default=None,
+                     help="额外生成一份 v2rayN/v2rayNG/NekoBox 通用订阅文件（base64 节点链接）。"
+                          "不指定的话，默认根据 --out 自动生成同名 _v2ray.txt 文件")
     args = ap.parse_args()
 
     if args.test and os.environ.get("GITHUB_ACTIONS") == "true":
@@ -490,8 +505,15 @@ def main():
         sys.exit(0)
 
     build_yaml(nodes, args.out)
-    print(f"\n✅ 已生成: {args.out}（{len(nodes)} 个节点）")
+    print(f"\n✅ 已生成: {args.out}（{len(nodes)} 个节点，Clash Meta 格式）")
     print("导入 Clash Meta 后，用「自动选择」策略组即可，客户端会自动测速切换最快节点。")
+
+    v2ray_out = args.out_v2ray
+    if not v2ray_out:
+        base, _ = os.path.splitext(args.out)
+        v2ray_out = f"{base}_v2ray.txt"
+    n_written = build_v2ray_sub(nodes, v2ray_out)
+    print(f"✅ 已生成: {v2ray_out}（{n_written} 个节点，v2rayN/v2rayNG/NekoBox 通用订阅格式）")
 
     if not args.no_history:
         today = time.strftime("%Y-%m-%d")
