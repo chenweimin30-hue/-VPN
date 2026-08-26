@@ -6,240 +6,164 @@ log-level: info
 external-controller: 127.0.0.1:9090
 
 proxies:
-  - {name: "⚡ b2n.ir/v2ray-configs | 833", type: "ss", server: "167.88.61.119", port: 8009, cipher: "aes-256-gcm", password: "XKFKl2rULjIp74", udp: True}
-  - {name: "🏁RELAY-198.41.212.150-2134", type: "vmess", server: "198.41.212.150", port: 443, uuid: "5f64fa65-7b14-49c5-954d-aa15c6bfcacd", alterId: 0, cipher: "auto", udp: True, network: "ws", tls: True, skip-cert-verify: True, ws-opts: {path: "/dongtaiwang.com"}}
-  - {name: "🏁RELAY-104.21.91.254-0689", type: "vmess", server: "104.21.91.254", port: 443, uuid: "03fcc618-b93d-6796-6aed-8a38c975d581", alterId: 0, cipher: "auto", udp: True, network: "ws", tls: True, skip-cert-verify: True, ws-opts: {path: "linkvws", headers: {"Host": "waynn.makeup"}}}
-  - {name: "⚡ b2n.ir/v2ray-configs | 895", type: "ss", server: "3.0.148.195", port: 443, cipher: "aes-256-cfb", password: "amazonskr05", udp: True}
-  - {name: "Global 🌐 | @Raydikalx | B0EED0", type: "vmess", server: "us65.netfilx.live", port: 80, uuid: "60f12435-bb55-4da2-cb7d-4fea34ecfa37", alterId: 0, cipher: "auto", udp: True, network: "ws", ws-opts: {path: "/", headers: {"Host": "us65.netfilx.live"}}}
-  - {name: "🇺🇸US-23.237.33.106-1050", type: "vmess", server: "23.237.33.106", port: 443, uuid: "176b598f-445b-41ac-9d2a-430c5c4df26a", alterId: 0, cipher: "auto", udp: True, network: "ws", tls: True, skip-cert-verify: True, ws-opts: {path: "/dongtaiwang.com", headers: {"Host": "clash1.trump2023.net"}}}
-  - {name: "🏁RELAY-172.67.135.57-1305", type: "vmess", server: "172.67.135.57", port: 443, uuid: "c5a2d7b8-bf84-4f97-8577-b9b87f2baaf7", alterId: 0, cipher: "auto", udp: True, network: "ws", tls: True, skip-cert-verify: True, ws-opts: {path: "/AUIKN8AU"}}
-  - {name: "🇧🇬BG-95.164.34.184-7151", type: "vmess", server: "95.164.34.184", port: 80, uuid: "3af9754e-f2a8-406c-a8a1-4553065e6da4", alterId: 0, cipher: "auto", udp: True, network: "ws", ws-opts: {path: "/vmess"}}
-  - {name: "⚡ b2n.ir/v2ray-configs | 599", type: "ss", server: "38.114.114.19", port: 5003, cipher: "aes-256-gcm", password: "g5MeD6Ft3CWlJId", udp: True}
-  - {name: "CA 🇨🇦 | @Raydikalx | E40DCB", type: "vmess", server: "108.162.192.63", port: 80, uuid: "2ac4e269-1576-4f41-8c0d-6242e3c5fd8c", alterId: 0, cipher: "none", udp: True, network: "ws", ws-opts: {path: "/vmess", headers: {"Host": "1270.0.1.dl3.烏克爾拯救聖誕老人電影.yркельпасаетcанту.фильм.urkel.烏克爾救援.wonkacapitano.buzz."}}}
-  - {name: "CA 🇨🇦 | @Raydikalx | 87DD51", type: "vmess", server: "104.19.38.18", port: 2052, uuid: "d6b6d982-d52f-465a-b988-85670b23f64a", alterId: 0, cipher: "auto", udp: True, network: "ws", ws-opts: {path: "/", headers: {"Host": "cdn3.freegradely.xyz"}}}
-  - {name: "⚡ b2n.ir/v2ray-configs | 227", type: "trojan", server: "104.16.174.72", port: 443, password: "humanity", udp: True, skip-cert-verify: True, sni: "www.ignitelimit.com"}
-  - {name: "⚡ b2n.ir/v2ray-configs | 442", type: "ss", server: "38.68.134.196", port: 812, cipher: "chacha20-ietf-poly1305", password: "G!yBwPWH3Vao", udp: True}
-  - {name: "⚡ b2n.ir/v2ray-configs | 826", type: "ss", server: "172.99.190.61", port: 2375, cipher: "aes-256-gcm", password: "faBAoD54k87UJG7", udp: True}
-  - {name: "⚡ b2n.ir/v2ray-configs | 96", type: "ss", server: "158.247.205.87", port: 5601, cipher: "aes-256-gcm", password: "Y6R9pAtvxxzmGC", udp: True}
-  - {name: "CA 🇨🇦 | @Raydikalx | E22403", type: "vmess", server: "104.19.42.79", port: 2052, uuid: "d6b6d982-d52f-465a-b988-85670b23f64a", alterId: 0, cipher: "auto", udp: True, network: "ws", ws-opts: {path: "github.com/Alvin9999", headers: {"Host": "cdn2.freegradely.xyz"}}}
-  - {name: "⚡ b2n.ir/v2ray-configs | 205", type: "ss", server: "167.88.62.62", port: 3389, cipher: "aes-256-gcm", password: "Y6R9pAtvxxzmGC", udp: True}
-  - {name: "⚡ b2n.ir/v2ray-configs | 612", type: "trojan", server: "jp04a.roc-taiwan.net.ua", port: 65014, password: "96983eb4-c8f1-316e-ab00-500014ed3d8b", udp: True, skip-cert-verify: True}
-  - {name: "🏁RELAY-141.101.122.190-7831", type: "vmess", server: "141.101.122.190", port: 2095, uuid: "417d27fb-cb93-3bd8-9bf7-71cd91319821", alterId: 0, cipher: "auto", udp: True, network: "ws", ws-opts: {path: "/hgcefomn"}}
-  - {name: "🏁RELAY-104.21.48.84-8031", type: "vmess", server: "104.21.48.84", port: 443, uuid: "b3a21def-5fcc-47a8-a6a0-a34e29d5288a", alterId: 0, cipher: "auto", udp: True, network: "ws", tls: True, skip-cert-verify: True, ws-opts: {path: "/wss51068"}}
-  - {name: "⚡ b2n.ir/v2ray-configs | 838", type: "ss", server: "85.208.108.60", port: 5004, cipher: "aes-256-gcm", password: "g5MeD6Ft3CWlJId", udp: True}
-  - {name: "⚡ b2n.ir/v2ray-configs | 690", type: "vless", server: "89.44.242.222", port: 29500, uuid: "888a20e2-fc3f-4f52-973c-36a6386225b8", udp: True, network: "tcp"}
-  - {name: "🇯🇵JP-147.78.244.7-1087", type: "vmess", server: "147.78.244.7", port: 443, uuid: "c2907a9a-5024-41fd-be3c-30885585e3ef", alterId: 0, cipher: "auto", udp: True, network: "ws", tls: True, skip-cert-verify: True, ws-opts: {path: "/", headers: {"Host": "virmach.qweasdzxc.gq"}}}
-  - {name: "🏁RELAY-141.101.115.89-7834", type: "vmess", server: "141.101.115.89", port: 2095, uuid: "417d27fb-cb93-3bd8-9bf7-71cd91319821", alterId: 0, cipher: "auto", udp: True, network: "ws", ws-opts: {path: "/hgcefomn"}}
-  - {name: "⚡ b2n.ir/v2ray-configs | 580", type: "ss", server: "38.114.114.19", port: 8009, cipher: "aes-256-gcm", password: "XKFKl2rULjIp74", udp: True}
-  - {name: "IR 🇮🇷 | @Raydikalx | D44688", type: "vmess", server: "dashboard.afrasoft.top", port: 5383, uuid: "76cefcd7-6b53-4c65-ad29-1a92734fc968", alterId: 0, cipher: "auto", udp: True, network: "tcp"}
-  - {name: "⚡ b2n.ir/v2ray-configs | 277", type: "ss", server: "85.208.108.90", port: 2375, cipher: "aes-256-gcm", password: "faBAoD54k87UJG7", udp: True}
-  - {name: "IR 🇮🇷 | @Raydikalx | CF67E7", type: "vmess", server: "2.arzankadeh.cam", port: 36864, uuid: "5f0c8c9f-4a4c-47ac-9ac1-1b2aec295b58", alterId: 0, cipher: "auto", udp: True, network: "tcp"}
-  - {name: "🇫🇷FR-51.77.158.169-4184", type: "vmess", server: "51.77.158.169", port: 2096, uuid: "c92fd902-b5d3-4208-bb48-630b1c7babea", alterId: 0, cipher: "auto", udp: True, network: "ws", ws-opts: {path: "/"}}
-  - {name: "⚡ b2n.ir/v2ray-configs | 697", type: "ss", server: "38.75.136.135", port: 8009, cipher: "aes-256-gcm", password: "XKFKl2rULjIp74", udp: True}
-  - {name: "⚡ b2n.ir/v2ray-configs | 155", type: "ss", server: "192.36.27.116", port: 989, cipher: "aes-256-cfb", password: "f8f7aCzcPKbsF8p3", udp: True}
-  - {name: "⚡ b2n.ir/v2ray-configs | 239", type: "ss", server: "167.88.61.2", port: 802, cipher: "chacha20-ietf-poly1305", password: "G!yBwPWH3Vao", udp: True}
-  - {name: "🏁RELAY-104.24.255.191-7994", type: "vmess", server: "104.24.255.191", port: 443, uuid: "824c58b1-65ba-4680-a609-663a000dbb92", alterId: 0, cipher: "auto", udp: True, network: "ws", tls: True, skip-cert-verify: True, ws-opts: {path: "/wss13889"}}
-  - {name: "⚡ b2n.ir/v2ray-configs | 544", type: "ss", server: "217.30.10.68", port: 9053, cipher: "aes-256-cfb", password: "SBM7R883jBmnqe6C", udp: True}
-  - {name: "⚡ b2n.ir/v2ray-configs | 241", type: "ss", server: "38.75.137.9", port: 2375, cipher: "aes-256-gcm", password: "faBAoD54k87UJG7", udp: True}
-  - {name: "⚡ b2n.ir/v2ray-configs | 579", type: "ss", server: "142.202.48.74", port: 443, cipher: "aes-256-gcm", password: "pKEW8JPByTVTLtM", udp: True}
-  - {name: "⚡ b2n.ir/v2ray-configs | 468", type: "vless", server: "deu196.unboundaccess.org", port: 443, uuid: "f788e136-b245-4617-9d41-b505c7f41ef9", udp: True, network: "tcp", flow: "xtls-rprx-vision"}
-  - {name: "🏁RELAY-172.67.212.128-7598", type: "vmess", server: "172.67.212.128", port: 2095, uuid: "417d27fb-cb93-3bd8-9bf7-71cd91319821", alterId: 0, cipher: "auto", udp: True, network: "ws", ws-opts: {path: "/hgcefomn"}}
-  - {name: "⚡ b2n.ir/v2ray-configs | 339", type: "ss", server: "156.146.62.160", port: 443, cipher: "aes-128-cfb", password: "shadowsocks", udp: True}
-  - {name: "⚡ b2n.ir/v2ray-configs | 711", type: "ss", server: "169.197.142.48", port: 5003, cipher: "aes-256-gcm", password: "g5MeD6Ft3CWlJId", udp: True}
-  - {name: "⚡ b2n.ir/v2ray-configs | 707", type: "ss", server: "45.66.134.176", port: 802, cipher: "chacha20-ietf-poly1305", password: "G!yBwPWH3Vao", udp: True}
-  - {name: "🇬🇧GB-83.142.225.59-0467", type: "vmess", server: "83.142.225.59", port: 443, uuid: "5267ca71-97e6-44c8-8fb5-9fe4afe0954e", alterId: 64, cipher: "auto", udp: True, network: "ws", tls: True, skip-cert-verify: True, ws-opts: {path: "/"}}
-  - {name: "⚡ b2n.ir/v2ray-configs | 610", type: "trojan", server: "57.180.56.235", port: 443, password: "EQ30679154", udp: True, skip-cert-verify: True, sni: "gentle-perch.rooster465.autos"}
-  - {name: "🇺🇸US-154.23.190.162-2417", type: "vmess", server: "154.23.190.162", port: 443, uuid: "b9984674-f771-4e67-a198-c7e60720ba2c", alterId: 0, cipher: "auto", udp: True, network: "ws", ws-opts: {path: "/"}}
-  - {name: "🏁RELAY-141.101.115.99-7833", type: "vmess", server: "141.101.115.99", port: 80, uuid: "19428c44-85b3-4a7c-8bc4-b58396138322", alterId: 0, cipher: "auto", udp: True, network: "ws", ws-opts: {path: "/"}}
-  - {name: "🇺🇸US-148.135.33.140-0667", type: "vmess", server: "148.135.33.140", port: 443, uuid: "418048af-a293-4b99-9b0c-98ca3580dd24", alterId: 64, cipher: "auto", udp: True, network: "ws", tls: True, skip-cert-verify: True, ws-opts: {path: "/path/1704188270531", headers: {"Host": "www.31270022.xyz"}}}
-  - {name: "🇨🇦CA-15.235.50.172-0734", type: "vmess", server: "15.235.50.172", port: 443, uuid: "03fcc618-b93d-6796-6aed-8a38c975d581", alterId: 0, cipher: "auto", udp: True, network: "ws", tls: True, skip-cert-verify: True, ws-opts: {path: "/linkvws", headers: {"Host": "baradiha.com"}}}
-  - {name: "⚡ b2n.ir/v2ray-configs | 565", type: "trojan", server: "104.18.152.149", port: 443, password: "humanity", udp: True, skip-cert-verify: True, sni: "www.ignitelimit.com"}
-  - {name: "🏁RELAY-104.18.14.229-8054", type: "vmess", server: "104.18.14.229", port: 443, uuid: "b3a21def-5fcc-47a8-a6a0-a34e29d5288a", alterId: 0, cipher: "auto", udp: True, network: "ws", tls: True, skip-cert-verify: True, ws-opts: {path: "/wss51068"}}
-  - {name: "🇩🇪152429 | ⚡️Telegram = t.me/SOSkeyNET", type: "ss", server: "89.168.121.246", port: 59924, cipher: "2022-blake3-chacha20-poly1305", password: "pQSE/JNCbTTwg9CA8m9uAW30avkS6ILWPUsXZB8L3C0=", udp: True}
-  - {name: "[28719] - Telegram : @V2All", type: "ss", server: "ja1.levikogjgfdd.ir", port: 20000, cipher: "chacha20-ietf-poly1305", password: "578686f5-9ff9-4ff7-9394-5d53133a2792", udp: True}
-  - {name: "کانال ما", type: "ss", server: "sh.neqazhcomp.ir", port: 3333, cipher: "chacha20-ietf-poly1305", password: "700OfeaU9vuHv2lqG1H5xuXXUYzfORQe", udp: True}
-  - {name: "کانال ما #2", type: "ss", server: "tw.lampcomputervz.ir", port: 9403, cipher: "chacha20-ietf-poly1305", password: "700OfeaU9vuHv2lqG1H5xuXXUYzfORQe", udp: True}
-  - {name: "1🇩🇪 سرورتایم بالاعضو شو👉@VEGAAS_VPN", type: "ss", server: "20.87.2.40", port: 443, cipher: "chacha20-ietf-poly1305", password: "yQ3varyJ3ZhSYTA4", udp: True}
-  - {name: "🇺🇸 Join+Telegram:@Farah_VPN 🇺🇸", type: "ss", server: "108.181.57.93", port: 8388, cipher: "chacha20-ietf-poly1305", password: "RSo52SbxW40r", udp: True}
-  - {name: "🇳🇱152354 | ⚡️Telegram = t.me/SOSkeyNET", type: "ss", server: "193.29.139.152", port: 8080, cipher: "chacha20-ietf-poly1305", password: "oZIoA69Q8yhcQV8ka3Pa3A", udp: True}
-  - {name: "🇭🇰152389 | ⚡️Telegram = t.me/SOSkeyNET", type: "ss", server: "mn.qwer-cn.org", port: 10936, cipher: "aes-128-gcm", password: "adbc1e8c-184e-4d02-b0e0-f0cb70b377df", udp: True}
-  - {name: "🇩🇪 Join+Telegram:@Farah_VPN 🇩🇪", type: "ss", server: "213.202.208.199", port: 7001, cipher: "aes-256-gcm", password: "RexnBgU7EV5ADxG", udp: True}
-  - {name: "[28754] - Telegram : @V2All", type: "ss", server: "141.164.45.187", port: 9101, cipher: "aes-256-gcm", password: "e4FCWrgpkji3QY", udp: True}
-  - {name: "[28721] - Telegram : @V2All", type: "ss", server: "ne1.levikogjgfdd.ir", port: 8388, cipher: "aes-256-gcm", password: "itzvpn@321", udp: True}
-  - {name: "@prrofile_purple  ♥️👈 تلگرام", type: "trojan", server: "179.237.74.104", port: 361, password: "---------BanV2ray------------", udp: True, skip-cert-verify: True, sni: "world.yahoo.com:443"}
-  - {name: "@prrofile_purple  ♥️👈 تلگرام #2", type: "trojan", server: "179.237.74.104", port: 584, password: "---------BanV2ray------------", udp: True, skip-cert-verify: True, sni: "world.yahoo.com:443"}
-  - {name: "🇺🇸 Join+Telegram:@Farah_VPN 🇺🇸 #2", type: "trojan", server: "us01.duotg.top", port: 46292, password: "02cd3bac-2a78-4dbb-82b9-6b64084ddd8e", udp: True, skip-cert-verify: True, sni: "www.microsoft.com"}
-  - {name: "@prrofile_purple  ♥️👈 تلگرام #3", type: "trojan", server: "151.101.1.194", port: 443, password: "MiTiVPN", udp: True, skip-cert-verify: True, sni: "ssl.fastly.com", network: "ws", ws-opts: {path: "/---@MiTiVPN---@MiTiVPN---@MiTiVPN---@MiTiVPN---@MiTiVPN---@MiTiVPN---@MiTiVPN---@MiTiVPN---@MiTiVPN---@MiTiVPN---@MiTiVPN---@MiTiVPN---@MiTiVPN---@MiTiVPN---@MiTiVPN---@MiTiVPN=sws"}}
-  - {name: "🇫🇷 Join+Telegram:@Farah_VPN 🇫🇷", type: "trojan", server: "104.19.64.105", port: 443, password: "humanity", udp: True, skip-cert-verify: True, sni: "www.calmlunch.com", network: "ws", ws-opts: {path: "/assignment"}}
-  - {name: "@Hope_Net-join-us-on-Telegram", type: "vless", server: "2.189.59.6", port: 443, uuid: "--V2RAXX--", udp: True, network: "grpc", tls: True, servername: "v2raxx-all.amalfatm.ir.", skip-cert-verify: True, grpc-opts: {grpc-service-name: "@V2RAXX-TEL@V2RAXX-TEL--@V2RAXX-TEL--@V2RAXX-TEL"}}
-  - {name: "🇸🇬 Join+Telegram:@Farah_VPN 🇸🇬", type: "vless", server: "www.4chan.org", port: 443, uuid: "04c808e2-0b59-47b0-a54b-32fc7ef1c902", udp: True, network: "ws", tls: True, servername: "misaka.cndyw.ggff.net", skip-cert-verify: True, ws-opts: {path: "/?ed=2560fp=chrome", headers: {"Host": "misaka.cndyw.ggff.net"}}}
-  - {name: "@Hope_Net-join-us-on-Telegram #2", type: "vless", server: "13.48.93.255", port: 22222, uuid: "05519058-d2ac-4f28-9e4a-2b2a1386749e", udp: True, network: "ws", tls: True, servername: "telegram-channel-vlessconfig.sohala.uk", skip-cert-verify: True, ws-opts: {path: "/telegram-channel-vlessconfig-ws", headers: {"Host": "telegram-channel-vlessconfig.sohala.uk"}}}
-  - {name: "@Hope_Net-join-us-on-Telegram #3", type: "vless", server: "13.50.227.161", port: 22222, uuid: "05519058-d2ac-4f28-9e4a-2b2a1386749e", udp: True, network: "ws", tls: True, servername: "telegram-channel-vlessconfig.sohala.uk", skip-cert-verify: True, ws-opts: {path: "/telegram-channel-vlessconfig-ws", headers: {"Host": "telegram-channel-vlessconfig.sohala.uk"}}}
-  - {name: "🇸🇪SE-🚀@VPNine1", type: "vless", server: "185.146.173.237", port: 2095, uuid: "05a71b1b-b0b0-43ab-9fdf-7c5a388133d6", udp: True, network: "ws", ws-opts: {path: "/@VPNine1،@VPNine1", headers: {"Host": "V2ray-_-_-_-_-Vpn_Mikey.Amir-Mikey.Tech."}}}
-  - {name: "🇩🇪152409 | ⚡️Telegram = t.me/SOSkeyNET", type: "vless", server: "hhtz.ultrrasound.com", port: 26904, uuid: "06272467-99c7-425d-aec3-399882ecdde3", udp: True, network: "tcp"}
-  - {name: "🇩🇪152410 | ⚡️Telegram = t.me/SOSkeyNET", type: "vless", server: "hhtz.ultrrasound.com", port: 36377, uuid: "06272467-99c7-425d-aec3-399882ecdde3", udp: True, network: "tcp"}
-  - {name: "@freenettir", type: "vless", server: "hhtz.ultrrasound.com", port: 44030, uuid: "06272467-99c7-425d-aec3-399882ecdde3", udp: True, network: "tcp"}
-  - {name: "Germany- ELiV2Ray", type: "vless", server: "212.192.246.73", port: 443, uuid: "073758f2-9669-0001-9541-b8656bde49a2", udp: True, network: "grpc", grpc-opts: {grpc-service-name: ""}}
-  - {name: "🇩🇪 | ELiV2Ray", type: "vless", server: "node1.nebulacurse.space", port: 443, uuid: "073758f2-9669-0001-9541-b8656bde49a2", udp: True, network: "grpc", grpc-opts: {grpc-service-name: ""}}
-  - {name: "🇸🇨SC-🚀@VPNine1", type: "vless", server: "45.192.2.115", port: 443, uuid: "0b8dfc50-9e2d-4b3c-85cd-870b478312a0", udp: True, network: "tcp", flow: "xtls-rprx-vision"}
-  - {name: "🇹🇷TR-🚀@VPNine1", type: "vless", server: "ser-dashboard-6a8c523b-1534-83eb-afd0-19a157913d5f.iramkemaxyu.ir", port: 443, uuid: "0ed9a248-f693-46c1-ba1b-91d0a6dfa6a5", udp: True, network: "xhttp"}
-  - {name: "/?TELEGRAM-MARAMBASHI_marambashi?ed=512&security=tls&encryption=none&insecure=0&host=workspace.evan00.dpdns.org&fp=chrome&type=ws&allowInsecure=0&sni=workspace.evan00.dpdns.org#@MARAMBASHI 🇮🇹", type: "vless", server: "104.17.28.89", port: 443, uuid: "1078d418-b4e0-4668-9018-dc90c2042d61", udp: True, network: "tcp"}
-  - {name: "@Hope_Net-join-us-on-Telegram #4", type: "vless", server: "185.146.173.82", port: 2096, uuid: "135a7212-1a83-42be-f9c7-e17f4dcbe85a", udp: True, network: "grpc", tls: True, servername: "DNS-GAME.MpoTehran.ir", skip-cert-verify: True, grpc-opts: {grpc-service-name: "Alfred-Config/Alfred-Config/qAlfred-Config/Alfred-Config/Alfred-Config/Alfred-Config/Alfred-Config/Alfred-Config/Alfred-Config/Alfred-Config"}}
-  - {name: "کانال ما #3", type: "vless", server: "b2n.ir", port: 443, uuid: "14c44521-e28f-4561-a12c-337d8cc44d87", udp: True, network: "xhttp", tls: True, servername: "beaver.kaftarkakolbesarwifi.com", skip-cert-verify: True}
-  - {name: "🌍152372 | ⚡️Telegram = t.me/SOSkeyNET", type: "vless", server: "germ-node.datamove.online", port: 2040, uuid: "17451fec-af94-4715-8c2f-7f6839130d0a", udp: True, network: "tcp"}
-  - {name: "@Hope_Net-join-us-on-Telegram #5", type: "vless", server: "31.47.45.218", port: 18215, uuid: "19f1655a-beb4-452c-92c8-92c8598714f4", udp: True, network: "tcp"}
-  - {name: "🇪🇪 Join+Telegram:@Farah_VPN 🇪🇪", type: "vless", server: "estproxy2.lockdwn.com", port: 443, uuid: "19f54e37-5fae-47f6-bc10-e71ccbc58389", udp: True, network: "ws", ws-opts: {path: "/", headers: {"Host": "estproxy2.lockdwn.com"}}}
-  - {name: "@FarazV2ray", type: "vless", server: "s1.orangesms.ir", port: 3389, uuid: "1a88f661-c972-4606-83a4-d10a6cf525c2", udp: True, network: "tcp"}
-  - {name: "@filembad", type: "vless", server: "65.109.219.136", port: 29443, uuid: "1d2cf8dc-0812-4d10-98cd-ceeb6056cc75", udp: True, network: "xhttp"}
-  - {name: "@Hope_Net-join-us-on-Telegram #6", type: "vless", server: "108.162.195.205", port: 8880, uuid: "27208d37-9bbb-4547-afbf-6d9e2a1bb365", udp: True, network: "ws", ws-opts: {path: "//vahidvpn-Amazonvpn,vahidvpn-Amazonvpn,t-me-AmazonVpn-ir-Amazonvpn,telegram-AmazonVpn-ir,AmazonVpn-ir-ArV2ray,telegram-ArV2ray,telegram-ArV2ray,telegram-ArV2ray,vahidvpn-ArV2ray,telegram-vahidvpn,vahidvpn-AmazonVpn,AmazonVpn-ArV2ray?ed=2048", headers: {"Host": "2.v2ray.debian.org.fxp.debian.org.speedtest.net.xn--48jyb6ec1ad.kalaco.shop."}}}
-  - {name: "🇳🇱 Join+Telegram:@Farah_VPN 🇳🇱", type: "vless", server: "212.46.33.18", port: 443, uuid: "27b16a66-95e0-4c20-b00b-5dff91d9c9f5", udp: True, network: "grpc", grpc-opts: {grpc-service-name: "moktana.net.v1.StreamService"}}
-  - {name: "@Hope_Net-join-us-on-Telegram #7", type: "vless", server: "104.31.16.65", port: 2096, uuid: "281a5a7c-6530-4cd6-b0f2-a2666e6c3b36", udp: True, network: "grpc", tls: True, servername: "tel.v-2rayngvpn.sbs", skip-cert-verify: True, grpc-opts: {grpc-service-name: ""}}
-  - {name: "🇺🇸 Join+Telegram:@Farah_VPN 🇺🇸 #3", type: "vless", server: "65.49.207.66", port: 443, uuid: "29ca503d-e6b8-4509-b666-48133f450857", udp: True, network: "ws", tls: True, servername: "learn00.evany.de5.net", skip-cert-verify: True, ws-opts: {path: "/fdip=tw.william.us.ci!txt", headers: {"Host": "learn00.evany.de5.net"}}}
-  - {name: "@Hope_Net-join-us-on-Telegram #8", type: "vless", server: "86.38.214.18", port: 443, uuid: "2ad2e13c-8cb1-4666-8bfb-c42b51df2f1d", udp: True, network: "grpc", tls: True, servername: "aLi.PinobiN.iR.", skip-cert-verify: True, grpc-opts: {grpc-service-name: "/custom_config?ed=2048"}}
-  - {name: "@Hope_Net-join-us-on-Telegram #9", type: "vless", server: "185.146.173.58", port: 8080, uuid: "2b3b4920-e712-4613-b0df-75a80b403f49", udp: True, network: "ws", ws-opts: {path: "/servernet", headers: {"Host": "dcc4.servernet.fun."}}}
-  - {name: "@filembad #2", type: "vless", server: "43.163.241.110", port: 24477, uuid: "2bc72bec-0c2a-4c6b-aa9f-138bfce7ba0d", udp: True, network: "tcp"}
-  - {name: "[28745] - Telegram : @V2All", type: "vless", server: "168.222.203.14", port: 4100, uuid: "2e79f3ca-b8db-4d4d-a96e-8f7313480696", udp: True, network: "ws", ws-opts: {path: "/v1"}}
-  - {name: "@filembad #3", type: "vless", server: "89.35.14.30", port: 443, uuid: "2f35965a-9a9b-45fd-ba32-987296dfb6be", udp: True, network: "grpc", grpc-opts: {grpc-service-name: "hub.v1.RelayService"}}
-  - {name: "🇲🇩152382 | ⚡️Telegram = t.me/SOSkeyNET", type: "vless", server: "md5.univesalsrv.com", port: 443, uuid: "2f35965a-9a9b-45fd-ba32-987296dfb6be", udp: True, network: "grpc", grpc-opts: {grpc-service-name: "app.v1.PushService"}}
-  - {name: "🇨🇦152419 | ⚡️Telegram = t.me/SOSkeyNET", type: "vless", server: "freesocks.work", port: 2052, uuid: "3302c871-79e8-45a3-8233-d0547ae963ed", udp: True, network: "ws", ws-opts: {path: "/@BlueKnight_net--@BlueKnight_net", headers: {"Host": "uwu.blueknightnet.qzz.io"}}}
-  - {name: "@Hope_Net-join-us-on-Telegram #10", type: "vless", server: "199.247.5.104", port: 80, uuid: "33837aa4-a41f-441c-a0d5-fa7a8e18ae40", udp: True, network: "ws", ws-opts: {path: "/wgTNq5m7eYC6zhndZEfzC", headers: {"Host": "wrmelmwxlf.gktevlrqznwqqozy.fabpfs66gizmnojhcvqxwl.kytrcfzqla87gvgvs6c7kjnrubuh.cc"}}}
-  - {name: "@prrofile_purple  ♥️👈 تلگرام #4", type: "vless", server: "core.noneok.com", port: 443, uuid: "340e4de3-144b-49c4-ad72-b49b35713728", udp: True, network: "grpc", grpc-opts: {grpc-service-name: "api.v1.StreamService"}}
-  - {name: "5🍑@oneclickvpnkeys", type: "vless", server: "51.89.194.151", port: 2053, uuid: "34b7efee-3c88-440f-9495-92c12a0de50e", udp: True, network: "tcp"}
-  - {name: "🍑83@oneclickvpnkeys", type: "vless", server: "85.155.226.168", port: 443, uuid: "39c42b0a-b823-4c93-bb99-74b4183e518d", udp: True, network: "tcp", flow: "xtls-rprx-vision"}
-  - {name: "[28752] - Telegram : @V2All", type: "vless", server: "85.155.226.207", port: 443, uuid: "39c42b0a-b823-4c93-bb99-74b4183e518d", udp: True, network: "tcp", flow: "xtls-rprx-vision"}
-  - {name: "🇳🇱152355 | ⚡️Telegram = t.me/SOSkeyNET", type: "vless", server: "85.155.226.30", port: 443, uuid: "39c42b0a-b823-4c93-bb99-74b4183e518d", udp: True, network: "tcp", flow: "xtls-rprx-vision"}
-  - {name: "🇳🇱152346 | ⚡️Telegram = t.me/SOSkeyNET", type: "vless", server: "85.155.226.37", port: 443, uuid: "39c42b0a-b823-4c93-bb99-74b4183e518d", udp: True, network: "tcp", flow: "xtls-rprx-vision"}
-  - {name: "🇳🇱152347 | ⚡️Telegram = t.me/SOSkeyNET", type: "vless", server: "85.155.226.69", port: 443, uuid: "39c42b0a-b823-4c93-bb99-74b4183e518d", udp: True, network: "tcp", flow: "xtls-rprx-vision"}
-  - {name: "1🍑@oneclickvpnkeys", type: "vless", server: "85.155.226.78", port: 443, uuid: "39c42b0a-b823-4c93-bb99-74b4183e518d", udp: True, network: "tcp", flow: "xtls-rprx-vision"}
-  - {name: "3🍑@oneclickvpnkeys", type: "vless", server: "85.155.226.86", port: 443, uuid: "39c42b0a-b823-4c93-bb99-74b4183e518d", udp: True, network: "tcp", flow: "xtls-rprx-vision"}
-  - {name: "🇳🇱152357 | ⚡️Telegram = t.me/SOSkeyNET", type: "vless", server: "85.155.226.92", port: 443, uuid: "39c42b0a-b823-4c93-bb99-74b4183e518d", udp: True, network: "tcp", flow: "xtls-rprx-vision"}
-  - {name: "@GozargahAzad|🇷🇺", type: "vless", server: "185.147.27.183", port: 8443, uuid: "3a90bf69-1ffe-4ebb-b9a7-ad9ba8e9f66f", udp: True, network: "tcp", tls: True, servername: "user-6a8d949a.noooo.win", skip-cert-verify: True, flow: "xtls-rprx-vision-udp443"}
-  - {name: "🇷🇺 Join+Telegram:@Farah_VPN 🇷🇺", type: "vless", server: "45.91.52.125", port: 443, uuid: "3ab2615c-689d-463b-8990-a95013894348", udp: True, network: "tcp", flow: "xtls-rprx-vision"}
-  - {name: "[28743] - Telegram : @V2All", type: "vless", server: "50.7.249.218", port: 8443, uuid: "3ebb81df-0e7f-4c2a-98d1-d7f470563259", udp: True, network: "ws", tls: True, servername: "apkav-5.bosx.net", skip-cert-verify: True, ws-opts: {path: "/api/connect"}}
-  - {name: "@Hope_Net-join-us-on-Telegram #11", type: "vless", server: "104.17.153.239", port: 8080, uuid: "406d0357-ecd8-46ce-afa8-22b0e139348c", udp: True, network: "ws", ws-opts: {path: "/", headers: {"Host": "join-to.vmessorg.Community."}}}
-  - {name: "@Hope_Net-join-us-on-Telegram #12", type: "vless", server: "104.16.178.173", port: 80, uuid: "435bda4c-fe5e-42c9-a3ad-15334943b38a", udp: True, network: "ws", ws-opts: {path: "/", headers: {"Host": "us3.rtacg.com"}}}
-  - {name: "@Hope_Net-join-us-on-Telegram #13", type: "vless", server: "104.16.206.160", port: 80, uuid: "435bda4c-fe5e-42c9-a3ad-15334943b38a", udp: True, network: "ws", ws-opts: {path: "/", headers: {"Host": "us3.rtacg.com"}}}
-  - {name: "@Hope_Net-join-us-on-Telegram #14", type: "vless", server: "104.17.102.205", port: 80, uuid: "435bda4c-fe5e-42c9-a3ad-15334943b38a", udp: True, network: "ws", ws-opts: {path: "/", headers: {"Host": "us3.rtacg.com"}}}
-  - {name: "@Hope_Net-join-us-on-Telegram #15", type: "vless", server: "104.17.121.181", port: 80, uuid: "435bda4c-fe5e-42c9-a3ad-15334943b38a", udp: True, network: "ws", ws-opts: {path: "/", headers: {"Host": "us3.rtacg.com"}}}
-  - {name: "@Hope_Net-join-us-on-Telegram #16", type: "vless", server: "104.17.217.131", port: 80, uuid: "435bda4c-fe5e-42c9-a3ad-15334943b38a", udp: True, network: "ws", ws-opts: {path: "/", headers: {"Host": "us3.rtacg.com"}}}
-  - {name: "@Hope_Net-join-us-on-Telegram #17", type: "vless", server: "104.17.53.26", port: 80, uuid: "435bda4c-fe5e-42c9-a3ad-15334943b38a", udp: True, network: "ws", ws-opts: {path: "/", headers: {"Host": "us3.rtacg.com"}}}
-  - {name: "@Hope_Net-join-us-on-Telegram #18", type: "vless", server: "104.17.96.103", port: 80, uuid: "435bda4c-fe5e-42c9-a3ad-15334943b38a", udp: True, network: "ws", ws-opts: {path: "/", headers: {"Host": "us3.rtacg.com"}}}
-  - {name: "@GozargahAzad|🏁", type: "vless", server: "104.18.44.185", port: 80, uuid: "435bda4c-fe5e-42c9-a3ad-15334943b38a", udp: True, network: "ws", ws-opts: {path: "/", headers: {"Host": "us3.rtacg.com"}}}
-  - {name: "@Hope_Net-join-us-on-Telegram #19", type: "vless", server: "104.18.88.134", port: 80, uuid: "435bda4c-fe5e-42c9-a3ad-15334943b38a", udp: True, network: "ws", ws-opts: {path: "/", headers: {"Host": "us3.rtacg.com"}}}
-  - {name: "@Hope_Net-join-us-on-Telegram #20", type: "vless", server: "104.19.51.167", port: 80, uuid: "435bda4c-fe5e-42c9-a3ad-15334943b38a", udp: True, network: "ws", ws-opts: {path: "/", headers: {"Host": "us3.rtacg.com"}}}
-  - {name: "@Hope_Net-join-us-on-Telegram #21", type: "vless", server: "198.41.208.124", port: 80, uuid: "435bda4c-fe5e-42c9-a3ad-15334943b38a", udp: True, network: "ws", ws-opts: {path: "/", headers: {"Host": "us3.rtacg.com"}}}
-  - {name: "@Hope_Net-join-us-on-Telegram #22", type: "vless", server: "198.41.220.31", port: 80, uuid: "435bda4c-fe5e-42c9-a3ad-15334943b38a", udp: True, network: "ws", ws-opts: {path: "/", headers: {"Host": "us3.rtacg.com"}}}
-  - {name: "@Hope_Net-join-us-on-Telegram #23", type: "vless", server: "172.67.200.173", port: 443, uuid: "43b3cbba-e6ac-484a-9481-976a0415eab9", udp: True, network: "ws", tls: True, servername: "eseTsEcuRiTYLiceNse.pONoD65798.WORKErS.Dev", skip-cert-verify: True, ws-opts: {path: "/", headers: {"Host": "ESetseCuRITYliceNSe.Ponod65798.worKerS.deV"}}}
-  - {name: "🇺🇸152356 | ⚡️Telegram = t.me/SOSkeyNET", type: "vless", server: "108.162.198.178", port: 2086, uuid: "47fcef29-ab4e-4aa6-932b-d95a18f28a4e", udp: True, network: "ws", ws-opts: {path: "/", headers: {"Host": "8nj2r.2k8t.f88.hh.vavava.kdns.fr"}}}
-  - {name: "🇺🇸152359 | ⚡️Telegram = t.me/SOSkeyNET", type: "vless", server: "108.162.198.178", port: 2095, uuid: "47fcef29-ab4e-4aa6-932b-d95a18f28a4e", udp: True, network: "ws", ws-opts: {path: "/", headers: {"Host": "8nj2r.2k8t.f88.hh.vavava.kdns.fr"}}}
-  - {name: "🇺🇸152350 | ⚡️Telegram = t.me/SOSkeyNET", type: "vless", server: "108.162.198.178", port: 8080, uuid: "47fcef29-ab4e-4aa6-932b-d95a18f28a4e", udp: True, network: "ws", ws-opts: {path: "/", headers: {"Host": "8nj2r.2k8t.f88.hh.vavava.kdns.fr"}}}
-  - {name: "🇺🇸152358 | ⚡️Telegram = t.me/SOSkeyNET", type: "vless", server: "108.162.198.178", port: 8880, uuid: "47fcef29-ab4e-4aa6-932b-d95a18f28a4e", udp: True, network: "ws", ws-opts: {path: "/", headers: {"Host": "8nj2r.2k8t.f88.hh.vavava.kdns.fr"}}}
-  - {name: "🇨🇦152407 | ⚡️Telegram = t.me/SOSkeyNET", type: "vless", server: "172.64.154.8", port: 2095, uuid: "47fcef29-ab4e-4aa6-932b-d95a18f28a4e", udp: True, network: "ws", ws-opts: {path: "/?ed=2560security=tls", headers: {"Host": "8nj2r.2k8t.f88.hh.vavava.kdns.fr"}}}
-  - {name: "@Hope_Net-join-us-on-Telegram #24", type: "vless", server: "45.159.218.46", port: 443, uuid: "48198295-b7ba-4b5c-8d85-085d55a6c869", udp: True, network: "ws", tls: True, servername: "xinh.ylks.link", skip-cert-verify: True, ws-opts: {path: "/blue"}}
-  - {name: "@Hope_Net-join-us-on-Telegram #25", type: "vless", server: "172.67.201.36", port: 8443, uuid: "4d4b0d5e-8477-4e12-8e03-5739204da921", udp: True, network: "ws", tls: True, servername: "re.ipgozar.top", skip-cert-verify: True, ws-opts: {path: "/"}}
-  - {name: "🇨🇦152430 | ⚡️Telegram = t.me/SOSkeyNET", type: "vless", server: "172.67.150.133", port: 443, uuid: "50414e45-4c5f-5a45-5553-14aa761f45aa", udp: True, network: "ws", tls: True, servername: "xkz69re5uz6s.sajadali2020.workers.dev", skip-cert-verify: True, ws-opts: {path: "/stream/PANEL_ZEUS/14aa761f45aa/loc-1", headers: {"Host": "xkz69re5uz6s.sajadali2020.workers.dev"}}}
-  - {name: "[28726] - Telegram : @V2All", type: "vless", server: "ru1.levikogjgfdd.ir", port: 443, uuid: "53ffd172-de4c-002f-aa77-1a6830a36cf8", udp: True, network: "xhttp"}
-  - {name: "🇨🇦152418 | ⚡️Telegram = t.me/SOSkeyNET", type: "vless", server: "jolly-butterfly-24e0.212-cb3.workers.dev", port: 8880, uuid: "5990e0a5-fc5f-43c6-8fdc-39612c60a9cd", udp: True, network: "ws", ws-opts: {path: "/pyip=ProxyIP.SG.CMLiussss.net"}}
-  - {name: "[28755] - Telegram : @V2All", type: "vless", server: "5.75.193.127", port: 80, uuid: "648abb82-c62d-4946-91f3-634a21c706ca", udp: True, network: "tcp"}
-  - {name: "🌍152388 | ⚡️Telegram = t.me/SOSkeyNET", type: "vless", server: "digital-robin.wp-toolbox.ir", port: 1610, uuid: "64a28ed6-2238-42d9-8452-b83674f741e5", udp: True, network: "tcp"}
-  - {name: "@Hope_Net-join-us-on-Telegram #26", type: "vless", server: "5.202.12.194", port: 4443, uuid: "6b98729a-2d57-4915-b2a2-fe4026c9fbcf", udp: True, network: "tcp"}
-  - {name: "2🍑@oneclickvpnkeys", type: "vless", server: "162.55.242.208", port: 2053, uuid: "6deab233-3abc-492a-85c9-503ef4160b47", udp: True, network: "tcp"}
-  - {name: "@filembad #4", type: "vless", server: "german.onrovela.com", port: 443, uuid: "6deeccb8-29f7-42df-8a13-cf0e9c0ad1d8", udp: True, network: "tcp"}
-  - {name: "🇭🇰152380 | ⚡️Telegram = t.me/SOSkeyNET", type: "vless", server: "182.16.61.5", port: 45647, uuid: "6f361c37-bc54-43dd-8c8b-0f59354745a5", udp: True, network: "tcp"}
-  - {name: "🇺🇸152387 | ⚡️Telegram = t.me/SOSkeyNET", type: "vless", server: "linevpnco-production-e46f.up.railway.app", port: 443, uuid: "7513d771-8ed6-4c7c-a1d9-112503b18d21", udp: True, network: "ws", tls: True, servername: "linevpnco-production-e46f.up.railway.app", skip-cert-verify: True, ws-opts: {path: "/vl-ws", headers: {"Host": "linevpnco-production-e46f.up.railway.app"}}}
-  - {name: "@GozargahAzad|🏁 #2", type: "vless", server: "104.18.85.22", port: 80, uuid: "7d96f544-c496-41cf-dd61-337f0aff062a", udp: True, network: "ws", ws-opts: {path: "/abcde", headers: {"Host": "kr1.175852.xyz"}}}
-  - {name: "کانال ما #4", type: "vless", server: "104.17.177.36", port: 8443, uuid: "7ec9f4c9-41d0-44ea-86d9-590d9486640e", udp: True, network: "ws", tls: True, servername: "test-irancell-namahdod.unlimitedvpncom.workers.dev", skip-cert-verify: True, ws-opts: {path: "/", headers: {"Host": "test-irancell-namahdod.unlimitedvpncom.workers.dev"}}}
-  - {name: "کانال ما #5", type: "vless", server: "104.17.187.21", port: 2096, uuid: "7ec9f4c9-41d0-44ea-86d9-590d9486640e", udp: True, network: "ws", tls: True, servername: "test-irancell-namahdod.unlimitedvpncom.workers.dev", skip-cert-verify: True, ws-opts: {path: "/", headers: {"Host": "test-irancell-namahdod.unlimitedvpncom.workers.dev"}}}
-  - {name: "🇮🇷152433 | ⚡️Telegram = t.me/SOSkeyNET", type: "vless", server: "cdn.sebra.ir", port: 2096, uuid: "80e34bdc-31c9-4e4d-ac78-f33d9340b8ef", udp: True, network: "httpupgrade", tls: True, servername: "sezar.sebra.ir", skip-cert-verify: True}
-  - {name: "🇺🇸 Join+Telegram:@Farah_VPN 🇺🇸 #4", type: "vless", server: "67.220.73.204", port: 18662, uuid: "814bd064-544d-4255-a070-5705c03f6da9", udp: True, network: "tcp", flow: "xtls-rprx-vision"}
-  - {name: "🇷🇺152425 | ⚡️Telegram = t.me/SOSkeyNET", type: "vless", server: "pro-ru-bridge.emrata.top", port: 443, uuid: "831f56ff-d117-4a72-bb2b-a5e44eab6fbf", udp: True, network: "tcp", flow: "xtls-rprx-vision"}
-  - {name: "@GozargahAzad|🏁 #3", type: "vless", server: "104.21.69.44", port: 2096, uuid: "8721355e-96d5-4bb9-a99b-b6119d6b1cd4", udp: True, network: "ws", tls: True, servername: "S3lBNf04KTPltic8C1EfLqq73QtMKz7zlYH9qRC0U6GM8x174e8w8DSLaK.Pages.DeV", skip-cert-verify: True, ws-opts: {path: "/", headers: {"Host": "S3lBNf04KTPltic8C1EfLqq73QtMKz7zlYH9qRC0U6GM8x174e8w8DSLaK.Pages.DeV"}}}
-  - {name: "🇳🇱 Join+Telegram:@Farah_VPN 🇳🇱 #2", type: "vless", server: "94.241.174.157", port: 40443, uuid: "8ac637bf-554e-4902-94d7-baf01780a83c", udp: True, network: "tcp", flow: "xtls-rprx-vision"}
-  - {name: "@GozargahAzad|🏁 #4", type: "vless", server: "172.67.69.236", port: 8080, uuid: "8fb03657-2100-4067-9bcd-1ae0904e5a8e", udp: True, network: "ws", ws-opts: {path: "/", headers: {"Host": "10-156-sbbbBbbbedfvbgdxfvbsdfbdsvsdswrhefh10-545hjtrfg.mralpha-vpn.COM."}}}
-  - {name: "[28723] - Telegram : @V2All", type: "vless", server: "ge1.levikogjgfdd.ir", port: 3443, uuid: "8fe31772-a4b7-4a70-9fa2-34124c7284ca", udp: True, network: "grpc", tls: True, servername: "de.wlrus.cfd", skip-cert-verify: True, grpc-opts: {grpc-service-name: ""}}
-  - {name: "🇩🇪 Join+Telegram:@Farah_VPN 🇩🇪 #2", type: "vless", server: "130.17.2.28", port: 2200, uuid: "9501f3d6-483f-45c1-ab2c-33266520cd5c", udp: True, network: "ws", ws-opts: {path: "/v1", headers: {"Host": "rzd.ru"}}}
-  - {name: "🇫🇷FR-🚀@VPNine1", type: "vless", server: "dlmusicyas.pcsfolder.ir", port: 28144, uuid: "953645a7-4c0b-5527-c97f-496896315a97", udp: True, network: "tcp"}
-  - {name: "@Hope_Net-join-us-on-Telegram #27", type: "vless", server: "70.34.194.37", port: 433, uuid: "96560ec9-f8f4-49a9-9897-586c51a81c90", udp: True, network: "tcp"}
-  - {name: "@Hope_Net-join-us-on-Telegram #28", type: "vless", server: "185.146.173.220", port: 80, uuid: "99f9280a-f9cc-4dd4-adfe-2c211d306adf", udp: True, network: "ws", ws-opts: {path: "/", headers: {"Host": "10.V2ray.mihanyas.ir.mbj.farsroid.com.Р"}}}
-  - {name: "🇹🇷152399 | ⚡️Telegram = t.me/SOSkeyNET", type: "vless", server: "144.225.65.248", port: 8080, uuid: "9a972dcb-47ad-4728-9e8b-b627697d2eda", udp: True, network: "tcp"}
-  - {name: "🇳🇱152400 | ⚡️Telegram = t.me/SOSkeyNET", type: "vless", server: "176.65.151.225", port: 8080, uuid: "9a972dcb-47ad-4728-9e8b-b627697d2eda", udp: True, network: "tcp"}
-  - {name: "@filembad #5", type: "vless", server: "191.101.113.128", port: 2053, uuid: "9bb9f27b-d2fd-4230-96e7-8df6cc7e73db", udp: True, network: "tcp"}
-  - {name: "🇩🇪 Join+Telegram:@Farah_VPN 🇩🇪 #3", type: "vless", server: "185.255.93.189", port: 443, uuid: "9ce4c9e2-1dcc-abe8-9abf-9bf8bc1269f6", udp: True, network: "ws", tls: True, servername: "j.n.i.l.6.m.7.3.o.t.e.s.j.3.us.art-us.kdns.fr", skip-cert-verify: True, ws-opts: {path: "/pg/10086-dfc816f117c49173", headers: {"Host": "j.n.i.l.6.m.7.3.o.t.e.s.j.3.us.art-us.kdns.fr"}}}
-  - {name: "🇸🇪 Join+Telegram:@Farah_VPN 🇸🇪", type: "vless", server: "62.182.192.195", port: 443, uuid: "9ce4c9e2-1dcc-abe8-9abf-9bf8bc1269f6", udp: True, network: "ws", tls: True, servername: "j.n.i.l.6.m.7.3.o.t.e.s.j.3.us.art-us.kdns.fr", skip-cert-verify: True, ws-opts: {path: "/pg/10086-dfc816f117c49173", headers: {"Host": "j.n.i.l.6.m.7.3.o.t.e.s.j.3.us.art-us.kdns.fr"}}}
-  - {name: "🇩🇰 Join+Telegram:@Farah_VPN 🇩🇰", type: "vless", server: "ipw.ygdfw.com", port: 443, uuid: "9f2f3e55-a8a6-40f3-aeb2-1061e9207d4d", udp: True, network: "ws", tls: True, servername: "p2bm6l1.freelanceriran98.ir", skip-cert-verify: True, ws-opts: {path: "/ws-dk", headers: {"Host": "p2bm6l1.freelanceriran98.ir"}}}
-  - {name: "@Hope_Net-join-us-on-Telegram #29", type: "vless", server: "5.75.243.143", port: 8080, uuid: "FILTERSHCAN", udp: True, network: "tcp"}
-  - {name: "🇪🇸152404 | ⚡️Telegram = t.me/SOSkeyNET", type: "vless", server: "66.163.118.75", port: 11000, uuid: "a0e48bd2-3360-486b-9042-ee17951d76da", udp: True, network: "tcp"}
-  - {name: "@Hope_Net-join-us-on-Telegram #30", type: "vless", server: "158.224.83.164", port: 443, uuid: "a13df940-020c-465f-bc89-ee5279b5cd6a", udp: True, network: "ws", tls: True, servername: "kkh.ylks.link", skip-cert-verify: True, ws-opts: {path: "/?proxyip"}}
-  - {name: "@GozargahAzad|🇩🇪", type: "vless", server: "202.181.188.65", port: 3333, uuid: "a13df940-020c-465f-bc89-ee5279b5cd6a", udp: True, network: "ws", tls: True, servername: "kkh.ylks.link", skip-cert-verify: True, ws-opts: {path: "/"}}
-  - {name: "@Hope_Net-join-us-on-Telegram #31", type: "vless", server: "217.163.76.55", port: 443, uuid: "a13df940-020c-465f-bc89-ee5279b5cd6a", udp: True, network: "ws", tls: True, servername: "hkh.ylks.link", skip-cert-verify: True, ws-opts: {path: "/?proxyip"}}
-  - {name: "@Hope_Net-join-us-on-Telegram #32", type: "vless", server: "69.84.182.30", port: 443, uuid: "a13df940-020c-465f-bc89-ee5279b5cd6a", udp: True, network: "ws", tls: True, servername: "hkg.ylks.link", skip-cert-verify: True, ws-opts: {path: "/blue"}}
-  - {name: "@Hope_Net-join-us-on-Telegram #33", type: "vless", server: "69.84.182.32", port: 443, uuid: "a13df940-020c-465f-bc89-ee5279b5cd6a", udp: True, network: "ws", tls: True, servername: "kkh.ylks.link", skip-cert-verify: True, ws-opts: {path: "/blue"}}
-  - {name: "canfingV2rayNG-335", type: "vless", server: "192.71.82.2", port: 443, uuid: "a5c05c1e-aa68-443f-8598-09800244bd4b", udp: True, network: "ws", tls: True, servername: "kingcloud.biack.ir", skip-cert-verify: True, ws-opts: {path: "/LiL?ed"}}
-  - {name: "[28720] - Telegram : @V2All", type: "vless", server: "nex1.liiliil.ir", port: 2053, uuid: "a90f60c0-6566-44cf-a99f-5aaf213b72dc", udp: True, network: "tcp"}
-  - {name: "@Cfox_SerVer 🇹🇷", type: "vless", server: "u.mrgang.shop", port: 8443, uuid: "afbceea5-b771-4997-9c57-cd33ca370d93", udp: True, network: "tcp"}
-  - {name: "@filembad #6", type: "vless", server: "109.169.85.138", port: 443, uuid: "b2dbc58c-3a92-448f-aa95-6c8fdfffb282", udp: True, network: "tcp", flow: "xtls-rprx-vision"}
-  - {name: "@Hope_Net-join-us-on-Telegram #34", type: "vless", server: "188.245.52.140", port: 8080, uuid: "b45e25af-804a-400b-af73-e9253ecd26b7", udp: True, network: "tcp"}
-  - {name: "🇩🇪152348 | ⚡️Telegram = t.me/SOSkeyNET", type: "vless", server: "162.35.231.127", port: 443, uuid: "b5ca5ab3-8cbc-4ac3-89da-9cd360589ecb", udp: True, network: "tcp", flow: "xtls-rprx-vision"}
-  - {name: "🇦🇪AE-🚀@VPNine1", type: "vless", server: "162.35.231.130", port: 443, uuid: "b5ca5ab3-8cbc-4ac3-89da-9cd360589ecb", udp: True, network: "tcp", flow: "xtls-rprx-vision"}
-  - {name: "🇨🇦152370 | ⚡️Telegram = t.me/SOSkeyNET", type: "vless", server: "noora.ir", port: 2086, uuid: "b7977b65-cfd8-4db9-a029-6ef014a4ae4a", udp: True, network: "xhttp"}
-  - {name: "canfingV2rayNG-370", type: "vless", server: "kia.ipsafe2.site", port: 24329, uuid: "b96d18f1-eb38-47e9-ae79-42e78fcc0ff8", udp: True, network: "tcp"}
-  - {name: "🇧🇷152427 | ⚡️Telegram = t.me/SOSkeyNET", type: "vless", server: "b2.cryptoofarm.com", port: 8443, uuid: "b98e3ee9-a67f-465a-a8f9-1e59e3cda6a8", udp: True, network: "tcp", flow: "xtls-rprx-vision"}
-  - {name: "🇷🇺 Join+Telegram:@Farah_VPN 🇷🇺 #2", type: "vless", server: "201.51.1.84", port: 16923, uuid: "ba222add-6ac1-45f1-9a18-f91cb38e324f", udp: True, network: "grpc", grpc-opts: {grpc-service-name: "neurex"}}
-  - {name: "🚀@VPNine1", type: "vless", server: "172.67.148.92", port: 2082, uuid: "ba6016d9-cd7a-467f-9589-3e29708b11a1", udp: True, network: "ws", ws-opts: {path: "TG@VPNine1-橘子分享", headers: {"Host": "Se1.vless.site."}}}
-  - {name: "[28725] - Telegram : @V2All", type: "vless", server: "uk1.levikogjgfdd.ir", port: 443, uuid: "bae47c97-9bc1-48f6-a133-a383ee71c12e", udp: True, network: "tcp", flow: "xtls-rprx-vision"}
-  - {name: "🇺🇸 Join+Telegram:@Farah_VPN 🇺🇸 #5", type: "vless", server: "141.101.122.147", port: 443, uuid: "c4edb87e-8544-4fa4-bd1c-b0cda9a34b46", udp: True, network: "ws", tls: True, servername: "a.cwvps.eu.org", skip-cert-verify: True, ws-opts: {path: "/ws", headers: {"Host": "a.cwvps.eu.org"}}}
-  - {name: "@v2ray_phoenix", type: "vless", server: "x4gbot-production.up.railway.app", port: 443, uuid: "c75f1db8-34b0-cf57-d42d-ae74f2914876", udp: True, network: "ws", tls: True, servername: "x4gbot-production.up.railway.app", skip-cert-verify: True, ws-opts: {path: "/ws/c75f1db8-34b0-cf57-d42d-ae74f2914876", headers: {"Host": "x4gbot-production.up.railway.app"}}}
-  - {name: "@Hope_Net-join-us-on-Telegram #35", type: "vless", server: "104.20.18.168", port: 80, uuid: "c7bc8d93-5ab1-4964-8298-863f73c25032", udp: True, network: "ws", ws-opts: {path: "/vless-ws/?ed", headers: {"Host": "worker-wispy-haze-55f8.arminpiladii.workers.DEV"}}}
-  - {name: "کانال ما #6", type: "vless", server: "213.183.61.100", port: 2053, uuid: "c7e9c591-2764-423a-afca-efbd010fd396", udp: True, network: "ws", tls: True, servername: "forfreeuse.rtqa.ru", skip-cert-verify: True, ws-opts: {path: "/", headers: {"Host": "forfreeuse.rtqa.ru"}}}
-  - {name: "@Hope_Net-join-us-on-Telegram #36", type: "vless", server: "185.146.173.143", port: 8080, uuid: "cbd0bb00-295e-448f-b07f-47164e8e8196", udp: True, network: "ws", ws-opts: {path: "/Telegram:@UnlimitedDev-Telegram:@UnlimitedDev", headers: {"Host": "unlimiteddev-vpn.unlimiteddev.Community."}}}
-  - {name: "[28753] - Telegram : @V2All", type: "vless", server: "116.202.19.249", port: 443, uuid: "cf990ae8-ee77-4436-aa3a-bbc2fb040c53", udp: True, network: "tcp"}
-  - {name: "🇷🇺RU-🚀@VPNine1", type: "vless", server: "212.67.10.55", port: 445, uuid: "d0471048-b677-48a4-94d1-50c0a4fb7191", udp: True, network: "tcp"}
-  - {name: "کانال ما #7", type: "vless", server: "14telegram.com.zapas.iran.janebicall.ir", port: 2087, uuid: "d31c0480-6abb-418f-a04d-8ccee7e49720", udp: True, network: "ws", tls: True, servername: "sexy.blaackgame.ir", skip-cert-verify: True, ws-opts: {path: "/xnxx", headers: {"Host": "sexy.blaackgame.ir"}}}
-  - {name: "🇨🇦152446 | ⚡️Telegram = t.me/SOSkeyNET", type: "vless", server: "19telegram.com.zapas.iran.janebicall.ir", port: 2087, uuid: "d31c0480-6abb-418f-a04d-8ccee7e49720", udp: True, network: "ws", tls: True, servername: "sexy.blaackgame.ir", skip-cert-verify: True, ws-opts: {path: "/xnxx", headers: {"Host": "sexy.blaackgame.ir"}}}
-  - {name: "🇨🇦152447 | ⚡️Telegram = t.me/SOSkeyNET", type: "vless", server: "22telegram.com.zapas.iran.janebicall.ir", port: 2087, uuid: "d31c0480-6abb-418f-a04d-8ccee7e49720", udp: True, network: "ws", tls: True, servername: "sexy.blaackgame.ir", skip-cert-verify: True, ws-opts: {path: "/xnxx", headers: {"Host": "sexy.blaackgame.ir"}}}
-  - {name: "🇨🇦152448 | ⚡️Telegram = t.me/SOSkeyNET", type: "vless", server: "25telegram.com.zapas.iran.janebicall.ir", port: 2087, uuid: "d31c0480-6abb-418f-a04d-8ccee7e49720", udp: True, network: "ws", tls: True, servername: "sexy.blaackgame.ir", skip-cert-verify: True, ws-opts: {path: "/xnxx", headers: {"Host": "sexy.blaackgame.ir"}}}
-  - {name: "🇨🇦152450 | ⚡️Telegram = t.me/SOSkeyNET", type: "vless", server: "27telegram.com.zapas.iran.janebicall.ir", port: 2087, uuid: "d31c0480-6abb-418f-a04d-8ccee7e49720", udp: True, network: "ws", tls: True, servername: "sexy.blaackgame.ir", skip-cert-verify: True, ws-opts: {path: "/xnxx", headers: {"Host": "sexy.blaackgame.ir"}}}
-  - {name: "کانال ما #8", type: "vless", server: "29telegram.com.zapas.iran.janebicall.ir", port: 2087, uuid: "d31c0480-6abb-418f-a04d-8ccee7e49720", udp: True, network: "ws", tls: True, servername: "sexy.blaackgame.ir", skip-cert-verify: True, ws-opts: {path: "/xnxx", headers: {"Host": "sexy.blaackgame.ir"}}}
-  - {name: "🇩🇪152449 | ⚡️Telegram = t.me/SOSkeyNET", type: "vless", server: "9telegram.com.zapas.iran.janebicall.ir", port: 2087, uuid: "d31c0480-6abb-418f-a04d-8ccee7e49720", udp: True, network: "ws", tls: True, servername: "sexy.blaackgame.ir", skip-cert-verify: True, ws-opts: {path: "/xnxx", headers: {"Host": "sexy.blaackgame.ir"}}}
-  - {name: "@Hope_Net-join-us-on-Telegram #37", type: "vless", server: "104.24.34.35", port: 443, uuid: "d342d11e-d424-4583-b36e-524ab1f0afa4", udp: True, network: "ws", tls: True, servername: "edtunnel-csc.pages.dev", skip-cert-verify: True, ws-opts: {path: "/?ed=2048", headers: {"Host": "edtunnel-csc.pages.dev"}}}
-  - {name: "@Hope_Net-join-us-on-Telegram #38", type: "vless", server: "104.21.237.205", port: 443, uuid: "dac5b2de-7df9-4d38-ba41-f98ceb19bd75", udp: True, network: "ws", tls: True, servername: "sandWorm.PaGES.DEv", skip-cert-verify: True, ws-opts: {path: "/07n1q4ys4Pwba7qM", headers: {"Host": "sANDWOrm.pAGEs.DeV"}}}
-  - {name: "@Hope_Net-join-us-on-Telegram #39", type: "vless", server: "78.109.194.237", port: 37778, uuid: "dbd616ca-5a86-4e9c-a9cf-d16c9099abd3", udp: True, network: "tcp"}
-  - {name: "🇳🇱NL-🚀@VPNine1", type: "vless", server: "nlw.shanseto.com", port: 443, uuid: "dd74ce5e-7ba0-4297-9fef-e9625c075f73", udp: True, network: "xhttp", tls: True, skip-cert-verify: True}
-  - {name: "🇷🇴RO-🚀@VPNine1", type: "vless", server: "ro.shanseto.com", port: 443, uuid: "dd74ce5e-7ba0-4297-9fef-e9625c075f73", udp: True, network: "xhttp", tls: True, skip-cert-verify: True}
-  - {name: "🇩🇪152366 | ⚡️Telegram = t.me/SOSkeyNET", type: "vless", server: "de.convert-flow.net", port: 443, uuid: "defd7be5-3090-4f97-9d46-823087b2345d", udp: True, network: "tcp", flow: "xtls-rprx-vision"}
-  - {name: "🇨🇦 Join+Telegram:@Farah_VPN 🇨🇦", type: "vless", server: "104.16.27.134", port: 80, uuid: "df301b32-1152-4526-9a63-beedd93d3156", udp: True, network: "ws", ws-opts: {path: "/", headers: {"Host": "vl.dalazhi.cloudns.biz"}}}
-  - {name: "🇵🇱 Join+Telegram:@Farah_VPN 🇵🇱", type: "vless", server: "94.125.102.52", port: 443, uuid: "e258977b-e413-4718-a3af-02d75492c349", udp: True, network: "ws", tls: True, servername: "ww1.aniuge.qzz.io", skip-cert-verify: True, ws-opts: {path: "/", headers: {"Host": "ww1.aniuge.qzz.io"}}}
-  - {name: "(S104)🇨🇵t.me/PrivateVPNs", type: "vless", server: "13.36.21.202", port: 22222, uuid: "e4514801-0d5a-42ba-869f-39bd605aef9e", udp: True, network: "tcp"}
-  - {name: "🇫🇷152436 | ⚡️Telegram = t.me/SOSkeyNET", type: "vless", server: "13.36.21.202", port: 22223, uuid: "e4514801-0d5a-42ba-869f-39bd605aef9e", udp: True, network: "tcp"}
-  - {name: "🇫🇷152435 | ⚡️Telegram = t.me/SOSkeyNET", type: "vless", server: "13.36.21.202", port: 22224, uuid: "e4514801-0d5a-42ba-869f-39bd605aef9e", udp: True, network: "tcp"}
-  - {name: "(S103)🇨🇵t.me/PrivateVPNs", type: "vless", server: "15.188.166.114", port: 22222, uuid: "e4514801-0d5a-42ba-869f-39bd605aef9e", udp: True, network: "tcp"}
-  - {name: "🚀@VPNine1 #2", type: "vless", server: "frcn.game2lizard.com", port: 2087, uuid: "e8a23ee7-3137-423d-9225-049a8fef11a0", udp: True, network: "xhttp", tls: True, servername: "it200.lizardshop.org", skip-cert-verify: True}
-  - {name: "@filembad #7", type: "vless", server: "62.113.210.26", port: 301, uuid: "efbd6d24-0475-4f2f-a548-f5950ce08214", udp: True, network: "tcp"}
-  - {name: "🇮🇷152339 | ⚡️Telegram = t.me/SOSkeyNET", type: "vless", server: "res1.mohamadtak3tare.ir", port: 45193, uuid: "f176fecc-7e48-4563-bfb4-fff83a379984", udp: True, network: "xhttp"}
-  - {name: "🇺🇸@iNetChnl", type: "vless", server: "inetchnl-production-0060.up.railway.app", port: 443, uuid: "f25a8d2f-764c-a9bf-bc6d-8d65a358b07d", udp: True, network: "ws", tls: True, servername: "inetchnl-production-0060.up.railway.app", skip-cert-verify: True, ws-opts: {path: "/ws/f25a8d2f-764c-a9bf-bc6d-8d65a358b07d", headers: {"Host": "inetchnl-production-0060.up.railway.app"}}}
-  - {name: "🇨🇦152405 | ⚡️Telegram = t.me/SOSkeyNET", type: "vless", server: "162.159.233.81", port: 443, uuid: "f651ca21-51b3-43b8-9764-de97e4880eca", udp: True, network: "ws", tls: True, servername: "parsa-panel-2y9cd.takecong.workers.dev", skip-cert-verify: True, ws-opts: {path: "/xiron", headers: {"Host": "parsa-panel-2y9cd.takecong.workers.dev"}}}
-  - {name: "[28727] - Telegram : @V2All", type: "vless", server: "ge3.levikogjgfdd.ir", port: 8443, uuid: "f82332b2-dc8c-eac4-ac12-f276e37e278a", udp: True, network: "tcp"}
-  - {name: "4🍑@oneclickvpnkeys", type: "vless", server: "51.77.217.70", port: 2053, uuid: "fae272a6-a184-4c91-83ed-771abdcff404", udp: True, network: "tcp"}
-  - {name: "[28724] - Telegram : @V2All", type: "vless", server: "pl1.levikogjgfdd.ir", port: 2444, uuid: "fc1ee51e-72ec-4af0-ab0f-540c9e22427b", udp: True, network: "tcp", flow: "xtls-rprx-vision"}
-  - {name: "🇫🇷FR-🚀@VPNine1 #2", type: "vmess", server: "162.19.204.71", port: 1234, uuid: "5c040f1d-45db-43bd-8d46-e4950e433735", alterId: 0, cipher: "auto", udp: True, network: "tcp", tls: True, servername: "supervpn.super.com", skip-cert-verify: True}
-  - {name: "[28722] - Telegram : @V2All", type: "vmess", server: "fi1.levikogjgfdd.ir", port: 22324, uuid: "04621bae-ab36-11ec-b909-0242ac120002", alterId: 0, cipher: "auto", udp: True, network: "tcp"}
-  - {name: "EPODONIOS", type: "vless", server: "40.160.68.122", port: 8080, uuid: "11af1c47-865a-47c6-92ff-118013655d78", udp: True, network: "ws", ws-opts: {path: "/?ed"}}
-  - {name: "EPODONIOS #2", type: "vless", server: "104.155.124.198", port: 443, uuid: "29ca503d-e6b8-4509-b666-48133f450857", udp: True, network: "ws", tls: True, servername: "learn00.evany.de5.net", skip-cert-verify: True, ws-opts: {path: "/fdip=tw.william.us.ci!txt", headers: {"Host": "learn00.evany.de5.net"}}}
-  - {name: "EPODONIOS #3", type: "vless", server: "108.162.198.240", port: 2053, uuid: "29ca503d-e6b8-4509-b666-48133f450857", udp: True, network: "ws", tls: True, servername: "learn00.evany.de5.net", skip-cert-verify: True, ws-opts: {path: "/fdip=tw.william.us.ci!txt", headers: {"Host": "learn00.evany.de5.net"}}}
-  - {name: "EPODONIOS #4", type: "vless", server: "154.21.93.106", port: 8443, uuid: "29ca503d-e6b8-4509-b666-48133f450857", udp: True, network: "ws", tls: True, servername: "learn00.evany.de5.net", skip-cert-verify: True, ws-opts: {path: "/fdip=tw.william.us.ci!txt", headers: {"Host": "learn00.evany.de5.net"}}}
-  - {name: "EPODONIOS #5", type: "vless", server: "35.241.172.224", port: 443, uuid: "29ca503d-e6b8-4509-b666-48133f450857", udp: True, network: "ws", tls: True, servername: "learn00.evany.de5.net", skip-cert-verify: True, ws-opts: {path: "/fdip=tw.william.us.ci!txt", headers: {"Host": "learn00.evany.de5.net"}}}
-  - {name: "EPODONIOS #6", type: "vless", server: "188.114.98.0", port: 80, uuid: "492465ab-3855-46f2-bac3-a2cd19074a87", udp: True, network: "ws", ws-opts: {path: "/NWpadfduJl5DcIDB", headers: {"Host": "worker3.gahekif304.workers.dev"}}}
-  - {name: "EPODONIOS #7", type: "vless", server: "159.195.242.180", port: 443, uuid: "4fe19d97-7b1d-4cb2-99ee-4bd8658a4c34", udp: True, network: "tcp", flow: "xtls-rprx-vision"}
-  - {name: "EPODONIOS #8", type: "vless", server: "47.76.218.163", port: 443, uuid: "57d68ec3-6cc5-10e9-2bca-5ba3994aa783", udp: True, network: "ws", tls: True, servername: "2.r.y.a.j.7.c.z.d.z.8.f.f.r.us.art-us.kdns.fr", skip-cert-verify: True, ws-opts: {path: "/glasspanel/0038ba35_0_1bdabe931208/", headers: {"Host": "2.r.y.a.j.7.c.z.d.z.8.f.f.r.us.art-us.kdns.fr"}}}
-  - {name: "EPODONIOS #9", type: "vless", server: "217.60.24.57", port: 8443, uuid: "658f7138-93c2-414d-a6c2-f332c94d4034", udp: True, network: "grpc", grpc-opts: {grpc-service-name: ""}}
-  - {name: "EPODONIOS #10", type: "vless", server: "dlmusic.pcsfolder.ir", port: 28144, uuid: "953645a7-4c0b-5527-c97f-496896315a97", udp: True, network: "tcp"}
-  - {name: "EPODONIOS #11", type: "vless", server: "154.9.239.44", port: 443, uuid: "9ce4c9e2-1dcc-abe8-9abf-9bf8bc1269f6", udp: True, network: "ws", tls: True, servername: "8.o.8.e.t.g.7.w.8.n.e.1.l.e.us.art-us.kdns.fr", skip-cert-verify: True, ws-opts: {path: "/pg/10086-dfc816f117c49173", headers: {"Host": "8.o.8.e.t.g.7.w.8.n.e.1.l.e.us.art-us.kdns.fr"}}}
-  - {name: "EPODONIOS #12", type: "vless", server: "91.149.238.31", port: 443, uuid: "9ce4c9e2-1dcc-abe8-9abf-9bf8bc1269f6", udp: True, network: "ws", tls: True, servername: "8.o.8.e.t.g.7.w.8.n.e.1.l.e.us.art-us.kdns.fr", skip-cert-verify: True, ws-opts: {path: "/pg/10086-dfc816f117c49173", headers: {"Host": "8.o.8.e.t.g.7.w.8.n.e.1.l.e.us.art-us.kdns.fr"}}}
-  - {name: "EPODONIOS #13", type: "vless", server: "15.188.166.114", port: 22223, uuid: "e4514801-0d5a-42ba-869f-39bd605aef9e", udp: True, network: "tcp"}
-  - {name: "EPODONIOS #14", type: "vless", server: "15.188.166.114", port: 22224, uuid: "e4514801-0d5a-42ba-869f-39bd605aef9e", udp: True, network: "tcp"}
-  - {name: "EPODONIOS #15", type: "vless", server: "172.64.52.18", port: 443, uuid: "eeb6823c-b926-4ea2-866a-5542edd26e59", udp: True, network: "ws", tls: True, servername: "t1s1.rittbo.kdns.fr", skip-cert-verify: True, ws-opts: {path: "/", headers: {"Host": "t1s1.rittbo.kdns.fr"}}}
-  - {name: "EPODONIOS #16", type: "vless", server: "84.32.209.7", port: 443, uuid: "f1c496bf-d2ab-45be-bc13-051d60d227b7", udp: True, network: "tcp", flow: "xtls-rprx-vision"}
-  - {name: "EPODONIOS #17", type: "ss", server: "154.12.240.141", port: 443, cipher: "aes-256-gcm", password: "0A1XMqChmURuRChe", udp: True}
+  - {name: "⚡ b2n.ir/v2ray-configs | 146", type: "trojan", server: "54.238.251.95", port: 49811, password: "BxceQaOe", udp: True, skip-cert-verify: True, sni: "t.me%2Fripaojiedian"}
+  - {name: "⚡ b2n.ir/v2ray-configs | 960", type: "ss", server: "172.99.190.87", port: 8118, cipher: "aes-256-gcm", password: "cdBIDV42DCwnfIN", udp: True}
+  - {name: "⚡ b2n.ir/v2ray-configs | 155", type: "trojan", server: "kkvlvvq-a.catcat321.com", port: 20023, password: "a126f35c-e832-4115-8593-b723ade3f7be", udp: True, skip-cert-verify: True, sni: "hk.catxstar.com"}
+  - {name: "CA 🇨🇦 | @Raydikalx | 14A30F", type: "vmess", server: "8095978a-4cf8-3668-bdf2-4bf7bd179086.oneplus.pub", port: 80, uuid: "46cfcfe1-e450-459d-a3ab-9406011ab3eb", alterId: 0, cipher: "auto", udp: True, network: "ws", ws-opts: {path: "/", headers: {"Host": "tms.dingtalk.com"}}}
+  - {name: "⚡ b2n.ir/v2ray-configs | 939", type: "trojan", server: "3.115.9.60", port: 41421, password: "BxceQaOe", udp: True, skip-cert-verify: True, sni: "t.me%2Fripaojiedian"}
+  - {name: "⚡ b2n.ir/v2ray-configs | 144", type: "ss", server: "38.64.138.145", port: 5004, cipher: "aes-256-gcm", password: "g5MeD6Ft3CWlJId", udp: True}
+  - {name: "未知108", type: "vmess", server: "shop.fasfood.top", port: 7344, uuid: "ad1b3b8c-8d2a-4009-b7b7-11d98b2d43bb", alterId: 0, cipher: "auto", udp: True, network: "tcp"}
+  - {name: "⚡ b2n.ir/v2ray-configs | 861", type: "trojan", server: "95.40.24.109", port: 1103, password: "BxceQaOe", udp: True, skip-cert-verify: True, sni: "t.me/ripaojiedian"}
+  - {name: "⚡ b2n.ir/v2ray-configs | 225", type: "trojan", server: "172.67.74.2", port: 443, password: "humanity", udp: True, skip-cert-verify: True, sni: "www.ignitelimit.com", network: "ws", ws-opts: {path: "/assignment"}}
+  - {name: "RU 🇷🇺 | @Raydikalx | CEA049", type: "vmess", server: "vvvbnh.taipei102.indevs.in", port: 443, uuid: "2bfe58f7-da1d-45df-ab43-7c665b20ee29", alterId: 0, cipher: "auto", udp: True, network: "ws", tls: True, servername: "vvvbnh.taipei102.indevs.in", skip-cert-verify: True, ws-opts: {path: "/t1UV4HSrzbWGmJtbBhmKb8nOkg", headers: {"Host": "vvvbnh.taipei102.indevs.in"}}}
+  - {name: "⚡ b2n.ir/v2ray-configs | 775", type: "trojan", server: "kkvlvvq-a.catcat321.com", port: 20066, password: "a126f35c-e832-4115-8593-b723ade3f7be", udp: True, skip-cert-verify: True, sni: "hk.catxstar.com"}
+  - {name: "⚡ b2n.ir/v2ray-configs | 873", type: "trojan", server: "54.250.197.209", port: 4117, password: "BxceQaOe", udp: True, skip-cert-verify: True, sni: "t.me/ripaojiedian"}
+  - {name: "⚡ b2n.ir/v2ray-configs | 283", type: "ss", server: "109.169.72.249", port: 805, cipher: "chacha20-ietf-poly1305", password: "G!yBwPWH3Vao", udp: True}
+  - {name: "⚡ b2n.ir/v2ray-configs | 14", type: "trojan", server: "95.40.24.249", port: 53001, password: "BxceQaOe", udp: True, skip-cert-verify: True, sni: "t.me/ripaojiedian"}
+  - {name: "⚡ b2n.ir/v2ray-configs | 572", type: "trojan", server: "iplc.xiaohouzi.club", port: 20032, password: "0f098bb2-9fad-3cc3-8acf-2a3268c1eb27", udp: True, skip-cert-verify: True, sni: "$$hk-azure02.xiaohouzi.club"}
+  - {name: "🇸🇬SG-8.222.138.164-6706", type: "vmess", server: "8.222.138.164", port: 80, uuid: "7e7f8398-bd39-49d8-9ce6-e48ffef463dd", alterId: 0, cipher: "auto", udp: True, network: "ws", ws-opts: {path: "/2TokGE9A/"}}
+  - {name: "🇺🇸US-137.175.49.209-0645", type: "vmess", server: "137.175.49.209", port: 50000, uuid: "418048af-a293-4b99-9b0c-98ca3580dd24", alterId: 64, cipher: "auto", udp: True, network: "ws", tls: True, skip-cert-verify: True, ws-opts: {path: "/path/1703579900346", headers: {"Host": "www.36443410.xyz"}}}
+  - {name: "کانال ما", type: "ss", server: "130.61.42.202", port: 59924, cipher: "2022-blake3-chacha20-poly1305", password: "vd3JxzAJjh5/VoQ+VAZNhrdY7FdJ9zZdOvA7LAtQars=", udp: True}
+  - {name: "کانال ما #2", type: "ss", server: "65.109.211.136", port: 58008, cipher: "2022-blake3-aes-256-gcm", password: "qFPZV44AkzcrMfUSy+nK/hyz/VkkNL2eksPTsXXuz0A=:HgkGFrFPuvmaiE90Va+2JwUgiGAqDEZ51YnksOtCMAI=", udp: True}
+  - {name: "[28942] - Telegram : @V2All", type: "ss", server: "94.156.114.171", port: 1080, cipher: "chacha20-ietf-poly1305", password: "TSqiXZ16uPqTCRbkgpfa7aNH5LuBsUUE", udp: True}
+  - {name: "🇷🇺152547 | ⚡️Telegram = t.me/SOSkeyNET", type: "ss", server: "178.72.184.143", port: 140, cipher: "chacha20-ietf-poly1305", password: "YtfFqe5sn6hIHfhdjSRwBd3jLK2Xh1jx", udp: True}
+  - {name: "🇷🇺152516 | ⚡️Telegram = t.me/SOSkeyNET", type: "ss", server: "45.140.169.123", port: 10808, cipher: "aes-256-gcm", password: "6b39ae3234dfd68b", udp: True}
+  - {name: "🇺🇸 Join+Telegram:@Farah_VPN 🇺🇸", type: "ss", server: "94.72.127.58", port: 443, cipher: "aes-256-gcm", password: "goRz8CTFE6zPZXIA", udp: True}
+  - {name: "ProxyMtpVPN-37", type: "trojan", server: "35.159.21.7", port: 443, password: "FH72359861", udp: True, skip-cert-verify: True, sni: "summary-lemming.rooster465.autos"}
+  - {name: "@Hope_Net-join-us-on-Telegram", type: "vless", server: "zula.ir", port: 2095, uuid: "-----DIGIV2RAY----", udp: True, network: "ws", ws-opts: {path: "/DigiconnecT?ed=1024", headers: {"Host": "QUENTIN--_--DiG.radiotehran.org."}}}
+  - {name: "🇫🇮152549 | ⚡️Telegram = t.me/SOSkeyNET", type: "vless", server: "5.61.91.221", port: 443, uuid: "03446511-2806-0021-b02f-f10d2d3a33c6", udp: True, network: "tcp", flow: "xtls-rprx-vision"}
+  - {name: "🏳️ Join+Telegram:@Farah_VPN 🏳️", type: "vless", server: "www.zsu.gov.ua", port: 443, uuid: "04c808e2-0b59-47b0-a54b-32fc7ef1c902", udp: True, network: "ws", tls: True, servername: "misaka.cndyw.ggff.net", skip-cert-verify: True, ws-opts: {path: "/?ed=2560fp=chrome", headers: {"Host": "misaka.cndyw.ggff.net"}}}
+  - {name: "@Cfox_SerVer 🇨🇦", type: "vless", server: "o.server5peekconfig.workers.dev", port: 443, uuid: "04cb9c0f-363c-4bf8-a195-2cb8bd43b02a", udp: True, network: "ws", tls: True, servername: "O.seRVer5peEKCOnFIG.WOrKers.dEV", skip-cert-verify: True, ws-opts: {path: "/eyJqdW5rIjoiSU9LdXp3R1p6IiwicHJvdG9jb2wiOiJ2bCIsIm1vZGUiOiJwcmVmaXgiLCJwYW5lbElQcyI6WyJbMmEwMjo4OTg6MTQ2OjY0OjpdIl19?ed", headers: {"Host": "o.server5peekconfig.workers.dev"}}}
+  - {name: "@Hope_Net-join-us-on-Telegram #2", type: "vless", server: "3.208.66.250", port: 22222, uuid: "05519058-d2ac-4f28-9e4a-2b2a1386749e", udp: True, network: "ws", tls: True, servername: "telegram-channel-vlessconfig.sohala.uk", skip-cert-verify: True, ws-opts: {path: "/telegram-channel-vlessconfig-ws", headers: {"Host": "telegram-channel-vlessconfig.sohala.uk"}}}
+  - {name: "@Hope_Net-join-us-on-Telegram #3", type: "vless", server: "109.120.176.113", port: 1234, uuid: "1149be91-5a4f-47de-995f-66f8d7d64498", udp: True, network: "tcp"}
+  - {name: "🇩🇪DE-🚀@VPNine1", type: "vless", server: "91.107.188.158", port: 8080, uuid: "11af1c47-865a-47c6-92ff-118013655d78", udp: True, network: "ws", ws-opts: {path: "/?ed"}}
+  - {name: "🇩🇪DE-🚀@VPNine1 #2", type: "vless", server: "91.107.190.63", port: 8080, uuid: "11af1c47-865a-47c6-92ff-118013655d78", udp: True, network: "ws", ws-opts: {path: "/?ed=2048"}}
+  - {name: "@Alpha_V2rayip", type: "vless", server: "57.129.41.216", port: 80, uuid: "18535741-e8b3-4b43-9348-785b55936751", udp: True, network: "ws", ws-opts: {path: "/vless/"}}
+  - {name: "@Cfox_SerVer 🇩🇪", type: "vless", server: "104.167.24.227", port: 18443, uuid: "1c20357e-be52-4e5e-8eb6-6434adcb4b71", udp: True, network: "grpc", grpc-opts: {grpc-service-name: "grpc"}}
+  - {name: "@Hope_Net-join-us-on-Telegram #4", type: "vless", server: "104.17.189.108", port: 8443, uuid: "26851ca3-0718-4970-a440-5295bd17c1d3", udp: True, network: "ws", tls: True, servername: "MOSQuiTo.paGeS.DEv.", skip-cert-verify: True, ws-opts: {path: "/", headers: {"Host": "MosQuITo.paGes.DEV."}}}
+  - {name: "[28924] - Telegram : @V2All", type: "vless", server: "51.91.173.52", port: 7852, uuid: "2917d821-9327-4c76-bf7f-1b7857b38811", udp: True, network: "tcp"}
+  - {name: "🇦🇹 Join+Telegram:@Farah_VPN 🇦🇹", type: "vless", server: "108.162.198.58", port: 443, uuid: "29ca503d-e6b8-4509-b666-48133f450857", udp: True, network: "ws", tls: True, servername: "learn00.evany.de5.net", skip-cert-verify: True, ws-opts: {path: "/fdip=tw.william.us.ci!txt?ed=2560", headers: {"Host": "learn00.evany.de5.net"}}}
+  - {name: "🇦🇹 Join+Telegram:@Farah_VPN 🇦🇹 #2", type: "vless", server: "108.162.198.87", port: 2087, uuid: "29ca503d-e6b8-4509-b666-48133f450857", udp: True, network: "ws", tls: True, servername: "learn00.evany.de5.net", skip-cert-verify: True, ws-opts: {path: "/fdip=tw.william.us.ci!txt", headers: {"Host": "learn00.evany.de5.net"}}}
+  - {name: "کانال ما #3", type: "vless", server: "31.58.182.33", port: 443, uuid: "2cca8201-c93e-40eb-bd8a-fea4170c169e", udp: True, network: "xhttp", tls: True, servername: "deu683.lackerdeu.org", skip-cert-verify: True}
+  - {name: "🇷🇺RU-🚀@VPNine1", type: "vless", server: "185.148.107.144", port: 443, uuid: "2cd6ed0f-636e-4e6c-9449-5a263d7a0fa5", udp: True, network: "ws", tls: True, servername: "cfed.tgzdyz2.top", skip-cert-verify: True, ws-opts: {path: "tg@VPNine1"}}
+  - {name: "@Hope_Net-join-us-on-Telegram #5", type: "vless", server: "47.75.101.0", port: 3443, uuid: "2cd6ed0f-636e-4e6c-9449-5a263d7a0fa5", udp: True, network: "ws", tls: True, servername: "cfed.tgzdyz2.top", skip-cert-verify: True, ws-opts: {path: "/tg@zdyz2"}}
+  - {name: "@filembad", type: "vless", server: "nsnsjsjjejejekeieieoooooo.fanzeka.ir", port: 11790, uuid: "3599c717-f4cc-42d9-91ce-d7da122c9707", udp: True, network: "tcp"}
+  - {name: "canfingV2rayNG-166", type: "vless", server: "31.43.179.111", port: 2096, uuid: "359b9ad3-0009-4655-8872-d0ab566751d3", udp: True, network: "ws", tls: True, servername: "d03298146e8e2fe6.hozheen.ir", skip-cert-verify: True, ws-opts: {path: "/ws?ed=2560", headers: {"Host": "newgen14.hozheen.ir"}}}
+  - {name: "🇨🇦 Join+Telegram:@Farah_VPN 🇨🇦", type: "vless", server: "95.164.53.184", port: 6443, uuid: "36582c2b-a3eb-4e4a-ad7f-50b6f2e697e7", udp: True, network: "ws", tls: True, servername: "woc0zvrf11w2endu.dphdlc1u77bs3y4kvussbuap4p576f1ws7igthq8zbf3.workers.dev", skip-cert-verify: True, ws-opts: {path: "/@Marisa_kristi", headers: {"Host": "woc0zvrf11w2endu.dphdlc1u77bs3y4kvussbuap4p576f1ws7igthq8zbf3.workers.dev"}}}
+  - {name: "[28921] - Telegram : @V2All", type: "vless", server: "cd3.postshup.ir", port: 2086, uuid: "3b715892-8610-4fdc-9086-647b36af5443", udp: True, network: "xhttp"}
+  - {name: "🇫🇷152632 | ⚡️Telegram = t.me/SOSkeyNET", type: "vless", server: "141.101.123.76", port: 443, uuid: "3bb6fd82-3a15-eaea-6168-4dac2b70079e", udp: True, network: "ws", tls: True, servername: "nahan-fog-af01.dfghttr2012.workers.dev", skip-cert-verify: True, ws-opts: {path: "/sync", headers: {"Host": "nahan-fog-af01.dfghttr2012.workers.dev"}}}
+  - {name: "🇺🇸152637 | ⚡️Telegram = t.me/SOSkeyNET", type: "vless", server: "45.86.245.225", port: 10444, uuid: "4005ddae-29bb-431e-a212-7737316d08ea", udp: True, network: "ws", ws-opts: {path: "/beeline", headers: {"Host": "vpnpolar.online"}}}
+  - {name: "🇱🇻 Join+Telegram:@Farah_VPN 🇱🇻", type: "vless", server: "195.123.210.168", port: 13443, uuid: "423b1d79-08c4-403f-9d5e-c541f791b55f", udp: True, network: "tcp", flow: "xtls-rprx-vision"}
+  - {name: "[28932] - Telegram : @V2All", type: "vless", server: "87.121.89.80", port: 13443, uuid: "423b1d79-08c4-403f-9d5e-c541f791b55f", udp: True, network: "tcp", flow: "xtls-rprx-vision"}
+  - {name: "@Hope_Net-join-us-on-Telegram #6", type: "vless", server: "104.16.189.196", port: 80, uuid: "435bda4c-fe5e-42c9-a3ad-15334943b38a", udp: True, network: "ws", ws-opts: {path: "/", headers: {"Host": "us3.rtacg.com"}}}
+  - {name: "@Hope_Net-join-us-on-Telegram #7", type: "vless", server: "104.16.245.231", port: 80, uuid: "435bda4c-fe5e-42c9-a3ad-15334943b38a", udp: True, network: "ws", ws-opts: {path: "/", headers: {"Host": "us3.rtacg.com"}}}
+  - {name: "@Hope_Net-join-us-on-Telegram #8", type: "vless", server: "104.17.105.123", port: 80, uuid: "435bda4c-fe5e-42c9-a3ad-15334943b38a", udp: True, network: "ws", ws-opts: {path: "/", headers: {"Host": "us3.rtacg.com"}}}
+  - {name: "@Hope_Net-join-us-on-Telegram #9", type: "vless", server: "104.17.124.32", port: 80, uuid: "435bda4c-fe5e-42c9-a3ad-15334943b38a", udp: True, network: "ws", ws-opts: {path: "/", headers: {"Host": "us3.rtacg.com"}}}
+  - {name: "@Hope_Net-join-us-on-Telegram #10", type: "vless", server: "104.17.13.234", port: 80, uuid: "435bda4c-fe5e-42c9-a3ad-15334943b38a", udp: True, network: "ws", ws-opts: {path: "/", headers: {"Host": "us3.rtacg.com"}}}
+  - {name: "@Hope_Net-join-us-on-Telegram #11", type: "vless", server: "104.17.223.239", port: 80, uuid: "435bda4c-fe5e-42c9-a3ad-15334943b38a", udp: True, network: "ws", ws-opts: {path: "/", headers: {"Host": "us3.rtacg.com"}}}
+  - {name: "@Hope_Net-join-us-on-Telegram #12", type: "vless", server: "104.17.80.210", port: 80, uuid: "435bda4c-fe5e-42c9-a3ad-15334943b38a", udp: True, network: "ws", ws-opts: {path: "/", headers: {"Host": "us3.rtacg.com"}}}
+  - {name: "@Hope_Net-join-us-on-Telegram #13", type: "vless", server: "104.17.93.131", port: 80, uuid: "435bda4c-fe5e-42c9-a3ad-15334943b38a", udp: True, network: "ws", ws-opts: {path: "/", headers: {"Host": "us3.rtacg.com"}}}
+  - {name: "@Hope_Net-join-us-on-Telegram #14", type: "vless", server: "104.18.80.232", port: 80, uuid: "435bda4c-fe5e-42c9-a3ad-15334943b38a", udp: True, network: "ws", ws-opts: {path: "/", headers: {"Host": "us3.rtacg.com"}}}
+  - {name: "@Hope_Net-join-us-on-Telegram #15", type: "vless", server: "104.18.93.239", port: 80, uuid: "435bda4c-fe5e-42c9-a3ad-15334943b38a", udp: True, network: "ws", ws-opts: {path: "/", headers: {"Host": "us3.rtacg.com"}}}
+  - {name: "@Hope_Net-join-us-on-Telegram #16", type: "vless", server: "104.19.56.213", port: 80, uuid: "435bda4c-fe5e-42c9-a3ad-15334943b38a", udp: True, network: "ws", ws-opts: {path: "/", headers: {"Host": "us3.rtacg.com"}}}
+  - {name: "@Hope_Net-join-us-on-Telegram #17", type: "vless", server: "198.41.221.162", port: 80, uuid: "435bda4c-fe5e-42c9-a3ad-15334943b38a", udp: True, network: "ws", ws-opts: {path: "/", headers: {"Host": "us3.rtacg.com"}}}
+  - {name: "@Hope_Net-join-us-on-Telegram #18", type: "vless", server: "47.236.167.231", port: 2087, uuid: "48198295-b7ba-4b5c-8d85-085d55a6c869", udp: True, network: "ws", tls: True, servername: "xinh.ylks.link", skip-cert-verify: True, ws-opts: {path: "/"}}
+  - {name: "🇩🇪 Join+Telegram:@Farah_VPN 🇩🇪", type: "vless", server: "46.101.160.244", port: 2083, uuid: "4b184bbb-c4d6-42ae-b447-aa85d8294967", udp: True, network: "ws", tls: True, servername: "qeztrg7u.akscasx.workers.dev", skip-cert-verify: True, ws-opts: {path: "/", headers: {"Host": "qeztrg7u.akscasx.workers.dev"}}}
+  - {name: "🇨🇦 Join+Telegram:@Farah_VPN 🇨🇦 #2", type: "vless", server: "108.162.198.5", port: 443, uuid: "4d10c997-4781-4cd9-82c3-15453523e12c", udp: True, network: "ws", tls: True, servername: "support.zoom.us.yxls.eu.cc", skip-cert-verify: True, ws-opts: {path: "/sg-melbi", headers: {"Host": "support.zoom.us.yxls.eu.cc"}}}
+  - {name: "کانال ما #4", type: "vless", server: "fu.baiproxy.us.ci", port: 2087, uuid: "55d9ec38-1b8a-454b-981a-6acfe8f56d8c", udp: True, network: "ws", tls: True, skip-cert-verify: True, ws-opts: {path: "/"}}
+  - {name: "@Cfox_SerVer 🇨🇦 #2", type: "vless", server: "172.64.149.65", port: 443, uuid: "5dc15e15-f285-4a9d-959b-0e4fbdd77b63", udp: True, network: "ws", tls: True, servername: "powered-by-surena.configfarsi695fcfe8a2e58.workers.dev", skip-cert-verify: True, ws-opts: {path: "/", headers: {"Host": "powered-by-surena.configfarsi695fcfe8a2e58.workers.dev"}}}
+  - {name: "@filembad #2", type: "vless", server: "88.216.69.30", port: 8880, uuid: "6202b230-417c-4d8e-b624-0f71afa9c75d", udp: True, network: "ws", ws-opts: {path: "/", headers: {"Host": "vms.lifetime06.workers.dev"}}}
+  - {name: "کانال ما #5", type: "vless", server: "89.116.161.50", port: 8880, uuid: "6202b230-417c-4d8e-b624-0f71afa9c75d", udp: True, network: "ws", ws-opts: {path: "/?ed", headers: {"Host": "vms.lifetime08.workers.dev"}}}
+  - {name: "کانال ما #6", type: "vless", server: "144.124.238.23", port: 443, uuid: "6329dff8-ae1a-414e-b996-1ec477aacff8", udp: True, network: "tcp", flow: "xtls-rprx-vision"}
+  - {name: "🇳🇱152636 | ⚡️Telegram = t.me/SOSkeyNET", type: "vless", server: "rezerv8.yunus.guru", port: 443, uuid: "6329dff8-ae1a-414e-b996-1ec477aacff8", udp: True, network: "tcp", flow: "xtls-rprx-vision"}
+  - {name: "کانال ما #7", type: "vless", server: "103.231.15.195", port: 10014, uuid: "7aecb4a5-f0a4-32a0-aabe-c9d5241e313f", udp: True, network: "tcp", flow: "xtls-rprx-vision"}
+  - {name: "@Hope_Net-join-us-on-Telegram #19", type: "vless", server: "104.17.102.95", port: 80, uuid: "7d96f544-c496-41cf-dd61-337f0aff062a", udp: True, network: "ws", ws-opts: {path: "/abcde", headers: {"Host": "kr1.175852.xyz"}}}
+  - {name: "@Hope_Net-join-us-on-Telegram #20", type: "vless", server: "62.60.212.185", port: 8580, uuid: "82c91f31-470c-4ea7-8602-27e3d916d62b", udp: True, network: "tcp"}
+  - {name: "🇸🇬 Join+Telegram:@Farah_VPN 🇸🇬", type: "vless", server: "172.67.66.177", port: 2095, uuid: "86c50e3a-5b87-49dd-bd20-03c7f2735e40", udp: True, network: "ws", ws-opts: {path: "/", headers: {"Host": "cnmfangbinxingnmsl.cnm-fangbinxingnmsl-250.workers.dev"}}}
+  - {name: "CF优选", type: "vless", server: "cdn.asshole.eu.cc", port: 2095, uuid: "86c50e3a-5b87-49dd-bd20-03c7f2735e40", udp: True, network: "ws", ws-opts: {path: "/", headers: {"Host": "cdn.asshole.eu.cc"}}}
+  - {name: "@Hope_Net-join-us-on-Telegram #21", type: "vless", server: "172.66.46.251", port: 443, uuid: "89b3cbba-e6ac-485a-9481-976a0415eab9", udp: True, network: "ws", tls: True, servername: "bBF9c21A.tECHNeTbpb.paGEs.Dev", skip-cert-verify: True, ws-opts: {path: "/TELEGRAM-MARAMBASHI-MARAMBASHI/?ed=2048", headers: {"Host": "BbF9c21a.TecHNETbpB.paGEs.dEv"}}}
+  - {name: "@Cfox_SerVer 🇨🇦 #3", type: "vless", server: "188.114.96.2", port: 2096, uuid: "8d82944e-17b9-473f-a456-dec9a6e21471", udp: True, network: "ws", tls: True, servername: "peekconfig.peekconf1.workers.dev", skip-cert-verify: True, ws-opts: {path: "/eyJqdW5rIjoidnlSRWhQQ3ZCNGZRNHVYMyIsInByb3RvY29sIjoidmwiLCJtb2RlIjoicHJlZml4IiwicGFuZWxJUHMiOlsiWzJhMDI6ODk4OjE0Njo2NDo6XSJdfQ", headers: {"Host": "peekconfig.peekconf1.workers.dev"}}}
+  - {name: "[28940] - Telegram : @V2All", type: "vless", server: "185.24.151.242", port: 443, uuid: "8ff82100-8aad-4281-bf41-f318519d7182", udp: True, network: "tcp", flow: "xtls-rprx-vision"}
+  - {name: "کانال ما #8", type: "vless", server: "185.24.151.30", port: 443, uuid: "8ff82100-8aad-4281-bf41-f318519d7182", udp: True, network: "tcp", flow: "xtls-rprx-vision"}
+  - {name: "[28938] - Telegram : @V2All", type: "vless", server: "144.31.237.206", port: 443, uuid: "9500cf8b-020a-4a70-906c-e14bb5375875", udp: True, network: "tcp", flow: "xtls-rprx-vision"}
+  - {name: "canfingV2rayNG-310", type: "vless", server: "ch.zoroem.opik.net", port: 80, uuid: "98a0fab4-3be2-48ae-a99e-3d812315e11b", udp: True, network: "tcp"}
+  - {name: "[28934] - Telegram : @V2All", type: "vless", server: "109.120.154.167", port: 443, uuid: "9ce4c9e2-1dcc-abe8-9abf-9bf8bc1269f6", udp: True, network: "ws", tls: True, servername: "j.n.i.l.6.m.7.3.o.t.e.s.j.3.us.art-us.kdns.fr", skip-cert-verify: True, ws-opts: {path: "/pg/10086-dfc816f117c49173", headers: {"Host": "j.n.i.l.6.m.7.3.o.t.e.s.j.3.us.art-us.kdns.fr"}}}
+  - {name: "🇩🇪152634 | ⚡️Telegram = t.me/SOSkeyNET", type: "vless", server: "159.100.19.241", port: 8443, uuid: "9ce4c9e2-1dcc-abe8-9abf-9bf8bc1269f6", udp: True, network: "ws", tls: True, servername: "j.n.i.l.6.m.7.3.o.t.e.s.j.3.us.art-us.kdns.fr", skip-cert-verify: True, ws-opts: {path: "/pg/10086-dfc816f117c49173", headers: {"Host": "j.n.i.l.6.m.7.3.o.t.e.s.j.3.us.art-us.kdns.fr"}}}
+  - {name: "🇫🇮 Join+Telegram:@Farah_VPN 🇫🇮", type: "vless", server: "185.26.48.167", port: 443, uuid: "9ce4c9e2-1dcc-abe8-9abf-9bf8bc1269f6", udp: True, network: "ws", tls: True, servername: "j.n.i.l.6.m.7.3.o.t.e.s.j.3.us.art-us.kdns.fr", skip-cert-verify: True, ws-opts: {path: "/pg/10086-dfc816f117c49173", headers: {"Host": "j.n.i.l.6.m.7.3.o.t.e.s.j.3.us.art-us.kdns.fr"}}}
+  - {name: "🇩🇪 Join+Telegram:@Farah_VPN 🇩🇪 #2", type: "vless", server: "185.36.143.123", port: 443, uuid: "9ce4c9e2-1dcc-abe8-9abf-9bf8bc1269f6", udp: True, network: "ws", tls: True, servername: "j.n.i.l.6.m.7.3.o.t.e.s.j.3.us.art-us.kdns.fr", skip-cert-verify: True, ws-opts: {path: "/pg/10086-dfc816f117c49173", headers: {"Host": "j.n.i.l.6.m.7.3.o.t.e.s.j.3.us.art-us.kdns.fr"}}}
+  - {name: "[28936] - Telegram : @V2All", type: "vless", server: "194.87.0.196", port: 443, uuid: "9ce4c9e2-1dcc-abe8-9abf-9bf8bc1269f6", udp: True, network: "ws", tls: True, servername: "8.o.8.e.t.g.7.w.8.n.e.1.l.e.us.art-us.kdns.fr", skip-cert-verify: True, ws-opts: {path: "/pg/10086-dfc816f117c491730| 风车郁金 | nl | 194.87.0.196:443", headers: {"Host": "8.o.8.e.t.g.7.w.8.n.e.1.l.e.us.art-us.kdns.fr"}}}
+  - {name: "🇮🇳 Join+Telegram:@Farah_VPN 🇮🇳", type: "vless", server: "20.235.105.146", port: 443, uuid: "9ce4c9e2-1dcc-abe8-9abf-9bf8bc1269f6", udp: True, network: "ws", tls: True, servername: "j.n.i.l.6.m.7.3.o.t.e.s.j.3.us.art-us.kdns.fr", skip-cert-verify: True, ws-opts: {path: "/pg/10086-dfc816f117c49173", headers: {"Host": "j.n.i.l.6.m.7.3.o.t.e.s.j.3.us.art-us.kdns.fr"}}}
+  - {name: "🇨🇦 Join+Telegram:@Farah_VPN 🇨🇦 #3", type: "vless", server: "207.90.192.164", port: 8443, uuid: "9ce4c9e2-1dcc-abe8-9abf-9bf8bc1269f6", udp: True, network: "ws", tls: True, servername: "j.n.i.l.6.m.7.3.o.t.e.s.j.3.us.art-us.kdns.fr", skip-cert-verify: True, ws-opts: {path: "/pg/10086-dfc816f117c49173", headers: {"Host": "j.n.i.l.6.m.7.3.o.t.e.s.j.3.us.art-us.kdns.fr"}}}
+  - {name: "🇳🇱152633 | ⚡️Telegram = t.me/SOSkeyNET", type: "vless", server: "213.183.51.211", port: 443, uuid: "9ce4c9e2-1dcc-abe8-9abf-9bf8bc1269f6", udp: True, network: "ws", tls: True, servername: "j.n.i.l.6.m.7.3.o.t.e.s.j.3.us.art-us.kdns.fr", skip-cert-verify: True, ws-opts: {path: "/pg/10086-dfc816f117c49173", headers: {"Host": "j.n.i.l.6.m.7.3.o.t.e.s.j.3.us.art-us.kdns.fr"}}}
+  - {name: "@GozargahAzad|🇨🇳", type: "vless", server: "43.169.19.179", port: 443, uuid: "9ce4c9e2-1dcc-abe8-9abf-9bf8bc1269f6", udp: True, network: "ws", tls: True, servername: "8.o.8.e.t.g.7.w.8.n.e.1.l.e.us.art-us.kdns.fr", skip-cert-verify: True, ws-opts: {path: "/pg/10086-dfc816f117c491730| 印度尼西亚 id | cgk | :443", headers: {"Host": "8.o.8.e.t.g.7.w.8.n.e.1.l.e.us.art-us.kdns.fr"}}}
+  - {name: "کانال ما #9", type: "vless", server: "43.170.17.114", port: 443, uuid: "9ce4c9e2-1dcc-abe8-9abf-9bf8bc1269f6", udp: True, network: "ws", tls: True, servername: "8.o.8.e.t.g.7.w.8.n.e.1.l.e.us.art-us.kdns.fr", skip-cert-verify: True, ws-opts: {path: "/pg/10086-dfc816f117c49173", headers: {"Host": "8.o.8.e.t.g.7.w.8.n.e.1.l.e.us.art-us.kdns.fr"}}}
+  - {name: "🇷🇴 Join+Telegram:@Farah_VPN 🇷🇴", type: "vless", server: "82.152.132.14", port: 443, uuid: "9ce4c9e2-1dcc-abe8-9abf-9bf8bc1269f6", udp: True, network: "ws", tls: True, servername: "8.o.8.e.t.g.7.w.8.n.e.1.l.e.us.art-us.kdns.fr", skip-cert-verify: True, ws-opts: {path: "/pg/10086-dfc816f117c49173", headers: {"Host": "8.o.8.e.t.g.7.w.8.n.e.1.l.e.us.art-us.kdns.fr"}}}
+  - {name: "کانال ما #10", type: "vless", server: "172.67.131.114", port: 2086, uuid: "9ef1d60d-9e38-49c5-9405-131e11be1f9c", udp: True, network: "ws", ws-opts: {path: "/eyJqdW5rIjoiVGtvRGR4TXdHSzdseGpZWCIsInByb3RvY29sIjoidmwiLCJtb2RlIjoicHJlZml4IiwicGFuZWxJUHMiOlsiWzI2MDI6ZmM1OTpiMDo2NDo6XSJdfQ", headers: {"Host": "muddy-shadow-8905.qara-atayi-1.workers.dev"}}}
+  - {name: "@Hope_Net-join-us-on-Telegram #22", type: "vless", server: "217.163.76.36", port: 443, uuid: "a13df940-020c-465f-bc89-ee5279b5cd6a", udp: True, network: "ws", tls: True, servername: "kkh.ylks.link", skip-cert-verify: True, ws-opts: {path: "/blue"}}
+  - {name: "@Hope_Net-join-us-on-Telegram #23", type: "vless", server: "47.57.245.232", port: 443, uuid: "a13df940-020c-465f-bc89-ee5279b5cd6a", udp: True, network: "ws", tls: True, servername: "hkh.ylks.link", skip-cert-verify: True, ws-opts: {path: "/"}}
+  - {name: "@Hope_Net-join-us-on-Telegram #24", type: "vless", server: "69.84.182.23", port: 443, uuid: "a13df940-020c-465f-bc89-ee5279b5cd6a", udp: True, network: "ws", tls: True, servername: "hkh.ylks.link", skip-cert-verify: True, ws-opts: {path: "/blue"}}
+  - {name: "@Hope_Net-join-us-on-Telegram #25", type: "vless", server: "95.164.36.59", port: 443, uuid: "a6b5e86d-248d-4313-bc1f-716baf350ef8", udp: True, network: "tcp", tls: True, servername: "sourceforge.net", skip-cert-verify: True, flow: "xtls-rprx-vision"}
+  - {name: "کانال ما #11", type: "vless", server: "139.28.168.91", port: 443, uuid: "a704443d-655e-4d9f-8ce6-12eeb17a9a08", udp: True, network: "tcp", flow: "xtls-rprx-vision"}
+  - {name: "کانال ما #12", type: "vless", server: "79.127.215.226", port: 443, uuid: "a704443d-655e-4d9f-8ce6-12eeb17a9a08", udp: True, network: "tcp", flow: "xtls-rprx-vision"}
+  - {name: "کانال ما #13", type: "vless", server: "79.127.245.249", port: 443, uuid: "a704443d-655e-4d9f-8ce6-12eeb17a9a08", udp: True, network: "tcp", flow: "xtls-rprx-vision"}
+  - {name: "کانال ما #14", type: "vless", server: "95.85.247.137", port: 443, uuid: "a704443d-655e-4d9f-8ce6-12eeb17a9a08", udp: True, network: "tcp", flow: "xtls-rprx-vision"}
+  - {name: "@GozargahAzad|🇺🇸", type: "vless", server: "il.alertyagency.com", port: 443, uuid: "a704443d-655e-4d9f-8ce6-12eeb17a9a08", udp: True, network: "tcp", flow: "xtls-rprx-vision"}
+  - {name: "@GozargahAzad|🇲🇩", type: "vless", server: "torrent.alertyagency.com", port: 443, uuid: "a704443d-655e-4d9f-8ce6-12eeb17a9a08", udp: True, network: "tcp", flow: "xtls-rprx-vision"}
+  - {name: "@GozargahAzad|🇹🇷", type: "vless", server: "tr.alertyagency.com", port: 443, uuid: "a704443d-655e-4d9f-8ce6-12eeb17a9a08", udp: True, network: "tcp", flow: "xtls-rprx-vision"}
+  - {name: "@GozargahAzad|🇭🇺", type: "vless", server: "vv.alertyagency.com", port: 443, uuid: "a704443d-655e-4d9f-8ce6-12eeb17a9a08", udp: True, network: "tcp", flow: "xtls-rprx-vision"}
+  - {name: "🇩🇪 Join+Telegram:@Farah_VPN 🇩🇪 #3", type: "vless", server: "164.90.176.31", port: 2083, uuid: "a747c516-34bd-41b8-8590-a9d1edb79e95", udp: True, network: "ws", tls: True, servername: "summer-hall-8b23.asddsaasan.workers.dev", skip-cert-verify: True, ws-opts: {path: "/", headers: {"Host": "summer-hall-8b23.asddsaasan.workers.dev"}}}
+  - {name: "@Hope_Net-join-us-on-Telegram #26", type: "vless", server: "185.154.190.117", port: 8443, uuid: "a7903f91-918b-48e7-878f-e16a2b33ef0f", udp: True, network: "tcp"}
+  - {name: "🇩🇪152542 | ⚡️Telegram = t.me/SOSkeyNET", type: "vless", server: "de-dp-01.com", port: 8443, uuid: "aa5b231c-4e18-4ae6-b83c-a293f51c0dfa", udp: True, network: "tcp", flow: "xtls-rprx-vision"}
+  - {name: "کانال ما #15", type: "vless", server: "104.21.19.226", port: 8880, uuid: "abc2f94e-af29-4f59-a0a0-6e3299d51f64", udp: True, network: "ws", ws-opts: {path: "/eyJqdW5rIjoiQXZDMHBUakpZIiwicHJvdG9jb2wiOiJ2bCIsIm1vZGUiOiJwcmVmaXgiLCJwYW5lbElQcyI6WyJbMjYwMjpmYzU5OjExOjY0OjpdIl19?ed", headers: {"Host": "cold-bush-a762.lidrezvpn.workers.dev"}}}
+  - {name: "@Alpha_V2rayip #2", type: "vless", server: "149.202.58.99", port: 443, uuid: "b585dc5e-55bf-4a8b-913a-27c9ccac05c3", udp: True, network: "ws", tls: True, servername: "bab-6.site", skip-cert-verify: True, ws-opts: {path: "/vws/", headers: {"Host": "bab-6.site"}}}
+  - {name: "@Hope_Net-join-us-on-Telegram #27", type: "vless", server: "104.22.13.192", port: 2052, uuid: "b5913f3b-52e2-425d-8780-476e7a260d45", udp: True, network: "ws", ws-opts: {path: "/", headers: {"Host": "www.speedtest.net.zula.com.aparat.com.xn--ghqz2y8q4cwgb.shop."}}}
+  - {name: "🇩🇪 Join+Telegram:@Farah_VPN 🇩🇪 #4", type: "vless", server: "de-193-58.neobo-tooth.ru", port: 2053, uuid: "b6c29ae7-4748-4049-b642-b695c0d2c776", udp: True, network: "tcp", flow: "xtls-rprx-vision"}
+  - {name: "@Hope_Net-join-us-on-Telegram #28", type: "vless", server: "104.254.140.126", port: 80, uuid: "bb2a93b9-2f48-4c3a-9355-c044caa70511", udp: True, network: "ws", ws-opts: {path: "/?ed=2048", headers: {"Host": "speedtest.net.xn--mgbfubi1jl.pinocchio1.ir."}}}
+  - {name: "canfingV2rayNG-364", type: "vless", server: "194.59.215.131", port: 672, uuid: "bc953469-14e8-4536-afbd-56dc8edf138a", udp: True, network: "tcp"}
+  - {name: "[28937] - Telegram : @V2All", type: "vless", server: "139.64.166.55", port: 443, uuid: "c743b343-b1c9-4e44-98a9-274df2015727", udp: True, network: "tcp", flow: "xtls-rprx-vision"}
+  - {name: "🇨🇦 Join+Telegram:@Farah_VPN 🇨🇦 #4", type: "vless", server: "188.226.146.164", port: 443, uuid: "c7665648-eff9-4317-8978-4ee2fb34f752", udp: True, network: "ws", tls: True, servername: "v7s1e040.5qqzdipkj05g8copceva.workers.dev", skip-cert-verify: True, ws-opts: {path: "/", headers: {"Host": "v7s1e040.5qqzdipkj05g8copceva.workers.dev"}}}
+  - {name: "[28920] - Telegram : @V2All", type: "vless", server: "75.119.151.16", port: 80, uuid: "cb12a7f0-0924-4c5f-b8ab-3c804fd3a6aa", udp: True, network: "xhttp"}
+  - {name: "کانال ما #16", type: "vless", server: "172.67.209.139", port: 443, uuid: "cbfeff27-6e7a-4e99-b5ad-6b830e191741", udp: True, network: "ws", tls: True, servername: "sRv-B890f5-Eb36b6.OmIdiaBoLfAZl155-c5f1.wORkErS.DEV", skip-cert-verify: True, ws-opts: {path: "/vl/wk14rIXEvRltsm88Nsboi?ed", headers: {"Host": "srv-b890f5-eb36b6.omidiabolfazl155-c5f1.workers.dev"}}}
+  - {name: "🇩🇪152631 | ⚡️Telegram = t.me/SOSkeyNET", type: "vless", server: "23.251.47.193", port: 30011, uuid: "d28c8147-7c3d-40ec-96e9-aec3995337dc", udp: True, network: "ws", tls: True, servername: "bapj1qapjk4.0sds0li1bwcz0i76it0gjxv1.workers.dev", skip-cert-verify: True, ws-opts: {path: "/@Marisa_kristi", headers: {"Host": "bapj1qapjk4.0sds0li1bwcz0i76it0gjxv1.workers.dev"}}}
+  - {name: "کانال ما #17", type: "vless", server: "104.21.11.152", port: 8080, uuid: "d7a8ae86-9904-4f71-8fe4-d754ded610d7", udp: True, network: "ws", ws-opts: {path: "/eyJqdW5rIjoiOHNqQ3Bqc2dTZlppTEl1IiwicHJvdG9jb2wiOiJ2bCIsIm1vZGUiOiJwcmVmaXgiLCJwYW5lbElQcyI6WyJbMmEwMjo4OTg6MTQ2OjY0OjpdIl19?ed", headers: {"Host": "server6.diwir81236.workers.dev"}}}
+  - {name: "🇬🇧152635 | ⚡️Telegram = t.me/SOSkeyNET", type: "vless", server: "23.81.34.207", port: 444, uuid: "d89b3577-a0f4-4327-bb16-2313b02a25f2", udp: True, network: "grpc", grpc-opts: {grpc-service-name: ""}}
+  - {name: "[28928] - Telegram : @V2All", type: "vless", server: "45.140.36.74", port: 1040, uuid: "d8b42cd5-b149-4356-9e61-111111111111", udp: True, network: "tcp"}
+  - {name: "@filembad #3", type: "vless", server: "45.140.36.74", port: 1056, uuid: "d8b42cd5-b149-4356-9e61-333333333333", udp: True, network: "tcp"}
+  - {name: "@filembad #4", type: "vless", server: "45.140.36.74", port: 1062, uuid: "d8b42cd5-b149-4356-9e61-444444444444", udp: True, network: "tcp"}
+  - {name: "@filembad #5", type: "vless", server: "45.140.36.74", port: 1063, uuid: "d8b42cd5-b149-4356-9e61-444444444444", udp: True, network: "tcp"}
+  - {name: "🇳🇱 Join+Telegram:@Farah_VPN 🇳🇱", type: "vless", server: "77.246.109.191", port: 34045, uuid: "d8dd94fd-540e-461d-b5d4-acebef02c22a", udp: True, network: "tcp"}
+  - {name: "[28935] - Telegram : @V2All", type: "vless", server: "89.105.194.214", port: 443, uuid: "dabb9a19-03ab-4cdf-8963-d3c45eb0f80d", udp: True, network: "tcp", flow: "xtls-rprx-vision"}
+  - {name: "[28944] - Telegram : @V2All", type: "vless", server: "89.105.195.35", port: 443, uuid: "dabb9a19-03ab-4cdf-8963-d3c45eb0f80d", udp: True, network: "tcp", flow: "xtls-rprx-vision"}
+  - {name: "@Hope_Net-join-us-on-Telegram #29", type: "vless", server: "172.67.200.145", port: 443, uuid: "dac5b2de-7df9-4d38-ba41-f98ceb19bd75", udp: True, network: "ws", tls: True, servername: "sandWorm.PaGES.DEv", skip-cert-verify: True, ws-opts: {path: "/07n1q4ys4Pwba7qM", headers: {"Host": "sANDWOrm.pAGEs.DeV"}}}
+  - {name: "کانال ما #18", type: "vless", server: "cash.qelzino.ir", port: 443, uuid: "def62c86-e2f2-4d13-b1f1-b3c197ed4873", udp: True, network: "ws", tls: True, servername: "play.google.com", skip-cert-verify: True, ws-opts: {path: "/", headers: {"Host": "google.com"}}}
+  - {name: "(S101)🇩🇪t.me/PrivateVPNs", type: "vless", server: "63.187.210.231", port: 22222, uuid: "e4514801-0d5a-42ba-869f-39bd605aef9e", udp: True, network: "tcp"}
+  - {name: "@Cfox_SerVer 🇨🇦 #4", type: "vless", server: "172.67.165.125", port: 443, uuid: "e48e4049-58bb-4355-9a9a-433b9524d928", udp: True, network: "ws", tls: True, servername: "z8Z7LoVOPd53iz6ivD2m.FixinG00PonviP.woRkers.DEV", skip-cert-verify: True, ws-opts: {path: "/vl/Fx1O4r0oHuQMNuKFQzcoV2yl31?ed", headers: {"Host": "z8z7lovopd53iz6ivd2m.fixing00ponvip.workers.dev"}}}
+  - {name: "@Hope_Net-join-us-on-Telegram #30", type: "vless", server: "172.67.175.9", port: 80, uuid: "ea9148b9-13b7-41cf-8911-94234e7c3fcf", udp: True, network: "ws", ws-opts: {path: "/TELEGRAM-MARAMBASHI-MARAMBASHI/?ed=2048", headers: {"Host": "private-codmhttp.teqqlzdw.workers.dev"}}}
+  - {name: "@GozargahAzad|🇳🇱", type: "vless", server: "nl-74.southnetworks.cloud", port: 443, uuid: "eaae5be2-8a3b-4edb-a968-39366a478ab2", udp: True, network: "tcp", flow: "xtls-rprx-vision"}
+  - {name: "🇰🇷 Join+Telegram:@Farah_VPN 🇰🇷", type: "vless", server: "141.164.42.2", port: 443, uuid: "eeb6823c-b926-4ea2-866a-5542edd26e59", udp: True, network: "ws", tls: True, servername: "t1s1.rittbo.kdns.fr", skip-cert-verify: True, ws-opts: {path: "/fp=chrome", headers: {"Host": "t1s1.rittbo.kdns.fr"}}}
+  - {name: "🇸🇬 Join+Telegram:@Farah_VPN 🇸🇬 #2", type: "vless", server: "162.159.8.123", port: 443, uuid: "eeb6823c-b926-4ea2-866a-5542edd26e59", udp: True, network: "ws", tls: True, servername: "t1s1.rittbo.kdns.fr", skip-cert-verify: True, ws-opts: {path: "/", headers: {"Host": "t1s1.rittbo.kdns.fr"}}}
+  - {name: "🇸🇬 Join+Telegram:@Farah_VPN 🇸🇬 #3", type: "vless", server: "172.64.152.241", port: 443, uuid: "eeb6823c-b926-4ea2-866a-5542edd26e59", udp: True, network: "ws", tls: True, servername: "t1s1.rittbo.kdns.fr", skip-cert-verify: True, ws-opts: {path: "/", headers: {"Host": "t1s1.rittbo.kdns.fr"}}}
+  - {name: "@Cfox_SerVer 🇪🇪", type: "vless", server: "45.80.108.236", port: 443, uuid: "ef9d2063-0140-472b-8b17-ba02ba4b4435", udp: True, network: "ws", tls: True, servername: "lively-resonance-4e12.electrocellco-cf-059.workers.dev", skip-cert-verify: True, ws-opts: {path: "/proxyip", headers: {"Host": "lively-resonance-4e12.electrocellco-cf-059.workers.dev"}}}
+  - {name: "@Hope_Net-join-us-on-Telegram #31", type: "vless", server: "8.217.145.40", port: 8080, uuid: "f32a99e8-05dd-478a-82c0-7688848121bd", udp: True, network: "ws", ws-opts: {path: "/", headers: {"Host": "mkhy.daozhang.link"}}}
+  - {name: "@Hope_Net-join-us-on-Telegram #32", type: "vless", server: "8.219.122.55", port: 8080, uuid: "f32a99e8-05dd-478a-82c0-7688848121bd", udp: True, network: "ws", ws-opts: {path: "/", headers: {"Host": "mkhy.daozhang.link"}}}
+  - {name: "کانال ما #19", type: "vless", server: "104.17.178.154", port: 8880, uuid: "f6e14309-5cff-4f5d-bce1-06a260159bbe", udp: True, network: "ws", ws-opts: {path: "/pyip", headers: {"Host": "steep-bread-32f0.92-d12.workers.dev"}}}
+  - {name: "@filembad #6", type: "vless", server: "mnsjwiwiwjeneoendrn.belamona.ir", port: 11790, uuid: "f8bce96c-6128-4de9-91d6-fe9d29e45079", udp: True, network: "tcp"}
+  - {name: "@Hope_Net-join-us-on-Telegram #33", type: "vless", server: "62.60.212.153", port: 29098, uuid: "f8e5817e-8487-4239-be14-c1ea3284719c", udp: True, network: "tcp"}
+  - {name: "🇮🇹 Join+Telegram:@Farah_VPN 🇮🇹", type: "vless", server: "95.181.162.170", port: 444, uuid: "f9d2937a-94e4-444a-95df-103faf1dd3fd", udp: True, network: "ws", tls: True, servername: "kqjifhg9rw.tradsc8p9xp7wxyqmc1wy0ah.workers.dev", skip-cert-verify: True, ws-opts: {path: "/@Marisa_kristi", headers: {"Host": "kqjifhg9rw.tradsc8p9xp7wxyqmc1wy0ah.workers.dev"}}}
+  - {name: "کانال ما #20", type: "vless", server: "88.119.176.50", port: 443, uuid: "fbb74aa8-b89a-4f20-9504-6b25aadf6681", udp: True, network: "tcp", flow: "xtls-rprx-vision"}
+  - {name: "کانال ما #21", type: "vless", server: "93.123.101.78", port: 443, uuid: "fbb74aa8-b89a-4f20-9504-6b25aadf6681", udp: True, network: "tcp", flow: "xtls-rprx-vision"}
+  - {name: "کانال ما #22", type: "vless", server: "est3.freeinternat.com", port: 443, uuid: "fbb74aa8-b89a-4f20-9504-6b25aadf6681", udp: True, network: "tcp", flow: "xtls-rprx-vision"}
+  - {name: "🇩🇪DE-🚀@VPNine1 #3", type: "vmess", server: "94.156.179.138", port: 110, uuid: "8e9687fc-a3a7-414a-8676-8e2136797cfe", alterId: 0, cipher: "auto", udp: True, network: "tcp"}
+  - {name: "EPODONIOS", type: "vless", server: "167.99.214.123", port: 2083, uuid: "037db5a7-051f-4ac9-844d-703d087a3984", udp: True, network: "ws", tls: True, servername: "wvdi9kuh.bqjk41e0gtbj1fg244d7.workers.dev", skip-cert-verify: True, ws-opts: {path: "/", headers: {"Host": "wvdi9kuh.bqjk41e0gtbj1fg244d7.workers.dev"}}}
+  - {name: "EPODONIOS #2", type: "vless", server: "172.64.38.215", port: 443, uuid: "29ca503d-e6b8-4509-b666-48133f450857", udp: True, network: "ws", tls: True, servername: "learn00.evany.de5.net", skip-cert-verify: True, ws-opts: {path: "/fdip=tw.william.us.ci!txt", headers: {"Host": "learn00.evany.de5.net"}}}
+  - {name: "EPODONIOS #3", type: "vless", server: "45.121.50.241", port: 50159, uuid: "47a97b7f-044d-43d6-86b0-8b256873d1b5", udp: True, network: "tcp", flow: "xtls-rprx-vision"}
+  - {name: "EPODONIOS #4", type: "vless", server: "132.243.204.84", port: 443, uuid: "9ce4c9e2-1dcc-abe8-9abf-9bf8bc1269f6", udp: True, network: "ws", tls: True, servername: "j.n.i.l.6.m.7.3.o.t.e.s.j.3.us.art-us.kdns.fr", skip-cert-verify: True, ws-opts: {path: "/pg/10086-dfc816f117c49173", headers: {"Host": "j.n.i.l.6.m.7.3.o.t.e.s.j.3.us.art-us.kdns.fr"}}}
+  - {name: "EPODONIOS #5", type: "vless", server: "141.105.130.102", port: 443, uuid: "9ce4c9e2-1dcc-abe8-9abf-9bf8bc1269f6", udp: True, network: "ws", tls: True, servername: "8.o.8.e.t.g.7.w.8.n.e.1.l.e.us.art-us.kdns.fr", skip-cert-verify: True, ws-opts: {path: "/pg/10086-dfc816f117c49173", headers: {"Host": "8.o.8.e.t.g.7.w.8.n.e.1.l.e.us.art-us.kdns.fr"}}}
+  - {name: "EPODONIOS #6", type: "vless", server: "91.149.253.26", port: 443, uuid: "9ce4c9e2-1dcc-abe8-9abf-9bf8bc1269f6", udp: True, network: "ws", tls: True, servername: "j.n.i.l.6.m.7.3.o.t.e.s.j.3.us.art-us.kdns.fr", skip-cert-verify: True, ws-opts: {path: "/pg/10086-dfc816f117c49173", headers: {"Host": "j.n.i.l.6.m.7.3.o.t.e.s.j.3.us.art-us.kdns.fr"}}}
+  - {name: "EPODONIOS #7", type: "vless", server: "94.242.59.31", port: 443, uuid: "9ce4c9e2-1dcc-abe8-9abf-9bf8bc1269f6", udp: True, network: "ws", tls: True, servername: "8.o.8.e.t.g.7.w.8.n.e.1.l.e.us.art-us.kdns.fr", skip-cert-verify: True, ws-opts: {path: "/pg/10086-dfc816f117c49173", headers: {"Host": "8.o.8.e.t.g.7.w.8.n.e.1.l.e.us.art-us.kdns.fr"}}}
+  - {name: "EPODONIOS #8", type: "vless", server: "104.16.243.164", port: 443, uuid: "eeb6823c-b926-4ea2-866a-5542edd26e59", udp: True, network: "ws", tls: True, servername: "t1s1.rittbo.kdns.fr", skip-cert-verify: True, ws-opts: {path: "/fp", headers: {"Host": "t1s1.rittbo.kdns.fr"}}}
+  - {name: "EPODONIOS #9", type: "vless", server: "172.64.35.37", port: 8443, uuid: "eeb6823c-b926-4ea2-866a-5542edd26e59", udp: True, network: "ws", tls: True, servername: "t1s1.rittbo.kdns.fr", skip-cert-verify: True, ws-opts: {path: "/", headers: {"Host": "t1s1.rittbo.kdns.fr"}}}
+  - {name: "EPODONIOS #10", type: "trojan", server: "45.130.125.160", port: 443, password: "humanity", udp: True, skip-cert-verify: True, sni: "www.calmlunch.com", network: "ws", ws-opts: {path: "/assignment"}}
 
 proxy-groups:
   - name: 自动选择
@@ -248,116 +172,60 @@ proxy-groups:
     interval: 300
     tolerance: 50
     proxies:
-      - "⚡ b2n.ir/v2ray-configs | 833"
-      - "🏁RELAY-198.41.212.150-2134"
-      - "🏁RELAY-104.21.91.254-0689"
-      - "⚡ b2n.ir/v2ray-configs | 895"
-      - "Global 🌐 | @Raydikalx | B0EED0"
-      - "🇺🇸US-23.237.33.106-1050"
-      - "🏁RELAY-172.67.135.57-1305"
-      - "🇧🇬BG-95.164.34.184-7151"
-      - "⚡ b2n.ir/v2ray-configs | 599"
-      - "CA 🇨🇦 | @Raydikalx | E40DCB"
-      - "CA 🇨🇦 | @Raydikalx | 87DD51"
-      - "⚡ b2n.ir/v2ray-configs | 227"
-      - "⚡ b2n.ir/v2ray-configs | 442"
-      - "⚡ b2n.ir/v2ray-configs | 826"
-      - "⚡ b2n.ir/v2ray-configs | 96"
-      - "CA 🇨🇦 | @Raydikalx | E22403"
-      - "⚡ b2n.ir/v2ray-configs | 205"
-      - "⚡ b2n.ir/v2ray-configs | 612"
-      - "🏁RELAY-141.101.122.190-7831"
-      - "🏁RELAY-104.21.48.84-8031"
-      - "⚡ b2n.ir/v2ray-configs | 838"
-      - "⚡ b2n.ir/v2ray-configs | 690"
-      - "🇯🇵JP-147.78.244.7-1087"
-      - "🏁RELAY-141.101.115.89-7834"
-      - "⚡ b2n.ir/v2ray-configs | 580"
-      - "IR 🇮🇷 | @Raydikalx | D44688"
-      - "⚡ b2n.ir/v2ray-configs | 277"
-      - "IR 🇮🇷 | @Raydikalx | CF67E7"
-      - "🇫🇷FR-51.77.158.169-4184"
-      - "⚡ b2n.ir/v2ray-configs | 697"
+      - "⚡ b2n.ir/v2ray-configs | 146"
+      - "⚡ b2n.ir/v2ray-configs | 960"
       - "⚡ b2n.ir/v2ray-configs | 155"
-      - "⚡ b2n.ir/v2ray-configs | 239"
-      - "🏁RELAY-104.24.255.191-7994"
-      - "⚡ b2n.ir/v2ray-configs | 544"
-      - "⚡ b2n.ir/v2ray-configs | 241"
-      - "⚡ b2n.ir/v2ray-configs | 579"
-      - "⚡ b2n.ir/v2ray-configs | 468"
-      - "🏁RELAY-172.67.212.128-7598"
-      - "⚡ b2n.ir/v2ray-configs | 339"
-      - "⚡ b2n.ir/v2ray-configs | 711"
-      - "⚡ b2n.ir/v2ray-configs | 707"
-      - "🇬🇧GB-83.142.225.59-0467"
-      - "⚡ b2n.ir/v2ray-configs | 610"
-      - "🇺🇸US-154.23.190.162-2417"
-      - "🏁RELAY-141.101.115.99-7833"
-      - "🇺🇸US-148.135.33.140-0667"
-      - "🇨🇦CA-15.235.50.172-0734"
-      - "⚡ b2n.ir/v2ray-configs | 565"
-      - "🏁RELAY-104.18.14.229-8054"
-      - "🇩🇪152429 | ⚡️Telegram = t.me/SOSkeyNET"
-      - "[28719] - Telegram : @V2All"
+      - "CA 🇨🇦 | @Raydikalx | 14A30F"
+      - "⚡ b2n.ir/v2ray-configs | 939"
+      - "⚡ b2n.ir/v2ray-configs | 144"
+      - "未知108"
+      - "⚡ b2n.ir/v2ray-configs | 861"
+      - "⚡ b2n.ir/v2ray-configs | 225"
+      - "RU 🇷🇺 | @Raydikalx | CEA049"
+      - "⚡ b2n.ir/v2ray-configs | 775"
+      - "⚡ b2n.ir/v2ray-configs | 873"
+      - "⚡ b2n.ir/v2ray-configs | 283"
+      - "⚡ b2n.ir/v2ray-configs | 14"
+      - "⚡ b2n.ir/v2ray-configs | 572"
+      - "🇸🇬SG-8.222.138.164-6706"
+      - "🇺🇸US-137.175.49.209-0645"
       - "کانال ما"
       - "کانال ما #2"
-      - "1🇩🇪 سرورتایم بالاعضو شو👉@VEGAAS_VPN"
+      - "[28942] - Telegram : @V2All"
+      - "🇷🇺152547 | ⚡️Telegram = t.me/SOSkeyNET"
+      - "🇷🇺152516 | ⚡️Telegram = t.me/SOSkeyNET"
       - "🇺🇸 Join+Telegram:@Farah_VPN 🇺🇸"
-      - "🇳🇱152354 | ⚡️Telegram = t.me/SOSkeyNET"
-      - "🇭🇰152389 | ⚡️Telegram = t.me/SOSkeyNET"
-      - "🇩🇪 Join+Telegram:@Farah_VPN 🇩🇪"
-      - "[28754] - Telegram : @V2All"
-      - "[28721] - Telegram : @V2All"
-      - "@prrofile_purple  ♥️👈 تلگرام"
-      - "@prrofile_purple  ♥️👈 تلگرام #2"
-      - "🇺🇸 Join+Telegram:@Farah_VPN 🇺🇸 #2"
-      - "@prrofile_purple  ♥️👈 تلگرام #3"
-      - "🇫🇷 Join+Telegram:@Farah_VPN 🇫🇷"
+      - "ProxyMtpVPN-37"
       - "@Hope_Net-join-us-on-Telegram"
-      - "🇸🇬 Join+Telegram:@Farah_VPN 🇸🇬"
+      - "🇫🇮152549 | ⚡️Telegram = t.me/SOSkeyNET"
+      - "🏳️ Join+Telegram:@Farah_VPN 🏳️"
+      - "@Cfox_SerVer 🇨🇦"
       - "@Hope_Net-join-us-on-Telegram #2"
       - "@Hope_Net-join-us-on-Telegram #3"
-      - "🇸🇪SE-🚀@VPNine1"
-      - "🇩🇪152409 | ⚡️Telegram = t.me/SOSkeyNET"
-      - "🇩🇪152410 | ⚡️Telegram = t.me/SOSkeyNET"
-      - "@freenettir"
-      - "Germany- ELiV2Ray"
-      - "🇩🇪 | ELiV2Ray"
-      - "🇸🇨SC-🚀@VPNine1"
-      - "🇹🇷TR-🚀@VPNine1"
-      - "/?TELEGRAM-MARAMBASHI_marambashi?ed=512&security=tls&encryption=none&insecure=0&host=workspace.evan00.dpdns.org&fp=chrome&type=ws&allowInsecure=0&sni=workspace.evan00.dpdns.org#@MARAMBASHI 🇮🇹"
+      - "🇩🇪DE-🚀@VPNine1"
+      - "🇩🇪DE-🚀@VPNine1 #2"
+      - "@Alpha_V2rayip"
+      - "@Cfox_SerVer 🇩🇪"
       - "@Hope_Net-join-us-on-Telegram #4"
+      - "[28924] - Telegram : @V2All"
+      - "🇦🇹 Join+Telegram:@Farah_VPN 🇦🇹"
+      - "🇦🇹 Join+Telegram:@Farah_VPN 🇦🇹 #2"
       - "کانال ما #3"
-      - "🌍152372 | ⚡️Telegram = t.me/SOSkeyNET"
+      - "🇷🇺RU-🚀@VPNine1"
       - "@Hope_Net-join-us-on-Telegram #5"
-      - "🇪🇪 Join+Telegram:@Farah_VPN 🇪🇪"
-      - "@FarazV2ray"
       - "@filembad"
+      - "canfingV2rayNG-166"
+      - "🇨🇦 Join+Telegram:@Farah_VPN 🇨🇦"
+      - "[28921] - Telegram : @V2All"
+      - "🇫🇷152632 | ⚡️Telegram = t.me/SOSkeyNET"
+      - "🇺🇸152637 | ⚡️Telegram = t.me/SOSkeyNET"
+      - "🇱🇻 Join+Telegram:@Farah_VPN 🇱🇻"
+      - "[28932] - Telegram : @V2All"
       - "@Hope_Net-join-us-on-Telegram #6"
-      - "🇳🇱 Join+Telegram:@Farah_VPN 🇳🇱"
       - "@Hope_Net-join-us-on-Telegram #7"
-      - "🇺🇸 Join+Telegram:@Farah_VPN 🇺🇸 #3"
       - "@Hope_Net-join-us-on-Telegram #8"
       - "@Hope_Net-join-us-on-Telegram #9"
-      - "@filembad #2"
-      - "[28745] - Telegram : @V2All"
-      - "@filembad #3"
-      - "🇲🇩152382 | ⚡️Telegram = t.me/SOSkeyNET"
-      - "🇨🇦152419 | ⚡️Telegram = t.me/SOSkeyNET"
       - "@Hope_Net-join-us-on-Telegram #10"
-      - "@prrofile_purple  ♥️👈 تلگرام #4"
-      - "5🍑@oneclickvpnkeys"
-      - "🍑83@oneclickvpnkeys"
-      - "[28752] - Telegram : @V2All"
-      - "🇳🇱152355 | ⚡️Telegram = t.me/SOSkeyNET"
-      - "🇳🇱152346 | ⚡️Telegram = t.me/SOSkeyNET"
-      - "🇳🇱152347 | ⚡️Telegram = t.me/SOSkeyNET"
-      - "1🍑@oneclickvpnkeys"
-      - "3🍑@oneclickvpnkeys"
-      - "🇳🇱152357 | ⚡️Telegram = t.me/SOSkeyNET"
-      - "@GozargahAzad|🇷🇺"
-      - "🇷🇺 Join+Telegram:@Farah_VPN 🇷🇺"
-      - "[28743] - Telegram : @V2All"
       - "@Hope_Net-join-us-on-Telegram #11"
       - "@Hope_Net-join-us-on-Telegram #12"
       - "@Hope_Net-join-us-on-Telegram #13"
@@ -366,105 +234,92 @@ proxy-groups:
       - "@Hope_Net-join-us-on-Telegram #16"
       - "@Hope_Net-join-us-on-Telegram #17"
       - "@Hope_Net-join-us-on-Telegram #18"
-      - "@GozargahAzad|🏁"
+      - "🇩🇪 Join+Telegram:@Farah_VPN 🇩🇪"
+      - "🇨🇦 Join+Telegram:@Farah_VPN 🇨🇦 #2"
+      - "کانال ما #4"
+      - "@Cfox_SerVer 🇨🇦 #2"
+      - "@filembad #2"
+      - "کانال ما #5"
+      - "کانال ما #6"
+      - "🇳🇱152636 | ⚡️Telegram = t.me/SOSkeyNET"
+      - "کانال ما #7"
       - "@Hope_Net-join-us-on-Telegram #19"
       - "@Hope_Net-join-us-on-Telegram #20"
+      - "🇸🇬 Join+Telegram:@Farah_VPN 🇸🇬"
+      - "CF优选"
       - "@Hope_Net-join-us-on-Telegram #21"
+      - "@Cfox_SerVer 🇨🇦 #3"
+      - "[28940] - Telegram : @V2All"
+      - "کانال ما #8"
+      - "[28938] - Telegram : @V2All"
+      - "canfingV2rayNG-310"
+      - "[28934] - Telegram : @V2All"
+      - "🇩🇪152634 | ⚡️Telegram = t.me/SOSkeyNET"
+      - "🇫🇮 Join+Telegram:@Farah_VPN 🇫🇮"
+      - "🇩🇪 Join+Telegram:@Farah_VPN 🇩🇪 #2"
+      - "[28936] - Telegram : @V2All"
+      - "🇮🇳 Join+Telegram:@Farah_VPN 🇮🇳"
+      - "🇨🇦 Join+Telegram:@Farah_VPN 🇨🇦 #3"
+      - "🇳🇱152633 | ⚡️Telegram = t.me/SOSkeyNET"
+      - "@GozargahAzad|🇨🇳"
+      - "کانال ما #9"
+      - "🇷🇴 Join+Telegram:@Farah_VPN 🇷🇴"
+      - "کانال ما #10"
       - "@Hope_Net-join-us-on-Telegram #22"
       - "@Hope_Net-join-us-on-Telegram #23"
-      - "🇺🇸152356 | ⚡️Telegram = t.me/SOSkeyNET"
-      - "🇺🇸152359 | ⚡️Telegram = t.me/SOSkeyNET"
-      - "🇺🇸152350 | ⚡️Telegram = t.me/SOSkeyNET"
-      - "🇺🇸152358 | ⚡️Telegram = t.me/SOSkeyNET"
-      - "🇨🇦152407 | ⚡️Telegram = t.me/SOSkeyNET"
       - "@Hope_Net-join-us-on-Telegram #24"
       - "@Hope_Net-join-us-on-Telegram #25"
-      - "🇨🇦152430 | ⚡️Telegram = t.me/SOSkeyNET"
-      - "[28726] - Telegram : @V2All"
-      - "🇨🇦152418 | ⚡️Telegram = t.me/SOSkeyNET"
-      - "[28755] - Telegram : @V2All"
-      - "🌍152388 | ⚡️Telegram = t.me/SOSkeyNET"
-      - "@Hope_Net-join-us-on-Telegram #26"
-      - "2🍑@oneclickvpnkeys"
-      - "@filembad #4"
-      - "🇭🇰152380 | ⚡️Telegram = t.me/SOSkeyNET"
-      - "🇺🇸152387 | ⚡️Telegram = t.me/SOSkeyNET"
-      - "@GozargahAzad|🏁 #2"
-      - "کانال ما #4"
-      - "کانال ما #5"
-      - "🇮🇷152433 | ⚡️Telegram = t.me/SOSkeyNET"
-      - "🇺🇸 Join+Telegram:@Farah_VPN 🇺🇸 #4"
-      - "🇷🇺152425 | ⚡️Telegram = t.me/SOSkeyNET"
-      - "@GozargahAzad|🏁 #3"
-      - "🇳🇱 Join+Telegram:@Farah_VPN 🇳🇱 #2"
-      - "@GozargahAzad|🏁 #4"
-      - "[28723] - Telegram : @V2All"
-      - "🇩🇪 Join+Telegram:@Farah_VPN 🇩🇪 #2"
-      - "🇫🇷FR-🚀@VPNine1"
-      - "@Hope_Net-join-us-on-Telegram #27"
-      - "@Hope_Net-join-us-on-Telegram #28"
-      - "🇹🇷152399 | ⚡️Telegram = t.me/SOSkeyNET"
-      - "🇳🇱152400 | ⚡️Telegram = t.me/SOSkeyNET"
-      - "@filembad #5"
+      - "کانال ما #11"
+      - "کانال ما #12"
+      - "کانال ما #13"
+      - "کانال ما #14"
+      - "@GozargahAzad|🇺🇸"
+      - "@GozargahAzad|🇲🇩"
+      - "@GozargahAzad|🇹🇷"
+      - "@GozargahAzad|🇭🇺"
       - "🇩🇪 Join+Telegram:@Farah_VPN 🇩🇪 #3"
-      - "🇸🇪 Join+Telegram:@Farah_VPN 🇸🇪"
-      - "🇩🇰 Join+Telegram:@Farah_VPN 🇩🇰"
+      - "@Hope_Net-join-us-on-Telegram #26"
+      - "🇩🇪152542 | ⚡️Telegram = t.me/SOSkeyNET"
+      - "کانال ما #15"
+      - "@Alpha_V2rayip #2"
+      - "@Hope_Net-join-us-on-Telegram #27"
+      - "🇩🇪 Join+Telegram:@Farah_VPN 🇩🇪 #4"
+      - "@Hope_Net-join-us-on-Telegram #28"
+      - "canfingV2rayNG-364"
+      - "[28937] - Telegram : @V2All"
+      - "🇨🇦 Join+Telegram:@Farah_VPN 🇨🇦 #4"
+      - "[28920] - Telegram : @V2All"
+      - "کانال ما #16"
+      - "🇩🇪152631 | ⚡️Telegram = t.me/SOSkeyNET"
+      - "کانال ما #17"
+      - "🇬🇧152635 | ⚡️Telegram = t.me/SOSkeyNET"
+      - "[28928] - Telegram : @V2All"
+      - "@filembad #3"
+      - "@filembad #4"
+      - "@filembad #5"
+      - "🇳🇱 Join+Telegram:@Farah_VPN 🇳🇱"
+      - "[28935] - Telegram : @V2All"
+      - "[28944] - Telegram : @V2All"
       - "@Hope_Net-join-us-on-Telegram #29"
-      - "🇪🇸152404 | ⚡️Telegram = t.me/SOSkeyNET"
+      - "کانال ما #18"
+      - "(S101)🇩🇪t.me/PrivateVPNs"
+      - "@Cfox_SerVer 🇨🇦 #4"
       - "@Hope_Net-join-us-on-Telegram #30"
-      - "@GozargahAzad|🇩🇪"
+      - "@GozargahAzad|🇳🇱"
+      - "🇰🇷 Join+Telegram:@Farah_VPN 🇰🇷"
+      - "🇸🇬 Join+Telegram:@Farah_VPN 🇸🇬 #2"
+      - "🇸🇬 Join+Telegram:@Farah_VPN 🇸🇬 #3"
+      - "@Cfox_SerVer 🇪🇪"
       - "@Hope_Net-join-us-on-Telegram #31"
       - "@Hope_Net-join-us-on-Telegram #32"
-      - "@Hope_Net-join-us-on-Telegram #33"
-      - "canfingV2rayNG-335"
-      - "[28720] - Telegram : @V2All"
-      - "@Cfox_SerVer 🇹🇷"
+      - "کانال ما #19"
       - "@filembad #6"
-      - "@Hope_Net-join-us-on-Telegram #34"
-      - "🇩🇪152348 | ⚡️Telegram = t.me/SOSkeyNET"
-      - "🇦🇪AE-🚀@VPNine1"
-      - "🇨🇦152370 | ⚡️Telegram = t.me/SOSkeyNET"
-      - "canfingV2rayNG-370"
-      - "🇧🇷152427 | ⚡️Telegram = t.me/SOSkeyNET"
-      - "🇷🇺 Join+Telegram:@Farah_VPN 🇷🇺 #2"
-      - "🚀@VPNine1"
-      - "[28725] - Telegram : @V2All"
-      - "🇺🇸 Join+Telegram:@Farah_VPN 🇺🇸 #5"
-      - "@v2ray_phoenix"
-      - "@Hope_Net-join-us-on-Telegram #35"
-      - "کانال ما #6"
-      - "@Hope_Net-join-us-on-Telegram #36"
-      - "[28753] - Telegram : @V2All"
-      - "🇷🇺RU-🚀@VPNine1"
-      - "کانال ما #7"
-      - "🇨🇦152446 | ⚡️Telegram = t.me/SOSkeyNET"
-      - "🇨🇦152447 | ⚡️Telegram = t.me/SOSkeyNET"
-      - "🇨🇦152448 | ⚡️Telegram = t.me/SOSkeyNET"
-      - "🇨🇦152450 | ⚡️Telegram = t.me/SOSkeyNET"
-      - "کانال ما #8"
-      - "🇩🇪152449 | ⚡️Telegram = t.me/SOSkeyNET"
-      - "@Hope_Net-join-us-on-Telegram #37"
-      - "@Hope_Net-join-us-on-Telegram #38"
-      - "@Hope_Net-join-us-on-Telegram #39"
-      - "🇳🇱NL-🚀@VPNine1"
-      - "🇷🇴RO-🚀@VPNine1"
-      - "🇩🇪152366 | ⚡️Telegram = t.me/SOSkeyNET"
-      - "🇨🇦 Join+Telegram:@Farah_VPN 🇨🇦"
-      - "🇵🇱 Join+Telegram:@Farah_VPN 🇵🇱"
-      - "(S104)🇨🇵t.me/PrivateVPNs"
-      - "🇫🇷152436 | ⚡️Telegram = t.me/SOSkeyNET"
-      - "🇫🇷152435 | ⚡️Telegram = t.me/SOSkeyNET"
-      - "(S103)🇨🇵t.me/PrivateVPNs"
-      - "🚀@VPNine1 #2"
-      - "@filembad #7"
-      - "🇮🇷152339 | ⚡️Telegram = t.me/SOSkeyNET"
-      - "🇺🇸@iNetChnl"
-      - "🇨🇦152405 | ⚡️Telegram = t.me/SOSkeyNET"
-      - "[28727] - Telegram : @V2All"
-      - "4🍑@oneclickvpnkeys"
-      - "[28724] - Telegram : @V2All"
-      - "🇫🇷FR-🚀@VPNine1 #2"
-      - "[28722] - Telegram : @V2All"
+      - "@Hope_Net-join-us-on-Telegram #33"
+      - "🇮🇹 Join+Telegram:@Farah_VPN 🇮🇹"
+      - "کانال ما #20"
+      - "کانال ما #21"
+      - "کانال ما #22"
+      - "🇩🇪DE-🚀@VPNine1 #3"
       - "EPODONIOS"
       - "EPODONIOS #2"
       - "EPODONIOS #3"
@@ -475,127 +330,64 @@ proxy-groups:
       - "EPODONIOS #8"
       - "EPODONIOS #9"
       - "EPODONIOS #10"
-      - "EPODONIOS #11"
-      - "EPODONIOS #12"
-      - "EPODONIOS #13"
-      - "EPODONIOS #14"
-      - "EPODONIOS #15"
-      - "EPODONIOS #16"
-      - "EPODONIOS #17"
   - name: 手动选择
     type: select
     proxies:
       - 自动选择
-      - "⚡ b2n.ir/v2ray-configs | 833"
-      - "🏁RELAY-198.41.212.150-2134"
-      - "🏁RELAY-104.21.91.254-0689"
-      - "⚡ b2n.ir/v2ray-configs | 895"
-      - "Global 🌐 | @Raydikalx | B0EED0"
-      - "🇺🇸US-23.237.33.106-1050"
-      - "🏁RELAY-172.67.135.57-1305"
-      - "🇧🇬BG-95.164.34.184-7151"
-      - "⚡ b2n.ir/v2ray-configs | 599"
-      - "CA 🇨🇦 | @Raydikalx | E40DCB"
-      - "CA 🇨🇦 | @Raydikalx | 87DD51"
-      - "⚡ b2n.ir/v2ray-configs | 227"
-      - "⚡ b2n.ir/v2ray-configs | 442"
-      - "⚡ b2n.ir/v2ray-configs | 826"
-      - "⚡ b2n.ir/v2ray-configs | 96"
-      - "CA 🇨🇦 | @Raydikalx | E22403"
-      - "⚡ b2n.ir/v2ray-configs | 205"
-      - "⚡ b2n.ir/v2ray-configs | 612"
-      - "🏁RELAY-141.101.122.190-7831"
-      - "🏁RELAY-104.21.48.84-8031"
-      - "⚡ b2n.ir/v2ray-configs | 838"
-      - "⚡ b2n.ir/v2ray-configs | 690"
-      - "🇯🇵JP-147.78.244.7-1087"
-      - "🏁RELAY-141.101.115.89-7834"
-      - "⚡ b2n.ir/v2ray-configs | 580"
-      - "IR 🇮🇷 | @Raydikalx | D44688"
-      - "⚡ b2n.ir/v2ray-configs | 277"
-      - "IR 🇮🇷 | @Raydikalx | CF67E7"
-      - "🇫🇷FR-51.77.158.169-4184"
-      - "⚡ b2n.ir/v2ray-configs | 697"
+      - "⚡ b2n.ir/v2ray-configs | 146"
+      - "⚡ b2n.ir/v2ray-configs | 960"
       - "⚡ b2n.ir/v2ray-configs | 155"
-      - "⚡ b2n.ir/v2ray-configs | 239"
-      - "🏁RELAY-104.24.255.191-7994"
-      - "⚡ b2n.ir/v2ray-configs | 544"
-      - "⚡ b2n.ir/v2ray-configs | 241"
-      - "⚡ b2n.ir/v2ray-configs | 579"
-      - "⚡ b2n.ir/v2ray-configs | 468"
-      - "🏁RELAY-172.67.212.128-7598"
-      - "⚡ b2n.ir/v2ray-configs | 339"
-      - "⚡ b2n.ir/v2ray-configs | 711"
-      - "⚡ b2n.ir/v2ray-configs | 707"
-      - "🇬🇧GB-83.142.225.59-0467"
-      - "⚡ b2n.ir/v2ray-configs | 610"
-      - "🇺🇸US-154.23.190.162-2417"
-      - "🏁RELAY-141.101.115.99-7833"
-      - "🇺🇸US-148.135.33.140-0667"
-      - "🇨🇦CA-15.235.50.172-0734"
-      - "⚡ b2n.ir/v2ray-configs | 565"
-      - "🏁RELAY-104.18.14.229-8054"
-      - "🇩🇪152429 | ⚡️Telegram = t.me/SOSkeyNET"
-      - "[28719] - Telegram : @V2All"
+      - "CA 🇨🇦 | @Raydikalx | 14A30F"
+      - "⚡ b2n.ir/v2ray-configs | 939"
+      - "⚡ b2n.ir/v2ray-configs | 144"
+      - "未知108"
+      - "⚡ b2n.ir/v2ray-configs | 861"
+      - "⚡ b2n.ir/v2ray-configs | 225"
+      - "RU 🇷🇺 | @Raydikalx | CEA049"
+      - "⚡ b2n.ir/v2ray-configs | 775"
+      - "⚡ b2n.ir/v2ray-configs | 873"
+      - "⚡ b2n.ir/v2ray-configs | 283"
+      - "⚡ b2n.ir/v2ray-configs | 14"
+      - "⚡ b2n.ir/v2ray-configs | 572"
+      - "🇸🇬SG-8.222.138.164-6706"
+      - "🇺🇸US-137.175.49.209-0645"
       - "کانال ما"
       - "کانال ما #2"
-      - "1🇩🇪 سرورتایم بالاعضو شو👉@VEGAAS_VPN"
+      - "[28942] - Telegram : @V2All"
+      - "🇷🇺152547 | ⚡️Telegram = t.me/SOSkeyNET"
+      - "🇷🇺152516 | ⚡️Telegram = t.me/SOSkeyNET"
       - "🇺🇸 Join+Telegram:@Farah_VPN 🇺🇸"
-      - "🇳🇱152354 | ⚡️Telegram = t.me/SOSkeyNET"
-      - "🇭🇰152389 | ⚡️Telegram = t.me/SOSkeyNET"
-      - "🇩🇪 Join+Telegram:@Farah_VPN 🇩🇪"
-      - "[28754] - Telegram : @V2All"
-      - "[28721] - Telegram : @V2All"
-      - "@prrofile_purple  ♥️👈 تلگرام"
-      - "@prrofile_purple  ♥️👈 تلگرام #2"
-      - "🇺🇸 Join+Telegram:@Farah_VPN 🇺🇸 #2"
-      - "@prrofile_purple  ♥️👈 تلگرام #3"
-      - "🇫🇷 Join+Telegram:@Farah_VPN 🇫🇷"
+      - "ProxyMtpVPN-37"
       - "@Hope_Net-join-us-on-Telegram"
-      - "🇸🇬 Join+Telegram:@Farah_VPN 🇸🇬"
+      - "🇫🇮152549 | ⚡️Telegram = t.me/SOSkeyNET"
+      - "🏳️ Join+Telegram:@Farah_VPN 🏳️"
+      - "@Cfox_SerVer 🇨🇦"
       - "@Hope_Net-join-us-on-Telegram #2"
       - "@Hope_Net-join-us-on-Telegram #3"
-      - "🇸🇪SE-🚀@VPNine1"
-      - "🇩🇪152409 | ⚡️Telegram = t.me/SOSkeyNET"
-      - "🇩🇪152410 | ⚡️Telegram = t.me/SOSkeyNET"
-      - "@freenettir"
-      - "Germany- ELiV2Ray"
-      - "🇩🇪 | ELiV2Ray"
-      - "🇸🇨SC-🚀@VPNine1"
-      - "🇹🇷TR-🚀@VPNine1"
-      - "/?TELEGRAM-MARAMBASHI_marambashi?ed=512&security=tls&encryption=none&insecure=0&host=workspace.evan00.dpdns.org&fp=chrome&type=ws&allowInsecure=0&sni=workspace.evan00.dpdns.org#@MARAMBASHI 🇮🇹"
+      - "🇩🇪DE-🚀@VPNine1"
+      - "🇩🇪DE-🚀@VPNine1 #2"
+      - "@Alpha_V2rayip"
+      - "@Cfox_SerVer 🇩🇪"
       - "@Hope_Net-join-us-on-Telegram #4"
+      - "[28924] - Telegram : @V2All"
+      - "🇦🇹 Join+Telegram:@Farah_VPN 🇦🇹"
+      - "🇦🇹 Join+Telegram:@Farah_VPN 🇦🇹 #2"
       - "کانال ما #3"
-      - "🌍152372 | ⚡️Telegram = t.me/SOSkeyNET"
+      - "🇷🇺RU-🚀@VPNine1"
       - "@Hope_Net-join-us-on-Telegram #5"
-      - "🇪🇪 Join+Telegram:@Farah_VPN 🇪🇪"
-      - "@FarazV2ray"
       - "@filembad"
+      - "canfingV2rayNG-166"
+      - "🇨🇦 Join+Telegram:@Farah_VPN 🇨🇦"
+      - "[28921] - Telegram : @V2All"
+      - "🇫🇷152632 | ⚡️Telegram = t.me/SOSkeyNET"
+      - "🇺🇸152637 | ⚡️Telegram = t.me/SOSkeyNET"
+      - "🇱🇻 Join+Telegram:@Farah_VPN 🇱🇻"
+      - "[28932] - Telegram : @V2All"
       - "@Hope_Net-join-us-on-Telegram #6"
-      - "🇳🇱 Join+Telegram:@Farah_VPN 🇳🇱"
       - "@Hope_Net-join-us-on-Telegram #7"
-      - "🇺🇸 Join+Telegram:@Farah_VPN 🇺🇸 #3"
       - "@Hope_Net-join-us-on-Telegram #8"
       - "@Hope_Net-join-us-on-Telegram #9"
-      - "@filembad #2"
-      - "[28745] - Telegram : @V2All"
-      - "@filembad #3"
-      - "🇲🇩152382 | ⚡️Telegram = t.me/SOSkeyNET"
-      - "🇨🇦152419 | ⚡️Telegram = t.me/SOSkeyNET"
       - "@Hope_Net-join-us-on-Telegram #10"
-      - "@prrofile_purple  ♥️👈 تلگرام #4"
-      - "5🍑@oneclickvpnkeys"
-      - "🍑83@oneclickvpnkeys"
-      - "[28752] - Telegram : @V2All"
-      - "🇳🇱152355 | ⚡️Telegram = t.me/SOSkeyNET"
-      - "🇳🇱152346 | ⚡️Telegram = t.me/SOSkeyNET"
-      - "🇳🇱152347 | ⚡️Telegram = t.me/SOSkeyNET"
-      - "1🍑@oneclickvpnkeys"
-      - "3🍑@oneclickvpnkeys"
-      - "🇳🇱152357 | ⚡️Telegram = t.me/SOSkeyNET"
-      - "@GozargahAzad|🇷🇺"
-      - "🇷🇺 Join+Telegram:@Farah_VPN 🇷🇺"
-      - "[28743] - Telegram : @V2All"
       - "@Hope_Net-join-us-on-Telegram #11"
       - "@Hope_Net-join-us-on-Telegram #12"
       - "@Hope_Net-join-us-on-Telegram #13"
@@ -604,105 +396,92 @@ proxy-groups:
       - "@Hope_Net-join-us-on-Telegram #16"
       - "@Hope_Net-join-us-on-Telegram #17"
       - "@Hope_Net-join-us-on-Telegram #18"
-      - "@GozargahAzad|🏁"
+      - "🇩🇪 Join+Telegram:@Farah_VPN 🇩🇪"
+      - "🇨🇦 Join+Telegram:@Farah_VPN 🇨🇦 #2"
+      - "کانال ما #4"
+      - "@Cfox_SerVer 🇨🇦 #2"
+      - "@filembad #2"
+      - "کانال ما #5"
+      - "کانال ما #6"
+      - "🇳🇱152636 | ⚡️Telegram = t.me/SOSkeyNET"
+      - "کانال ما #7"
       - "@Hope_Net-join-us-on-Telegram #19"
       - "@Hope_Net-join-us-on-Telegram #20"
+      - "🇸🇬 Join+Telegram:@Farah_VPN 🇸🇬"
+      - "CF优选"
       - "@Hope_Net-join-us-on-Telegram #21"
+      - "@Cfox_SerVer 🇨🇦 #3"
+      - "[28940] - Telegram : @V2All"
+      - "کانال ما #8"
+      - "[28938] - Telegram : @V2All"
+      - "canfingV2rayNG-310"
+      - "[28934] - Telegram : @V2All"
+      - "🇩🇪152634 | ⚡️Telegram = t.me/SOSkeyNET"
+      - "🇫🇮 Join+Telegram:@Farah_VPN 🇫🇮"
+      - "🇩🇪 Join+Telegram:@Farah_VPN 🇩🇪 #2"
+      - "[28936] - Telegram : @V2All"
+      - "🇮🇳 Join+Telegram:@Farah_VPN 🇮🇳"
+      - "🇨🇦 Join+Telegram:@Farah_VPN 🇨🇦 #3"
+      - "🇳🇱152633 | ⚡️Telegram = t.me/SOSkeyNET"
+      - "@GozargahAzad|🇨🇳"
+      - "کانال ما #9"
+      - "🇷🇴 Join+Telegram:@Farah_VPN 🇷🇴"
+      - "کانال ما #10"
       - "@Hope_Net-join-us-on-Telegram #22"
       - "@Hope_Net-join-us-on-Telegram #23"
-      - "🇺🇸152356 | ⚡️Telegram = t.me/SOSkeyNET"
-      - "🇺🇸152359 | ⚡️Telegram = t.me/SOSkeyNET"
-      - "🇺🇸152350 | ⚡️Telegram = t.me/SOSkeyNET"
-      - "🇺🇸152358 | ⚡️Telegram = t.me/SOSkeyNET"
-      - "🇨🇦152407 | ⚡️Telegram = t.me/SOSkeyNET"
       - "@Hope_Net-join-us-on-Telegram #24"
       - "@Hope_Net-join-us-on-Telegram #25"
-      - "🇨🇦152430 | ⚡️Telegram = t.me/SOSkeyNET"
-      - "[28726] - Telegram : @V2All"
-      - "🇨🇦152418 | ⚡️Telegram = t.me/SOSkeyNET"
-      - "[28755] - Telegram : @V2All"
-      - "🌍152388 | ⚡️Telegram = t.me/SOSkeyNET"
-      - "@Hope_Net-join-us-on-Telegram #26"
-      - "2🍑@oneclickvpnkeys"
-      - "@filembad #4"
-      - "🇭🇰152380 | ⚡️Telegram = t.me/SOSkeyNET"
-      - "🇺🇸152387 | ⚡️Telegram = t.me/SOSkeyNET"
-      - "@GozargahAzad|🏁 #2"
-      - "کانال ما #4"
-      - "کانال ما #5"
-      - "🇮🇷152433 | ⚡️Telegram = t.me/SOSkeyNET"
-      - "🇺🇸 Join+Telegram:@Farah_VPN 🇺🇸 #4"
-      - "🇷🇺152425 | ⚡️Telegram = t.me/SOSkeyNET"
-      - "@GozargahAzad|🏁 #3"
-      - "🇳🇱 Join+Telegram:@Farah_VPN 🇳🇱 #2"
-      - "@GozargahAzad|🏁 #4"
-      - "[28723] - Telegram : @V2All"
-      - "🇩🇪 Join+Telegram:@Farah_VPN 🇩🇪 #2"
-      - "🇫🇷FR-🚀@VPNine1"
-      - "@Hope_Net-join-us-on-Telegram #27"
-      - "@Hope_Net-join-us-on-Telegram #28"
-      - "🇹🇷152399 | ⚡️Telegram = t.me/SOSkeyNET"
-      - "🇳🇱152400 | ⚡️Telegram = t.me/SOSkeyNET"
-      - "@filembad #5"
+      - "کانال ما #11"
+      - "کانال ما #12"
+      - "کانال ما #13"
+      - "کانال ما #14"
+      - "@GozargahAzad|🇺🇸"
+      - "@GozargahAzad|🇲🇩"
+      - "@GozargahAzad|🇹🇷"
+      - "@GozargahAzad|🇭🇺"
       - "🇩🇪 Join+Telegram:@Farah_VPN 🇩🇪 #3"
-      - "🇸🇪 Join+Telegram:@Farah_VPN 🇸🇪"
-      - "🇩🇰 Join+Telegram:@Farah_VPN 🇩🇰"
+      - "@Hope_Net-join-us-on-Telegram #26"
+      - "🇩🇪152542 | ⚡️Telegram = t.me/SOSkeyNET"
+      - "کانال ما #15"
+      - "@Alpha_V2rayip #2"
+      - "@Hope_Net-join-us-on-Telegram #27"
+      - "🇩🇪 Join+Telegram:@Farah_VPN 🇩🇪 #4"
+      - "@Hope_Net-join-us-on-Telegram #28"
+      - "canfingV2rayNG-364"
+      - "[28937] - Telegram : @V2All"
+      - "🇨🇦 Join+Telegram:@Farah_VPN 🇨🇦 #4"
+      - "[28920] - Telegram : @V2All"
+      - "کانال ما #16"
+      - "🇩🇪152631 | ⚡️Telegram = t.me/SOSkeyNET"
+      - "کانال ما #17"
+      - "🇬🇧152635 | ⚡️Telegram = t.me/SOSkeyNET"
+      - "[28928] - Telegram : @V2All"
+      - "@filembad #3"
+      - "@filembad #4"
+      - "@filembad #5"
+      - "🇳🇱 Join+Telegram:@Farah_VPN 🇳🇱"
+      - "[28935] - Telegram : @V2All"
+      - "[28944] - Telegram : @V2All"
       - "@Hope_Net-join-us-on-Telegram #29"
-      - "🇪🇸152404 | ⚡️Telegram = t.me/SOSkeyNET"
+      - "کانال ما #18"
+      - "(S101)🇩🇪t.me/PrivateVPNs"
+      - "@Cfox_SerVer 🇨🇦 #4"
       - "@Hope_Net-join-us-on-Telegram #30"
-      - "@GozargahAzad|🇩🇪"
+      - "@GozargahAzad|🇳🇱"
+      - "🇰🇷 Join+Telegram:@Farah_VPN 🇰🇷"
+      - "🇸🇬 Join+Telegram:@Farah_VPN 🇸🇬 #2"
+      - "🇸🇬 Join+Telegram:@Farah_VPN 🇸🇬 #3"
+      - "@Cfox_SerVer 🇪🇪"
       - "@Hope_Net-join-us-on-Telegram #31"
       - "@Hope_Net-join-us-on-Telegram #32"
-      - "@Hope_Net-join-us-on-Telegram #33"
-      - "canfingV2rayNG-335"
-      - "[28720] - Telegram : @V2All"
-      - "@Cfox_SerVer 🇹🇷"
+      - "کانال ما #19"
       - "@filembad #6"
-      - "@Hope_Net-join-us-on-Telegram #34"
-      - "🇩🇪152348 | ⚡️Telegram = t.me/SOSkeyNET"
-      - "🇦🇪AE-🚀@VPNine1"
-      - "🇨🇦152370 | ⚡️Telegram = t.me/SOSkeyNET"
-      - "canfingV2rayNG-370"
-      - "🇧🇷152427 | ⚡️Telegram = t.me/SOSkeyNET"
-      - "🇷🇺 Join+Telegram:@Farah_VPN 🇷🇺 #2"
-      - "🚀@VPNine1"
-      - "[28725] - Telegram : @V2All"
-      - "🇺🇸 Join+Telegram:@Farah_VPN 🇺🇸 #5"
-      - "@v2ray_phoenix"
-      - "@Hope_Net-join-us-on-Telegram #35"
-      - "کانال ما #6"
-      - "@Hope_Net-join-us-on-Telegram #36"
-      - "[28753] - Telegram : @V2All"
-      - "🇷🇺RU-🚀@VPNine1"
-      - "کانال ما #7"
-      - "🇨🇦152446 | ⚡️Telegram = t.me/SOSkeyNET"
-      - "🇨🇦152447 | ⚡️Telegram = t.me/SOSkeyNET"
-      - "🇨🇦152448 | ⚡️Telegram = t.me/SOSkeyNET"
-      - "🇨🇦152450 | ⚡️Telegram = t.me/SOSkeyNET"
-      - "کانال ما #8"
-      - "🇩🇪152449 | ⚡️Telegram = t.me/SOSkeyNET"
-      - "@Hope_Net-join-us-on-Telegram #37"
-      - "@Hope_Net-join-us-on-Telegram #38"
-      - "@Hope_Net-join-us-on-Telegram #39"
-      - "🇳🇱NL-🚀@VPNine1"
-      - "🇷🇴RO-🚀@VPNine1"
-      - "🇩🇪152366 | ⚡️Telegram = t.me/SOSkeyNET"
-      - "🇨🇦 Join+Telegram:@Farah_VPN 🇨🇦"
-      - "🇵🇱 Join+Telegram:@Farah_VPN 🇵🇱"
-      - "(S104)🇨🇵t.me/PrivateVPNs"
-      - "🇫🇷152436 | ⚡️Telegram = t.me/SOSkeyNET"
-      - "🇫🇷152435 | ⚡️Telegram = t.me/SOSkeyNET"
-      - "(S103)🇨🇵t.me/PrivateVPNs"
-      - "🚀@VPNine1 #2"
-      - "@filembad #7"
-      - "🇮🇷152339 | ⚡️Telegram = t.me/SOSkeyNET"
-      - "🇺🇸@iNetChnl"
-      - "🇨🇦152405 | ⚡️Telegram = t.me/SOSkeyNET"
-      - "[28727] - Telegram : @V2All"
-      - "4🍑@oneclickvpnkeys"
-      - "[28724] - Telegram : @V2All"
-      - "🇫🇷FR-🚀@VPNine1 #2"
-      - "[28722] - Telegram : @V2All"
+      - "@Hope_Net-join-us-on-Telegram #33"
+      - "🇮🇹 Join+Telegram:@Farah_VPN 🇮🇹"
+      - "کانال ما #20"
+      - "کانال ما #21"
+      - "کانال ما #22"
+      - "🇩🇪DE-🚀@VPNine1 #3"
       - "EPODONIOS"
       - "EPODONIOS #2"
       - "EPODONIOS #3"
@@ -713,13 +492,6 @@ proxy-groups:
       - "EPODONIOS #8"
       - "EPODONIOS #9"
       - "EPODONIOS #10"
-      - "EPODONIOS #11"
-      - "EPODONIOS #12"
-      - "EPODONIOS #13"
-      - "EPODONIOS #14"
-      - "EPODONIOS #15"
-      - "EPODONIOS #16"
-      - "EPODONIOS #17"
 
 rules:
   - MATCH,手动选择
