@@ -1,19 +1,36 @@
 # 免费节点自动聚合工具
 
 解决的问题：以前要一个个去 GitHub 上找免费节点、手动拼 Clash 配置，很麻烦。
-这个工具自动从几个公开的免费节点聚合仓库抓取节点，解析、去重，
+这个工具自动从几个公开的免费节点聚合仓库 + Telegram 免费节点频道抓取节点，解析、去重，
 直接生成一份 Clash Meta 能用的 YAML 配置文件。
 
 ## 原理
 
 1. `fetch_nodes.py` 从 `SOURCES` 列表里的几个订阅地址下载节点（目前接的是
-   MatinGhanbari、barry-far、Epodonios 这三个仓库，都是你之前就在用的来源）。
+   MatinGhanbari、barry-far、Epodonios 这三个仓库），同时从 `telegramchannels.json`
+   里的 Telegram 免费节点频道抓取（走 `https://t.me/s/<频道>` 公开预览页，无需登录 / Bot Token）。
 2. 解析 vmess / vless / trojan / ss 四种协议的节点链接。
 3. 按 `协议+地址+端口` 去重，避免同一个节点重复出现。
 4. 生成一个「自动选择」（url-test）策略组 + 「手动选择」策略组的 Clash Meta 配置。
    **节点是否能连通，交给 Clash Meta 客户端自己测速筛选**——脚本本身不对外批量
    探测端口，这样比较安全，也不会重蹈之前 GitHub Actions 账号因为批量 socket
    探测被限制的问题。
+
+## Telegram 免费节点频道源
+
+`telegramchannels.json` 里是频道用户名列表（当前 181 个，沿用了之前 TGParse 项目里
+在用的那批频道），脚本会并发抓取每个频道的公开预览页，提取 vmess / vless / trojan / ss
+链接并入节点池。
+
+- **管理频道**：直接在 `telegramchannels.json` 里增删用户名（JSON 数组，一个元素一个
+  频道名），删掉不想要的、加你想加的，push 之后下次自动更新就生效。
+- **关闭 Telegram 源**：跑的时候加 `--no-telegram`，就只用 `SOURCES` 里的订阅地址。
+- **并发控制**：默认 12 并发抓取频道，可用 `--tg-concurrency` 调整。
+- **协议范围**：目前只解析 vmess / vless / trojan / ss 四种协议；如果频道里发的是
+  hysteria2 / tuic 等其他协议，会跳过（后续可以扩展）。
+- **网络注意**：本机直连 t.me 不一定通（部分地区网络无法直接访问），Telegram 源主要
+  靠 GitHub Actions 云端跑（CI 机器能访问 t.me）；想在本地跑 Telegram 源，需要你自己的
+  网络能访问 t.me。
 
 ## 使用方法
 
@@ -186,8 +203,10 @@ Runner 安装命令。
 
 ## 增删节点来源
 
-打开 `fetch_nodes.py`，改 `SOURCES` 这个列表就行，加一行新的订阅地址、
-或者删掉你觉得不稳定的来源。
+- **订阅地址**：打开 `fetch_nodes.py`，改 `SOURCES` 这个列表就行，加一行新的订阅地址、
+  或者删掉你觉得不稳定的来源。
+- **Telegram 频道**：编辑 `telegramchannels.json`，加一行频道用户名（如 `"my_channel"`）、
+  或者删掉不要的，push 后下次自动更新生效。
 
 ## 关于稳定性
 
