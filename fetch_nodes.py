@@ -21,6 +21,7 @@ fetch_nodes.py
 
 import argparse
 import base64
+import hashlib
 import concurrent.futures
 import json
 import os
@@ -338,6 +339,8 @@ def parse_ss(uri: str):
             "password": password,
             "udp": True,
         }
+        if not node["server"] or not node["port"] or not node["cipher"] or not node["password"]:
+            return None
         return node
     except Exception:
         return None
@@ -466,12 +469,98 @@ def save_history(path: str, seen: dict):
 
 
 def node_key(n: dict) -> str:
-    return f"{n['type']}|{n['server']}|{n['port']}"
+    """节点唯一键：类型+地址+端口+凭据短哈希。
+    加上凭据哈希可避免「同一 host:port 换了 uuid/密码」被判为重复而丢弃新凭据，
+    也避免多人共用端口被错误折叠。"""
+    cred = n.get("uuid") or n.get("password") or ""
+    cred_h = hashlib.md5(cred.encode("utf-8")).hexdigest()[:8] if cred else "nocred"
+    return f"{n['type']}|{n['server']}|{n['port']}|{cred_h}"
 
 
 def filter_seen(nodes: list, seen: dict) -> list:
     """去掉历史记录里还没过期的节点，只保留没见过（或者已经过期忘记）的节点"""
     return [n for n in nodes if node_key(n) not in seen]
+
+
+# ---------------------------------------------------------------------------
+# 节点稳定度统计（node_stats.json）
+# 思路：免费源里的节点「连续多轮都还在列表里」的，实际存活率远高于只闪现一次
+# 就消失的（前者多半是正经公益节点，后者常是临时扫描出来的）。我们不去测速，
+# 而是统计每个节点「出现过多少轮」「最近一次出现是哪天」「连续多少轮没出现」，
+# 按出现轮数降序排序，取 top N 进客户端的 url-test 测速组——客户端只需测很少
+# 几个节点，几秒完成，且这少数几个大概率是活的。
+# ---------------------------------------------------------------------------
+
+STATS_FILE = "node_stats.json"
+DEAD_THRESHOLD = 3  # 连续多少轮没出现就从稳定度统计里剔除（约 18 小时，按 6h 一轮）
+
+
+def load_stats(path: str) -> dict:
+    """读取 {key: {first, last, rounds, miss}}。key 同 node_key。"""
+    if not os.path.exists(path):
+        return {}
+    try:
+        with open(path, "r", encoding="utf-8") as f:
+            return json.load(f)
+    except Exception as e:
+        print(f"! 节点统计读取失败，当作空处理: {path} ({e})", file=sys.stderr)
+        return {}
+
+
+def save_stats(path: str, stats: dict):
+    try:
+        with open(path, "w", encoding="utf-8") as f:
+            json.dump(stats, f, ensure_ascii=False, indent=2)
+    except Exception as e:
+        print(f"! 节点统计保存失败: {path} ({e})", file=sys.stderr)
+
+
+def update_stats(stats: dict, current_keys: list, today: str, dead_threshold: int = DEAD_THRESHOLD) -> dict:
+    """根据本轮出现的节点更新稳定度统计，返回更新后的 stats。
+    - 本轮出现的：rounds += 1，last = 今天，miss 清零；
+    - 本轮没出现的：miss += 1，达到 dead_threshold 直接从统计里删除。"""
+    cur = set(current_keys)
+    for k in cur:
+        rec = stats.get(k)
+        if rec is None:
+            stats[k] = {"first": today, "last": today, "rounds": 1, "miss": 0}
+        else:
+            rec["rounds"] = rec.get("rounds", 0) + 1
+            rec["last"] = today
+            rec["miss"] = 0
+    to_drop = []
+    for k, rec in stats.items():
+        if k not in cur:
+            rec["miss"] = rec.get("miss", 0) + 1
+            if rec["miss"] >= dead_threshold:
+                to_drop.append(k)
+    for k in to_drop:
+        del stats[k]
+    return stats
+
+
+# ---------------------------------------------------------------------------
+# 地区识别：按节点名里的关键字自动分出地区子组，方便手动挑选
+# ---------------------------------------------------------------------------
+
+REGION_KEYWORDS = {
+    "香港": ["香港", "hk", "hongkong", "hong kong"],
+    "台湾": ["台湾", "tw", "taiwan"],
+    "日本": ["日本", "jp", "japan", "tokyo", "osaka", "大阪", "东京"],
+    "新加坡": ["新加坡", "sg", "singapore"],
+    "美国": ["美国", "us", "usa", "united states", "los angeles", "la", "sf", "ny", "纽约", "洛杉矶", "硅谷", "silicon"],
+    "韩国": ["韩国", "kr", "korea", "seoul", "首尔"],
+    "欧洲": ["欧洲", "eu", "germany", "france", "uk", "nl", "de", "fr", "英国", "德国", "法国", "荷兰"],
+}
+
+
+def region_of(name: str) -> str:
+    low = (name or "").lower()
+    for region, kws in REGION_KEYWORDS.items():
+        for kw in kws:
+            if kw in low:
+                return region
+    return "其它"
 
 
 # ---------------------------------------------------------------------------
@@ -552,8 +641,17 @@ def dump_proxy(n: dict) -> str:
     return line
 
 
-def build_yaml(nodes, out_path: str):
-    names = [n["name"] for n in nodes]
+def build_yaml(pool, auto_select, out_path: str, interval: int = 600, tolerance: int = 100):
+    """生成 Clash Meta YAML（分层结构）。
+
+    pool:        全量节点（进「全部节点」select 组，不做健康检查，零测速开销）。
+    auto_select: 稳定度评分 top N 节点（进「自动选择」url-test 组，客户端自动测速）。
+                 只有这一小组会被客户端周期性测速，所以即便全量有上千节点，
+                 客户端每次也只测这几十个，几秒完成、且大概率都是活的。
+
+    region_of 依赖节点名里的地区关键字，第三方源命名不规范时部分节点会落进
+    「其它」组，不影响使用，只是少一个快捷分类。
+    """
     lines = []
     lines.append("# 自动生成 - fetch_nodes.py")
     lines.append("mixed-port: 7890")
@@ -563,27 +661,41 @@ def build_yaml(nodes, out_path: str):
     lines.append("external-controller: 127.0.0.1:9090")
     lines.append("")
     lines.append("proxies:")
-    for n in nodes:
+    for n in pool:
         lines.append(dump_proxy(n))
     lines.append("")
     lines.append("proxy-groups:")
+    # 自动选择：只放 top N，lazy + 较长 interval，客户端只测这几个
     lines.append("  - name: 自动选择")
     lines.append("    type: url-test")
     lines.append('    url: "http://www.gstatic.com/generate_204"')
-    lines.append("    interval: 300")
-    lines.append("    tolerance: 50")
+    lines.append(f"    interval: {interval}")
+    lines.append(f"    tolerance: {tolerance}")
+    lines.append("    lazy: true")
     lines.append("    proxies:")
-    for name in names:
-        lines.append(f"      - {yaml_str(name)}")
-    lines.append("  - name: 手动选择")
+    for n in auto_select:
+        lines.append(f"      - {yaml_str(n['name'])}")
+    # 全部节点：select，放全量（不做健康检查），首项指向自动选择
+    lines.append("  - name: 全部节点")
     lines.append("    type: select")
     lines.append("    proxies:")
     lines.append("      - 自动选择")
-    for name in names:
-        lines.append(f"      - {yaml_str(name)}")
+    for n in pool:
+        lines.append(f"      - {yaml_str(n['name'])}")
+    # 地区子组：方便手动挑选
+    regions = {}
+    for n in pool:
+        r = region_of(n["name"])
+        regions.setdefault(r, []).append(n["name"])
+    for r in sorted(regions.keys()):
+        lines.append(f"  - name: 地区-{r}")
+        lines.append("    type: select")
+        lines.append("    proxies:")
+        for nm in regions[r]:
+            lines.append(f"      - {yaml_str(nm)}")
     lines.append("")
     lines.append("rules:")
-    lines.append("  - MATCH,手动选择")
+    lines.append("  - MATCH,全部节点")
 
     with open(out_path, "w", encoding="utf-8") as f:
         f.write("\n".join(lines) + "\n")
@@ -633,6 +745,15 @@ def main():
                      help="清空失效频道记录，重新开始判定")
     ap.add_argument("--no-telegram", action="store_true",
                      help="跳过 Telegram 频道源（只用 SOURCES 里的订阅地址）")
+    ap.add_argument("--snapshot", action="store_true",
+                     help="输出全部当前节点（不做跨天去重过滤），适合云端定时任务；"
+                          "配合 node_stats.json 稳定度打分，发布的就是「当前全部可用节点」而非增量")
+    ap.add_argument("--auto-select-size", type=int, default=60,
+                     help="放进「自动选择」url-test 测速组的节点数（按稳定度评分取 top N），默认 60")
+    ap.add_argument("--pool-cap", type=int, default=400,
+                     help="全量节点池上限（按稳定度评分截断），默认 400；0 表示不限")
+    ap.add_argument("--dead-threshold", type=int, default=DEAD_THRESHOLD,
+                     help="节点连续多少轮未出现就从稳定度统计里剔除（默认 3）")
     args = ap.parse_args()
 
     if args.test and os.environ.get("GITHUB_ACTIONS") == "true":
@@ -694,7 +815,20 @@ def main():
         os.remove(history_path)
         print(f"已清空历史记录: {history_path}")
 
+    # --- 稳定度统计：用「去重后全部节点」更新，无论后面是否过滤，统计都反映本轮全貌 ---
+    stats = {} if args.no_history else load_stats(STATS_FILE)
+    today = time.strftime("%Y-%m-%d")
+    current_keys = [node_key(n) for n in nodes]
     if not args.no_history:
+        stats = update_stats(stats, current_keys, today, args.dead_threshold)
+
+    # --- 快照 vs 增量 ---
+    # 快照（--snapshot，云端定时任务用）：输出全部当前节点，配合上面的稳定度打分，
+    # 发布的就是「当前全部可用节点」，客户端拿到的是完整池子，不再出现「增量越更新越少」的问题。
+    # 增量（默认 / 本地一次性）：按历史记录过滤，只输出没见过的「新节点」。
+    if args.snapshot:
+        print("快照模式：输出全部当前节点（不做跨天去重过滤）")
+    elif not args.no_history:
         seen = load_history(history_path, args.history_days)
         before = len(nodes)
         nodes = filter_seen(nodes, seen)
@@ -705,34 +839,53 @@ def main():
     if args.test:
         nodes = test_nodes(nodes, args.test_concurrency, args.test_timeout)
 
-    if args.limit and len(nodes) > args.limit:
-        nodes = nodes[: args.limit]
-        print(f"截取前 {args.limit} 个写入配置")
+    # --- 按稳定度评分排序：评分高（出现轮数多）的排前面；评分相同用 key 哈希打散，
+    #     避免永远偏向 SOURCES 列表里排在最前面的那几个源（修复之前 --limit 截断的源顺序偏差）---
+    def _sort_key(n):
+        rec = stats.get(node_key(n), {})
+        return (-rec.get("rounds", 0), hash(node_key(n)) & 0xFFFFFFFF)
+    nodes.sort(key=_sort_key)
 
-    if not nodes:
+    # 节点池上限（默认 400，0 表示不限）；--limit 作为旧参数别名
+    pool_cap = args.limit if args.limit else args.pool_cap
+    if pool_cap and len(nodes) > pool_cap:
+        nodes = nodes[:pool_cap]
+        print(f"节点池上限 {pool_cap}，截取评分靠前的 {pool_cap} 个")
+
+    pool = nodes
+    auto_select = pool[: max(1, args.auto_select_size)] if pool else []
+
+    if not pool:
         if not all_nodes:
             print("没有抓到任何节点（源可能都访问失败了），未生成文件。", file=sys.stderr)
+            sys.exit(1)
+        if args.snapshot:
+            print("本次没有抓到任何节点，未生成文件。", file=sys.stderr)
             sys.exit(1)
         print("本次抓到的节点都在历史记录里出现过，没有新节点，跳过本次生成（旧配置文件保持不变）。")
         print("想强制看到全部节点的话，加 --reset-history 或者 --no-history。")
         sys.exit(0)
 
-    build_yaml(nodes, args.out)
-    print(f"\n✅ 已生成: {args.out}（{len(nodes)} 个节点，Clash Meta 格式）")
-    print("导入 Clash Meta 后，用「自动选择」策略组即可，客户端会自动测速切换最快节点。")
+    build_yaml(pool, auto_select, args.out)
+    print(f"\n✅ 已生成: {args.out}（全量 {len(pool)} 个节点，其中 {len(auto_select)} 个进入「自动选择」测速组）")
+    print("导入 Clash Meta 后：日常用「自动选择」策略组（客户端只测这几十个，几秒完成）；"
+          "想手动挑就用「全部节点」或「地区-xxx」子组。")
 
     v2ray_out = args.out_v2ray
     if not v2ray_out:
         base, _ = os.path.splitext(args.out)
         v2ray_out = f"{base}_v2ray.txt"
-    n_written = build_v2ray_sub(nodes, v2ray_out)
+    n_written = build_v2ray_sub(pool, v2ray_out)
     print(f"✅ 已生成: {v2ray_out}（{n_written} 个节点，v2rayN/v2rayNG/NekoBox 通用订阅格式）")
 
     if not args.no_history:
-        today = time.strftime("%Y-%m-%d")
-        seen.update({node_key(n): today for n in nodes})
-        save_history(history_path, seen)
-        print(f"已更新历史记录: {history_path}（累计 {len(seen)} 条，{args.history_days} 天后自动过期）")
+        save_stats(STATS_FILE, stats)
+        print(f"已更新节点稳定度统计: {STATS_FILE}（累计 {len(stats)} 条，连续 {args.dead_threshold} 轮未出现自动剔除）")
+        # 跨天历史（增量模式用；快照模式不写，避免 seen 无限膨胀）
+        if not args.snapshot:
+            seen.update({node_key(n): today for n in pool})
+            save_history(history_path, seen)
+            print(f"已更新历史记录: {history_path}（累计 {len(seen)} 条，{args.history_days} 天后自动过期）")
 
 
 if __name__ == "__main__":
