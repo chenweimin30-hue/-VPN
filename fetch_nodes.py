@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 fetch_nodes.py
-从多个公开聚合仓库自动抓取免费节点，解析、去重，
+从多个公开聚合仓库 + Telegram 免费节点频道自动抓取节点，解析、去重，
 输出 Clash Meta 可直接使用的 YAML 配置文件。
 
 用法:
@@ -16,7 +16,7 @@ fetch_nodes.py
   节点、按延迟排序。这一步只应该在自己的电脑/自己的服务器上跑——
   如果检测到运行在 GitHub Actions 里会自动跳过，不会重蹈之前账号因为
   在共享 CI 基础设施上批量探测第三方主机而被限制的问题。
-- 所有源都是公开 http(s) 订阅文件，抓取频率建议不超过每小时一次。
+- 所有源都是公开 http(s) 订阅文件 / Telegram 公开频道，抓取频率建议不超过每小时一次。
 """
 
 import argparse
@@ -30,6 +30,7 @@ import sys
 import time
 import urllib.request
 import urllib.error
+from html import unescape
 from urllib.parse import urlparse, parse_qs, unquote
 
 # ---------------------------------------------------------------------------
@@ -43,6 +44,18 @@ SOURCES = [
     "https://raw.githubusercontent.com/Epodonios/v2ray-configs/main/Splitted-By-Protocol/trojan.txt",
     "https://raw.githubusercontent.com/Epodonios/v2ray-configs/main/Splitted-By-Protocol/ss.txt",
 ]
+
+# ---------------------------------------------------------------------------
+# Telegram 免费节点频道源。
+# 频道清单放在同目录的 telegramchannels.json（JSON 数组，或每行一个用户名）。
+# 抓取方式：访问频道的公开预览页 https://t.me/s/<频道>（无需登录 / Bot Token），
+# 从页面里提取代理链接。
+# 注意：这里只抽取和上方解析器支持的协议一致的链接（vmess/vless/trojan/ss），
+# 频道里如果发 hysteria2 / tuic 等其他协议，暂不解析（后续可扩展）。
+# ---------------------------------------------------------------------------
+TELEGRAM_CHANNELS_FILE = "telegramchannels.json"
+TG_PAGE_URL = "https://t.me/s/{}"
+TG_PROTO_PREFIXES = ("vmess://", "vless://", "trojan://", "ss://")
 
 UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) clash-config-builder/1.0"
 
@@ -67,6 +80,94 @@ def fetch(url: str, timeout: int = 20) -> str:
         except Exception:
             pass
     return text
+
+
+# ---------------------------------------------------------------------------
+# Telegram 频道抓取
+# ---------------------------------------------------------------------------
+
+def load_telegram_channels(path: str) -> list:
+    """读取频道清单：支持 JSON 数组、{"channels": [...]} 或"每行一个用户名"的文本。"""
+    if not os.path.exists(path):
+        return []
+    try:
+        with open(path, "r", encoding="utf-8") as f:
+            raw = f.read()
+    except Exception as e:
+        print(f"! Telegram 频道清单读取失败: {path} ({e})", file=sys.stderr)
+        return []
+    names = []
+    try:
+        data = json.loads(raw)
+        if isinstance(data, list):
+            names = data
+        elif isinstance(data, dict):
+            for key in ("channels", "names", "telegram"):
+                if isinstance(data.get(key), list):
+                    names = data[key]
+                    break
+    except Exception:
+        # 不是 JSON：按"每行一个用户名"处理，支持 # 注释和空行
+        for line in raw.splitlines():
+            line = line.strip()
+            if line and not line.startswith("#"):
+                names.append(line)
+    out = []
+    for n in names:
+        s = str(n).strip().lstrip("@")
+        if s:
+            out.append(s)
+    return list(dict.fromkeys(out))  # 去重、保序
+
+
+def random_sleep() -> float:
+    """随机短等待（0.5~2s），降低对 t.me 的访问压力。"""
+    return 0.5 + ((time.time() * 1000) % 1500) / 1000.0
+
+
+def fetch_tg_channel(channel: str, timeout: int = 20, retries: int = 1) -> str:
+    """抓取一个 Telegram 频道的公开预览页 HTML（无需登录/Token），失败重试一次。"""
+    url = TG_PAGE_URL.format(channel)
+    for attempt in range(retries + 1):
+        req = urllib.request.Request(url, headers={"User-Agent": UA, "Accept-Language": "en"})
+        try:
+            with urllib.request.urlopen(req, timeout=timeout) as resp:
+                return resp.read().decode("utf-8", errors="ignore")
+        except (urllib.error.URLError, TimeoutError, OSError) as e:
+            if attempt < retries:
+                time.sleep(random_sleep())
+            else:
+                print(f"  ! 频道抓取失败: {channel} ({e})", file=sys.stderr)
+    return ""
+
+
+def clean_uri(uri: str) -> str:
+    """清理从网页里切出来的链接：HTML 反转义、去掉空白和尾部截断符号。"""
+    uri = unescape(uri)
+    uri = "".join(uri.split())  # 去掉所有空白（代理链接里不会有真实空格）
+    while uri and uri[-1] in ("…", "»", "%", "`", "\\"):
+        uri = uri[:-1]
+    uri = re.sub(r"^amp;", "", uri)
+    return uri
+
+
+def extract_links_from_html(html: str) -> list:
+    """从 t.me/s/<频道> 页面 HTML 里按协议前缀抽取代理链接。"""
+    pat = re.compile(r"((?:vmess|vless|trojan|ss)://[^\s<\"'<>]+)", re.IGNORECASE)
+    links = []
+    for m in pat.finditer(html):
+        uri = clean_uri(m.group(1))
+        if uri:
+            links.append(uri)
+    return links
+
+
+def fetch_tg_channel_links(channel: str) -> list:
+    """抓取一个频道并返回其中的代理链接列表。"""
+    html = fetch_tg_channel(channel)
+    if not html:
+        return []
+    return extract_links_from_html(html)
 
 
 def b64pad(s: str) -> str:
@@ -457,6 +558,12 @@ def main():
     ap.add_argument("--out-v2ray", default=None,
                      help="额外生成一份 v2rayN/v2rayNG/NekoBox 通用订阅文件（base64 节点链接）。"
                           "不指定的话，默认根据 --out 自动生成同名 _v2ray.txt 文件")
+    ap.add_argument("--tg-channels-file", default=TELEGRAM_CHANNELS_FILE,
+                     help="Telegram 频道清单文件路径（默认 telegramchannels.json）")
+    ap.add_argument("--tg-concurrency", type=int, default=12,
+                     help="抓取 Telegram 频道的并发数，默认 12")
+    ap.add_argument("--no-telegram", action="store_true",
+                     help="跳过 Telegram 频道源（只用 SOURCES 里的订阅地址）")
     args = ap.parse_args()
 
     if args.test and os.environ.get("GITHUB_ACTIONS") == "true":
@@ -476,6 +583,24 @@ def main():
         nodes = parse_all(text)
         print(f"  解析到 {len(nodes)} 个节点")
         all_nodes.extend(nodes)
+
+    # Telegram 频道源
+    channels = [] if args.no_telegram else load_telegram_channels(args.tg_channels_file)
+    if channels:
+        print(f"\nTelegram 频道源: {len(channels)} 个频道（并发 {args.tg_concurrency}）")
+        tg_count = 0
+        with concurrent.futures.ThreadPoolExecutor(max_workers=args.tg_concurrency) as ex:
+            futures = {ex.submit(fetch_tg_channel_links, c): c for c in channels}
+            for fut in concurrent.futures.as_completed(futures):
+                c = futures[fut]
+                links = fut.result()
+                if not links:
+                    continue
+                nodes = parse_all("\n".join(links))
+                print(f"  {c}: {len(nodes)} 个节点")
+                all_nodes.extend(nodes)
+                tg_count += len(nodes)
+        print(f"Telegram 频道合计解析节点: {tg_count}")
 
     print(f"\n合计原始节点: {len(all_nodes)}")
     nodes = dedupe(all_nodes)
