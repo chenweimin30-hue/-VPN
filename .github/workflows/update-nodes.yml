@@ -5,15 +5,20 @@ name: 自动更新节点配置
 
 on:
   schedule:
-    - cron: "0 */6 * * *"   # 每 6 小时跑一次（UTC 时间，北京时间 = UTC+8）
+    - cron: "17 */6 * * *"   # 每 6 小时跑一次（错峰，避开整点拥堵），UTC 时间
   workflow_dispatch: {}      # 允许在 Actions 页面手动点一下立即跑一次
 
 permissions:
   contents: write            # 需要这个权限才能把新配置提交回仓库
 
+concurrency:
+  group: update-nodes        # 定时与手动触发重叠时，排队而非并发 push，避免冲突
+  cancel-in-progress: false
+
 jobs:
   update:
     runs-on: ubuntu-latest
+    timeout-minutes: 20      # 默认上限是 6 小时，这里收紧到 20 分钟
     steps:
       - name: 拉取仓库
         uses: actions/checkout@v4
@@ -24,12 +29,14 @@ jobs:
           python-version: "3.11"
 
       - name: 抓取节点并生成配置
-        run: python3 fetch_nodes.py --out clash_config_latest.yaml
+        # --snapshot：输出当前全部节点（而非增量），配合 node_stats.json 稳定度打分，
+        # 发布的就是「当前全部可用节点」，客户端不再越更新越少。
+        run: python3 fetch_nodes.py --out clash_config_latest.yaml --snapshot
 
       - name: 提交更新（如果有变化）
         run: |
           git config user.name "auto-updater"
           git config user.email "actions@users.noreply.github.com"
-          git add clash_config_latest.yaml clash_config_latest_v2ray.txt seen_nodes.json invalidtelegramchannels.json
+          git add clash_config_latest.yaml clash_config_latest_v2ray.txt seen_nodes.json invalidtelegramchannels.json node_stats.json
           git diff --cached --quiet || git commit -m "自动更新节点 $(date -u '+%Y-%m-%d %H:%M UTC')"
           git push
