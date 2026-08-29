@@ -641,6 +641,44 @@ def dump_proxy(n: dict) -> str:
     return line
 
 
+# ---------------------------------------------------------------------------
+# YAML 字符串清洗：去掉单字节控制字符与 U+FFFD，避免 Mihomo 严格校验失败。
+# 原因：部分 ss/vless 节点的密码字段是从 base64 解码出的非 UTF-8 二进制，
+# 上游 parser 用 errors="ignore" 保留了下来，写进 YAML 后 Mihomo 报
+# "control characters are not allowed" 并拒收整份配置。
+# ---------------------------------------------------------------------------
+_FORBIDDEN_CHARS = re.compile(r'[\x00-\x08\x0b\x0c\x0e-\x1f\x7f\u0080-\u009f\ufffd]')
+
+def sanitize_text(s):
+    if not isinstance(s, str):
+        return s
+    return _FORBIDDEN_CHARS.sub('', s)
+
+
+# 关键凭据字段：清洗后为空意味着密码丢失，连不上，留着也是死节点
+_SENSITIVE_FIELDS = {"cipher", "password", "uuid", "id", "alterId"}
+
+
+def sanitize_nodes(nodes):
+    """清洗所有字符串字段；关键凭据被清空则丢弃该节点。返回 (清洗后节点, 被丢弃数)。"""
+    out = []
+    dropped = 0
+    for n in nodes:
+        ok = True
+        for k, v in list(n.items()):
+            if isinstance(v, str):
+                cleaned = sanitize_text(v)
+                n[k] = cleaned
+                if k in _SENSITIVE_FIELDS and not cleaned.strip():
+                    ok = False
+                    break
+        if ok:
+            out.append(n)
+        else:
+            dropped += 1
+    return out, dropped
+
+
 def build_yaml(pool, auto_select, out_path: str, interval: int = 600, tolerance: int = 100):
     """生成 Clash Meta YAML（分层结构）。
 
@@ -839,8 +877,13 @@ def main():
     if args.test:
         nodes = test_nodes(nodes, args.test_concurrency, args.test_timeout)
 
-    # --- 按稳定度评分排序：评分高（出现轮数多）的排前面；评分相同用 key 哈希打散，
-    #     避免永远偏向 SOURCES 列表里排在最前面的那几个源（修复之前 --limit 截断的源顺序偏差）---
+    # --- 清洗 + 去重 + 限池 ---
+    # 清洗：去掉控制字符与 U+FFFD，避免 Mihomo 校验失败拒绝整份配置
+    nodes, dropped_dirty = sanitize_nodes(nodes)
+    if dropped_dirty:
+        print(f"清洗：丢弃 {dropped_dirty} 个关键凭据为空的脏节点")
+    # 按稳定度评分排序：评分高（出现轮数多）的排前面；评分相同用 key 哈希打散，
+    #     避免永远偏向 SOURCES 列表里排在最前面的那几个源（修复之前 --limit 截断的源顺序偏差）
     def _sort_key(n):
         rec = stats.get(node_key(n), {})
         return (-rec.get("rounds", 0), hash(node_key(n)) & 0xFFFFFFFF)
