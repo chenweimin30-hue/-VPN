@@ -50,12 +50,15 @@ SOURCES = [
 # 频道清单放在同目录的 telegramchannels.json（JSON 数组，或每行一个用户名）。
 # 抓取方式：访问频道的公开预览页 https://t.me/s/<频道>（无需登录 / Bot Token），
 # 从页面里提取代理链接。
-# 注意：这里只抽取和上方解析器支持的协议一致的链接（vmess/vless/trojan/ss），
-# 频道里如果发 hysteria2 / tuic 等其他协议，暂不解析（后续可扩展）。
+# 解析协议：vmess / vless / trojan / ss / hysteria2（含 hy2:// 前缀）。
+# 失效频道自动清理：抓到页面但连续多次没有任何节点链接的频道，会被记进
+# invalidtelegramchannels.json，下次开始自动跳过（避免每次都在死频道上浪费时间）。
 # ---------------------------------------------------------------------------
 TELEGRAM_CHANNELS_FILE = "telegramchannels.json"
+INVALID_TG_FILE = "invalidtelegramchannels.json"
 TG_PAGE_URL = "https://t.me/s/{}"
-TG_PROTO_PREFIXES = ("vmess://", "vless://", "trojan://", "ss://")
+TG_PROTO_PREFIXES = ("vmess://", "vless://", "trojan://", "ss://", "hysteria2://", "hy2://")
+TG_INVALID_THRESHOLD = 2  # 连续几次抓到空内容就判定为失效频道并自动跳过
 
 UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) clash-config-builder/1.0"
 
@@ -120,6 +123,31 @@ def load_telegram_channels(path: str) -> list:
     return list(dict.fromkeys(out))  # 去重、保序
 
 
+def load_invalid_channels(path: str) -> dict:
+    """读取失效频道记录：{频道名: 连续空内容次数}。
+    兼容 {…}（次数）和 […]（数组里的都视为已失效，次数按阈值算）两种格式。"""
+    if not os.path.exists(path):
+        return {}
+    try:
+        with open(path, "r", encoding="utf-8") as f:
+            data = json.load(f)
+        if isinstance(data, dict):
+            return {str(k): int(v) for k, v in data.items()}
+        if isinstance(data, list):
+            return {str(c).strip().lstrip("@"): TG_INVALID_THRESHOLD for c in data if str(c).strip()}
+    except Exception as e:
+        print(f"! 失效频道记录读取失败: {path} ({e})", file=sys.stderr)
+    return {}
+
+
+def save_invalid_channels(path: str, invalid: dict):
+    try:
+        with open(path, "w", encoding="utf-8") as f:
+            json.dump(invalid, f, ensure_ascii=False, indent=2)
+    except Exception as e:
+        print(f"! 失效频道记录保存失败: {path} ({e})", file=sys.stderr)
+
+
 def random_sleep() -> float:
     """随机短等待（0.5~2s），降低对 t.me 的访问压力。"""
     return 0.5 + ((time.time() * 1000) % 1500) / 1000.0
@@ -153,7 +181,7 @@ def clean_uri(uri: str) -> str:
 
 def extract_links_from_html(html: str) -> list:
     """从 t.me/s/<频道> 页面 HTML 里按协议前缀抽取代理链接。"""
-    pat = re.compile(r"((?:vmess|vless|trojan|ss)://[^\s<\"'<>]+)", re.IGNORECASE)
+    pat = re.compile(r"((?:vmess|vless|trojan|ss|hysteria2|hy2)://[^\s<\"'<>]+)", re.IGNORECASE)
     links = []
     for m in pat.finditer(html):
         uri = clean_uri(m.group(1))
@@ -162,11 +190,12 @@ def extract_links_from_html(html: str) -> list:
     return links
 
 
-def fetch_tg_channel_links(channel: str) -> list:
-    """抓取一个频道并返回其中的代理链接列表。"""
+def fetch_tg_channel_links(channel: str):
+    """抓取一个频道：返回其中的代理链接列表；
+    抓取失败（网络问题，HTML 为空）返回 None，不参与失效频道判定。"""
     html = fetch_tg_channel(channel)
     if not html:
-        return []
+        return None
     return extract_links_from_html(html)
 
 
@@ -314,11 +343,45 @@ def parse_ss(uri: str):
         return None
 
 
+def parse_hysteria2(uri: str):
+    """hysteria2://password@host:port/?sni=xxx&insecure=1&obfs=...&obfs-password=...&up=...&down=...#名字
+    同时兼容 hy2:// 前缀（同一协议）。"""
+    try:
+        u = urlparse(uri)
+        qs = parse_qs(u.query)
+        name = unquote(u.fragment) or f"hy2-{u.hostname}"
+        node = {
+            "name": name,
+            "type": "hysteria2",
+            "server": u.hostname,
+            "port": u.port,
+            "password": u.username or "",
+            "skip-cert-verify": True,
+        }
+        if qs.get("sni"):
+            node["sni"] = qs["sni"][0]
+        if qs.get("obfs"):
+            node["obfs"] = qs["obfs"][0]
+        if qs.get("obfs-password"):
+            node["obfs-password"] = qs["obfs-password"][0]
+        if qs.get("up"):
+            node["up"] = qs["up"][0]
+        if qs.get("down"):
+            node["down"] = qs["down"][0]
+        if not node["server"] or not node["port"] or not node["password"]:
+            return None
+        return node
+    except Exception:
+        return None
+
+
 PARSERS = {
     "vmess://": parse_vmess,
     "vless://": parse_vless,
     "trojan://": parse_trojan,
     "ss://": parse_ss,
+    "hysteria2://": parse_hysteria2,
+    "hy2://": parse_hysteria2,
 }
 
 
@@ -562,6 +625,12 @@ def main():
                      help="Telegram 频道清单文件路径（默认 telegramchannels.json）")
     ap.add_argument("--tg-concurrency", type=int, default=12,
                      help="抓取 Telegram 频道的并发数，默认 12")
+    ap.add_argument("--tg-invalid-file", default=INVALID_TG_FILE,
+                     help="失效频道记录文件路径（默认 invalidtelegramchannels.json）")
+    ap.add_argument("--tg-invalid-threshold", type=int, default=TG_INVALID_THRESHOLD,
+                     help="连续几次抓到空内容就判定为失效频道（默认 2）")
+    ap.add_argument("--reset-tg-invalid", action="store_true",
+                     help="清空失效频道记录，重新开始判定")
     ap.add_argument("--no-telegram", action="store_true",
                      help="跳过 Telegram 频道源（只用 SOURCES 里的订阅地址）")
     args = ap.parse_args()
@@ -584,23 +653,36 @@ def main():
         print(f"  解析到 {len(nodes)} 个节点")
         all_nodes.extend(nodes)
 
-    # Telegram 频道源
+    # Telegram 频道源（带失效频道自动清理）
     channels = [] if args.no_telegram else load_telegram_channels(args.tg_channels_file)
     if channels:
-        print(f"\nTelegram 频道源: {len(channels)} 个频道（并发 {args.tg_concurrency}）")
+        invalid = {} if args.reset_tg_invalid else load_invalid_channels(args.tg_invalid_file)
+        active = [c for c in channels if invalid.get(c, 0) < args.tg_invalid_threshold]
+        skipped = len(channels) - len(active)
+        if skipped:
+            print(f"\nTelegram 频道源: 共 {len(channels)} 个，已自动跳过 {skipped} 个连续失效频道"
+                  f"（{args.tg_invalid_file} 里记录）")
+        else:
+            print(f"\nTelegram 频道源: {len(channels)} 个频道（并发 {args.tg_concurrency}）")
         tg_count = 0
         with concurrent.futures.ThreadPoolExecutor(max_workers=args.tg_concurrency) as ex:
-            futures = {ex.submit(fetch_tg_channel_links, c): c for c in channels}
+            futures = {ex.submit(fetch_tg_channel_links, c): c for c in active}
             for fut in concurrent.futures.as_completed(futures):
                 c = futures[fut]
                 links = fut.result()
+                if links is None:
+                    continue  # 抓取失败（网络问题），不参与失效判定
                 if not links:
+                    invalid[c] = invalid.get(c, 0) + 1  # 页面能开但没节点，失效计数 +1
                     continue
+                invalid.pop(c, None)  # 有节点内容，恢复正常
                 nodes = parse_all("\n".join(links))
                 print(f"  {c}: {len(nodes)} 个节点")
                 all_nodes.extend(nodes)
                 tg_count += len(nodes)
-        print(f"Telegram 频道合计解析节点: {tg_count}")
+        print(f"Telegram 频道合计解析节点: {tg_count}，当前失效频道 {len(invalid)} 个")
+        if not args.no_history:
+            save_invalid_channels(args.tg_invalid_file, invalid)
 
     print(f"\n合计原始节点: {len(all_nodes)}")
     nodes = dedupe(all_nodes)
