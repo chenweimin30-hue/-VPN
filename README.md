@@ -9,7 +9,7 @@
 1. `fetch_nodes.py` 从 `SOURCES` 列表里的几个订阅地址下载节点（目前接的是
    MatinGhanbari、barry-far、Epodonios 这三个仓库），同时从 `telegramchannels.json`
    里的 Telegram 免费节点频道抓取（走 `https://t.me/s/<频道>` 公开预览页，无需登录 / Bot Token）。
-2. 解析 vmess / vless / trojan / ss 四种协议的节点链接。
+2. 解析 vmess / vless / trojan / ss / hysteria2 五种协议的节点链接。
 3. 按 `协议+地址+端口` 去重，避免同一个节点重复出现。
 4. 生成一个「自动选择」（url-test）策略组 + 「手动选择」策略组的 Clash Meta 配置。
    **节点是否能连通，交给 Clash Meta 客户端自己测速筛选**——脚本本身不对外批量
@@ -19,15 +19,17 @@
 ## Telegram 免费节点频道源
 
 `telegramchannels.json` 里是频道用户名列表（当前 181 个，沿用了之前 TGParse 项目里
-在用的那批频道），脚本会并发抓取每个频道的公开预览页，提取 vmess / vless / trojan / ss
-链接并入节点池。
+在用的那批频道），脚本会并发抓取每个频道的公开预览页，提取 vmess / vless / trojan / ss /
+hysteria2（含 hy2://）链接并入节点池。
 
 - **管理频道**：直接在 `telegramchannels.json` 里增删用户名（JSON 数组，一个元素一个
   频道名），删掉不想要的、加你想加的，push 之后下次自动更新就生效。
 - **关闭 Telegram 源**：跑的时候加 `--no-telegram`，就只用 `SOURCES` 里的订阅地址。
 - **并发控制**：默认 12 并发抓取频道，可用 `--tg-concurrency` 调整。
-- **协议范围**：目前只解析 vmess / vless / trojan / ss 四种协议；如果频道里发的是
-  hysteria2 / tuic 等其他协议，会跳过（后续可以扩展）。
+- **失效频道自动清理**：连续 2 次「页面能打开但没有任何节点链接」的频道，会自动记入
+  `invalidtelegramchannels.json`，下次开始跳过，避免每次都在死频道上浪费时间。
+  想重新启用某个频道，删掉它在 `invalidtelegramchannels.json` 里的记录即可；
+  想一次全部清空，运行加 `--reset-tg-invalid`。
 - **网络注意**：本机直连 t.me 不一定通（部分地区网络无法直接访问），Telegram 源主要
   靠 GitHub Actions 云端跑（CI 机器能访问 t.me）；想在本地跑 Telegram 源，需要你自己的
   网络能访问 t.me。
@@ -58,9 +60,13 @@ python3 fetch_nodes.py --out clash_config_003.yaml
 ## 想让它自动定时跑（不用每次手动执行）
 
 **Windows：**
-双击 `run_update.bat` 试一下能不能跑通，没问题的话把它加到
-「任务计划程序」（Task Scheduler）里，设置每天/每隔几小时触发一次，
-文件名会自动按日期命名（如 `clash_config_20260823.yaml`），不会互相覆盖。
+双击 `run_update.bat` 就能在本地生成一份配置（文件名自动按日期命名，如
+`clash_config_20260823.yaml`，不会互相覆盖）。没问题的话可以把它加到
+「任务计划程序」（Task Scheduler）里，设置每天/每隔几小时触发一次。
+
+> 注意：本地跑需要你的电脑能访问节点源（GitHub 订阅 / t.me）。国内直连常被墙，
+> 开着代理/VPN 跑更稳。想生成「测速过滤 + 按延迟排序」的配置，把
+> `run_update.bat` 里的 `set EXTRA=` 改成 `set EXTRA=--test --limit 300` 再双击。
 
 **手机（Android）：**
 手机上不方便跑 Python，建议还是在电脑上定时生成好，
@@ -99,11 +105,15 @@ Cloudflare Pages）上，Clash Meta 就能直接填订阅链接自动更新了�
 工作流跑成功之后，用这个链接（把仓库名换成你实际的）作为订阅地址：
 
 ```
-https://raw.githubusercontent.com/chenweimin30-hue/-VPN/main/clash_config_latest.yaml
+https://cdn.jsdelivr.net/gh/chenweimin30-hue/-VPN@main/clash_config_latest.yaml
 ```
 
 Clash Meta for Android / NekoBox 里「新建订阅」，把这个链接填进去，
 设置自动更新间隔（比如 6 小时），之后就是全自动的了，不需要电脑参与。
+
+> 用的是 **jsDelivr CDN**（国内可直接访问；`raw.githubusercontent.com` 在国内常打不开）。
+> jsDelivr 有缓存延迟：每次云端更新后约几小时才会同步到最新节点，属正常现象，
+> 客户端定期自动更新自然会拉到最新，不用管。
 
 > 如果仓库默认分支不是 `main` 而是 `master`，把链接里的 `main` 换成 `master`。
 
@@ -118,8 +128,10 @@ v2rayN、v2rayNG、NekoBox 基本都认这个格式，不挑版本。
 云端跑起来之后，这份文件的订阅链接是：
 
 ```
-https://raw.githubusercontent.com/chenweimin30-hue/-VPN/main/clash_config_latest_v2ray.txt
+https://cdn.jsdelivr.net/gh/chenweimin30-hue/-VPN@main/clash_config_latest_v2ray.txt
 ```
+
+（同样走 jsDelivr CDN，国内直连；缓存延迟几小时属正常。）
 
 **v2rayN（Windows）导入步骤：**
 1. 打开 v2rayN，菜单栏「订阅」→「订阅设置」→「添加」
@@ -207,6 +219,8 @@ Runner 安装命令。
   或者删掉你觉得不稳定的来源。
 - **Telegram 频道**：编辑 `telegramchannels.json`，加一行频道用户名（如 `"my_channel"`）、
   或者删掉不要的，push 后下次自动更新生效。
+- **失效频道**：`invalidtelegramchannels.json` 里是脚本自动记录的失效频道（连续 2 次
+  无节点内容），正常不用手动管；想重新启用某频道就删掉它的记录。
 
 ## 关于稳定性
 
