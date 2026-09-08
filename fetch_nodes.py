@@ -789,9 +789,10 @@ def main():
     ap.add_argument("--snapshot", action="store_true",
                      help="输出全部当前节点（不做跨天去重过滤），适合云端定时任务；"
                           "配合 node_stats.json 稳定度打分，发布的就是「当前全部可用节点」而非增量")
-    ap.add_argument("--auto-select-size", type=int, default=0,
-                     help="放进「自动选择」url-test 测速组的节点数，默认 0 表示全部节点都进测速组"
-                          "（客户端会把组内节点全测一遍再挑最快的；节点多时建议设 200~300 控制开销）")
+    ap.add_argument("--auto-select-size", type=int, default=300,
+                     help="放进「自动选择」url-test 测速组的节点数，默认 300；"
+                          "传 0 表示全部节点都进测速组（客户端会把几千个全测一遍，很吃资源且易触发上游限流，慎用）。"
+                          "注意：无论这个值是多少，全部节点都会写进配置，可在「全部节点」组手动挑选")
     ap.add_argument("--pool-cap", type=int, default=0,
                      help="全量节点池上限，默认 0 表示不限制（保留全部去重后的节点）；"
                           "想控制节点数量就传个数字，比如 --pool-cap 500")
