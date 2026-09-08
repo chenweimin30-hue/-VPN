@@ -661,9 +661,47 @@ def sanitize_text(s):
 # 关键凭据字段：清洗后为空意味着密码丢失，连不上，留着也是死节点
 _SENSITIVE_FIELDS = {"cipher", "password", "uuid", "id", "alterId"}
 
+# SS2022 系列加密的密钥长度要求（字节）。密钥必须是 base64 且解码后长度正确。
+# 免费源里大量"2022-blake3 加密 + 普通文本密码"的假节点，Mihomo 加载时
+# 会报 decode key: illegal base64 data 并拒绝整份配置，必须在生成阶段剔除。
+_SS2022_KEY_LEN = {
+    "2022-blake3-aes-128-gcm": 16,
+    "2022-blake3-aes-256-gcm": 32,
+    "2022-blake3-chacha20-poly1305": 32,
+}
+
+
+def _valid_ss2022_part(part: str, want_len: int) -> bool:
+    """校验单个 SS2022 密钥段：补 padding 后必须是合法 base64，且解码长度正确。
+    同时兼容 base64url 字符（- 和 _），按标准 base64 转换后再试一次。"""
+    if not part:
+        return False
+    for candidate in (part, part.replace("-", "+").replace("_", "/")):
+        try:
+            pad = candidate + "=" * (-len(candidate) % 4)
+            key = base64.b64decode(pad, validate=True)
+            if len(key) == want_len:
+                return True
+        except Exception:
+            continue
+    return False
+
+
+def valid_ss2022_key(cipher: str, password: str) -> bool:
+    """SS2022 (2022-blake3-*) 密钥校验，密钥非法返回 False（该节点应丢弃）。
+    多用户格式 serverkey:userkey（SIP022）按冒号分段校验。"""
+    want_len = _SS2022_KEY_LEN.get((cipher or "").strip().lower())
+    if want_len is None:
+        return True  # 不是 SS2022 系列，不在此校验
+    for part in (password or "").split(":"):
+        if not _valid_ss2022_part(part, want_len):
+            return False
+    return True
+
 
 def sanitize_nodes(nodes):
-    """清洗所有字符串字段；关键凭据被清空则丢弃该节点。返回 (清洗后节点, 被丢弃数)。"""
+    """清洗所有字符串字段；关键凭据被清空、或 SS2022 密钥非法（Mihomo 会拒收
+    整份配置）的节点直接丢弃。返回 (清洗后节点, 被丢弃数)。"""
     out = []
     dropped = 0
     for n in nodes:
@@ -675,6 +713,8 @@ def sanitize_nodes(nodes):
                 if k in _SENSITIVE_FIELDS and not cleaned.strip():
                     ok = False
                     break
+        if ok and n.get("type") == "ss" and not valid_ss2022_key(n.get("cipher", ""), n.get("password", "")):
+            ok = False
         if ok:
             out.append(n)
         else:
@@ -937,7 +977,8 @@ def main():
     # 清洗：去掉控制字符与 U+FFFD，避免 Mihomo 校验失败拒绝整份配置
     nodes, dropped_dirty = sanitize_nodes(nodes)
     if dropped_dirty:
-        print(f"清洗：丢弃 {dropped_dirty} 个关键凭据为空的脏节点")
+        print(f"清洗：丢弃 {dropped_dirty} 个节点（凭据为空 / SS2022 密钥非法的假节点——"
+              "非法 SS2022 密钥会导致 Mihomo 拒收整份配置）")
     # 排序：已停用「稳定度评分」排序（老节点 rounds 越滚越高会永久霸榜，新加的源永远挤不进来）。
     # 默认只做确定性排序——按节点 key 排，保证每次输出的顺序稳定，
     # 避免节点顺序无意义抖动导致 git diff 巨大。不参与任何节点的取舍。
