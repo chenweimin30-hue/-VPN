@@ -789,10 +789,17 @@ def main():
     ap.add_argument("--snapshot", action="store_true",
                      help="输出全部当前节点（不做跨天去重过滤），适合云端定时任务；"
                           "配合 node_stats.json 稳定度打分，发布的就是「当前全部可用节点」而非增量")
-    ap.add_argument("--auto-select-size", type=int, default=60,
-                     help="放进「自动选择」url-test 测速组的节点数（按稳定度评分取 top N），默认 60")
-    ap.add_argument("--pool-cap", type=int, default=400,
-                     help="全量节点池上限（按稳定度评分截断），默认 400；0 表示不限")
+    ap.add_argument("--auto-select-size", type=int, default=0,
+                     help="放进「自动选择」url-test 测速组的节点数，默认 0 表示全部节点都进测速组"
+                          "（客户端会把组内节点全测一遍再挑最快的；节点多时建议设 200~300 控制开销）")
+    ap.add_argument("--pool-cap", type=int, default=0,
+                     help="全量节点池上限，默认 0 表示不限制（保留全部去重后的节点）；"
+                          "想控制节点数量就传个数字，比如 --pool-cap 500")
+    ap.add_argument("--interval", type=int, default=600,
+                     help="「自动选择」组的测速间隔（秒），默认 600；想更快感知节点变慢就调小，比如 300")
+    ap.add_argument("--tolerance", type=int, default=100,
+                     help="「自动选择」组的延迟容差（毫秒），默认 100："
+                          "只有当更快的节点比当前节点快超过这个值才切换，调大可避免频繁跳节点")
     ap.add_argument("--dead-threshold", type=int, default=DEAD_THRESHOLD,
                      help="节点连续多少轮未出现就从稳定度统计里剔除（默认 3）")
     args = ap.parse_args()
@@ -885,21 +892,25 @@ def main():
     nodes, dropped_dirty = sanitize_nodes(nodes)
     if dropped_dirty:
         print(f"清洗：丢弃 {dropped_dirty} 个关键凭据为空的脏节点")
-    # 按稳定度评分排序：评分高（出现轮数多）的排前面；评分相同用 key 哈希打散，
-    #     避免永远偏向 SOURCES 列表里排在最前面的那几个源（修复之前 --limit 截断的源顺序偏差）
-    def _sort_key(n):
-        rec = stats.get(node_key(n), {})
-        return (-rec.get("rounds", 0), hash(node_key(n)) & 0xFFFFFFFF)
-    nodes.sort(key=_sort_key)
+    # 排序：已停用「稳定度评分」排序（老节点 rounds 越滚越高会永久霸榜，新加的源永远挤不进来）。
+    # 现在只做确定性排序——按节点 key 排，保证每次输出的顺序稳定，
+    # 避免节点顺序无意义抖动导致 git diff 巨大。不参与任何节点的取舍。
+    nodes.sort(key=lambda n: node_key(n))
 
     # 节点池上限（默认 400，0 表示不限）；--limit 作为旧参数别名
     pool_cap = args.limit if args.limit else args.pool_cap
     if pool_cap and len(nodes) > pool_cap:
         nodes = nodes[:pool_cap]
-        print(f"节点池上限 {pool_cap}，截取评分靠前的 {pool_cap} 个")
+        print(f"节点池上限 {pool_cap}，截取靠前的 {pool_cap} 个")
 
     pool = nodes
-    auto_select = pool[: max(1, args.auto_select_size)] if pool else []
+    # 0 或负数 = 全部节点都进「自动选择」url-test 组，由客户端测速后挑最快的
+    if not pool:
+        auto_select = []
+    elif args.auto_select_size <= 0:
+        auto_select = pool
+    else:
+        auto_select = pool[: args.auto_select_size]
 
     if not pool:
         if not all_nodes:
@@ -912,9 +923,10 @@ def main():
         print("想强制看到全部节点的话，加 --reset-history 或者 --no-history。")
         sys.exit(0)
 
-    build_yaml(pool, auto_select, args.out)
+    build_yaml(pool, auto_select, args.out,
+               interval=args.interval, tolerance=args.tolerance)
     print(f"\n✅ 已生成: {args.out}（全量 {len(pool)} 个节点，其中 {len(auto_select)} 个进入「自动选择」测速组）")
-    print("导入 Clash Meta 后：日常用「自动选择」策略组（客户端只测这几十个，几秒完成）；"
+    print("导入 Clash Meta 后：日常用「自动选择」策略组，客户端会对组内节点做 url-test 并挑延迟最低的；"
           "想手动挑就用「全部节点」或「地区-xxx」子组。")
 
     v2ray_out = args.out_v2ray
