@@ -894,9 +894,12 @@ def main():
     if dropped_dirty:
         print(f"清洗：丢弃 {dropped_dirty} 个关键凭据为空的脏节点")
     # 排序：已停用「稳定度评分」排序（老节点 rounds 越滚越高会永久霸榜，新加的源永远挤不进来）。
-    # 现在只做确定性排序——按节点 key 排，保证每次输出的顺序稳定，
+    # 默认只做确定性排序——按节点 key 排，保证每次输出的顺序稳定，
     # 避免节点顺序无意义抖动导致 git diff 巨大。不参与任何节点的取舍。
-    nodes.sort(key=lambda n: node_key(n))
+    # 例外：开了 --test 时 nodes 已按「实测延迟」升序排好，这里不能覆盖，
+    # 否则测速白做，--pool-cap 也就截不到「最快的那批」了。
+    if not args.test:
+        nodes.sort(key=lambda n: node_key(n))
 
     # 节点池上限（默认 400，0 表示不限）；--limit 作为旧参数别名
     pool_cap = args.limit if args.limit else args.pool_cap
