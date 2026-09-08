@@ -44,9 +44,6 @@ SOURCES = [
     "https://raw.githubusercontent.com/Epodonios/v2ray-configs/main/Splitted-By-Protocol/vless.txt",
     "https://raw.githubusercontent.com/Epodonios/v2ray-configs/main/Splitted-By-Protocol/trojan.txt",
     "https://raw.githubusercontent.com/Epodonios/v2ray-configs/main/Splitted-By-Protocol/ss.txt",
-    "https://ghfast.top/https://raw.githubusercontent.com/free18/v2ray/refs/heads/main/v.txt",
-    "https://cdn.jsdelivr.net/gh/0xRadikal/Free-v2ray-Configs@main/all/configs.txt",
-    "https://raw.githubusercontent.com/Surfboardv2ray/TGParse/main/splitted/mixed",
 ]
 
 # ---------------------------------------------------------------------------
@@ -699,9 +696,38 @@ def valid_ss2022_key(cipher: str, password: str) -> bool:
     return True
 
 
+# Mihomo/Shadowsocks 支持的合法 SS 加密方法（含 SS2022）。
+# 免费源里存在 cipher 字段是乱码/截断的畸形节点（如 "Ngttku~^），
+# Mihomo 加载时报 initialize error: unknown method 并拒收整份配置，
+# 必须在生成阶段白名单校验，不在列表里的一律丢弃。
+_SS_CIPHER_WHITELIST = {
+    # 流式加密（经典）
+    "rc4-md5": None, "aes-128-cfb": None, "aes-192-cfb": None, "aes-256-cfb": None,
+    "aes-128-ctr": None, "aes-192-ctr": None, "aes-256-ctr": None,
+    "camellia-128-cfb": None, "camellia-192-cfb": None, "camellia-256-cfb": None,
+    "bf-cfb": None, "cast5-cfb": None, "des-cfb": None, "idea-cfb": None,
+    "seed-cfb": None, "rc2-cfb": None, "rc4": None, "table": None,
+    "none": None, "plain": None,
+    # AEAD（现代主流）
+    "aes-128-gcm": None, "aes-192-gcm": None, "aes-256-gcm": None,
+    "chacha20-ietf-poly1305": None, "xchacha20-poly1305": None,
+    "xchacha20-ietf-poly1305": None,
+    "chacha20-poly1305": None,
+    # SS2022
+    "2022-blake3-aes-128-gcm": None, "2022-blake3-aes-256-gcm": None,
+    "2022-blake3-chacha20-poly1305": None,
+}
+
+
+def valid_ss_cipher(cipher: str) -> bool:
+    """SS 节点的加密方法必须在合法白名单内，乱码/未知算法一律 False。"""
+    return (cipher or "").strip().lower() in _SS_CIPHER_WHITELIST
+
+
 def sanitize_nodes(nodes):
-    """清洗所有字符串字段；关键凭据被清空、或 SS2022 密钥非法（Mihomo 会拒收
-    整份配置）的节点直接丢弃。返回 (清洗后节点, 被丢弃数)。"""
+    """清洗所有字符串字段；关键凭据被清空、SS 加密方法不在白名单（乱码 cipher，
+    Mihomo 报 unknown method）、或 SS2022 密钥非法（报 illegal base64 data）——
+    这三种都会让 Mihomo 拒收整份配置——的节点直接丢弃。返回 (清洗后节点, 被丢弃数)。"""
     out = []
     dropped = 0
     for n in nodes:
@@ -713,8 +739,11 @@ def sanitize_nodes(nodes):
                 if k in _SENSITIVE_FIELDS and not cleaned.strip():
                     ok = False
                     break
-        if ok and n.get("type") == "ss" and not valid_ss2022_key(n.get("cipher", ""), n.get("password", "")):
-            ok = False
+        if ok and n.get("type") == "ss":
+            if not valid_ss_cipher(n.get("cipher", "")):
+                ok = False          # cipher 乱码/未知算法 -> unknown method
+            elif not valid_ss2022_key(n.get("cipher", ""), n.get("password", "")):
+                ok = False          # SS2022 密钥非法 -> illegal base64 data
         if ok:
             out.append(n)
         else:
@@ -868,16 +897,16 @@ def main():
                      help="输出全部当前节点（不做跨天去重过滤），适合云端定时任务；"
                           "配合 node_stats.json 稳定度打分，发布的就是「当前全部可用节点」而非增量")
     ap.add_argument("--auto-select-size", type=int, default=300,
-                     help="放进「自动选择」url-test 测速组的节点数，默认 300；"
-                          "传 0 表示全部节点都进测速组（客户端会把几千个全测一遍，很吃资源且易触发上游限流，慎用）。"
+                     help="放进测速的节点数，默认 300；传 0 表示全部节点都进测速"
+                          "（几千个全测很吃资源且易触发上游限流，慎用）。"
                           "注意：无论这个值是多少，全部节点都会写进配置，可在「全部节点」组手动挑选")
     ap.add_argument("--pool-cap", type=int, default=0,
                      help="全量节点池上限，默认 0 表示不限制（保留全部去重后的节点）；"
                           "想控制节点数量就传个数字，比如 --pool-cap 500")
     ap.add_argument("--interval", type=int, default=600,
-                     help="「自动选择」组的测速间隔（秒），默认 600；想更快感知节点变慢就调小，比如 300")
+                     help="url-test 组的测速间隔（秒），默认 600；想更快感知节点变慢就调小，比如 300")
     ap.add_argument("--tolerance", type=int, default=100,
-                     help="「自动选择」组的延迟容差（毫秒），默认 100："
+                     help="url-test 组的延迟容差（毫秒），默认 100："
                           "只有当更快的节点比当前节点快超过这个值才切换，调大可避免频繁跳节点")
     ap.add_argument("--test-batch-size", type=int, default=100,
                      help="分批测速组：每批放多少个节点（默认 100）。"
@@ -977,8 +1006,8 @@ def main():
     # 清洗：去掉控制字符与 U+FFFD，避免 Mihomo 校验失败拒绝整份配置
     nodes, dropped_dirty = sanitize_nodes(nodes)
     if dropped_dirty:
-        print(f"清洗：丢弃 {dropped_dirty} 个节点（凭据为空 / SS2022 密钥非法的假节点——"
-              "非法 SS2022 密钥会导致 Mihomo 拒收整份配置）")
+        print(f"清洗：丢弃 {dropped_dirty} 个节点（凭据为空 / SS2022 密钥非法 / SS cipher 乱码"
+              "——后两类会导致 Mihomo 拒收整份配置）")
     # 排序：已停用「稳定度评分」排序（老节点 rounds 越滚越高会永久霸榜，新加的源永远挤不进来）。
     # 默认只做确定性排序——按节点 key 排，保证每次输出的顺序稳定，
     # 避免节点顺序无意义抖动导致 git diff 巨大。不参与任何节点的取舍。
@@ -987,14 +1016,14 @@ def main():
     if not args.test:
         nodes.sort(key=lambda n: node_key(n))
 
-    # 节点池上限（默认 400，0 表示不限）；--limit 作为旧参数别名
+    # 节点池上限（默认 0 不限，见 --pool-cap 说明）；--limit 作为旧参数别名
     pool_cap = args.limit if args.limit else args.pool_cap
     if pool_cap and len(nodes) > pool_cap:
         nodes = nodes[:pool_cap]
         print(f"节点池上限 {pool_cap}，截取靠前的 {pool_cap} 个")
 
     pool = nodes
-    # 0 或负数 = 全部节点都进「自动选择」url-test 组，由客户端测速后挑最快的
+    # 0 或负数 = 全部节点都进测速，由客户端 url-test 挑最快的
     if not pool:
         auto_select = []
     elif args.auto_select_size <= 0:
