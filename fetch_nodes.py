@@ -682,13 +682,16 @@ def sanitize_nodes(nodes):
     return out, dropped
 
 
-def build_yaml(pool, auto_select, out_path: str, interval: int = 600, tolerance: int = 100):
+def build_yaml(pool, auto_select, out_path: str, interval: int = 600, tolerance: int = 100,
+               batch_size: int = 100, batch_count: int = 0):
     """生成 Clash Meta YAML（分层结构）。
 
     pool:        全量节点（进「全部节点」select 组，不做健康检查，零测速开销）。
-    auto_select: 稳定度评分 top N 节点（进「自动选择」url-test 组，客户端自动测速）。
-                 只有这一小组会被客户端周期性测速，所以即便全量有上千节点，
-                 客户端每次也只测这几十个，几秒完成、且大概率都是活的。
+    auto_select: 进测速的节点。batch_count>0 时切成多个 url-test 批次组，
+                 每批独立测速出冠军，再由「自动选择」汇总组比较各组冠军取最快——
+                 分摊并发、避免单组几千节点互相争抢超时误判。
+    batch_size / batch_count: 二选一。batch_size>0 按每批 N 个自动切；
+                 batch_count>0 强制切成 N 批；都为 0 不分批（自动选择直连全部节点）。
 
     region_of 依赖节点名里的地区关键字，第三方源命名不规范时部分节点会落进
     「其它」组，不影响使用，只是少一个快捷分类。
@@ -706,7 +709,30 @@ def build_yaml(pool, auto_select, out_path: str, interval: int = 600, tolerance:
         lines.append(dump_proxy(n))
     lines.append("")
     lines.append("proxy-groups:")
-    # 自动选择：只放 top N，lazy + 较长 interval，客户端只测这几个
+
+    # --- 分批测速组：每批一个 url-test，各自测出最快的节点 ---
+    batch_groups = []
+    if batch_size > 0 and batch_count == 0 and auto_select:
+        batch_count = (len(auto_select) + batch_size - 1) // batch_size
+    if batch_count > 0 and auto_select:
+        per = (len(auto_select) + batch_count - 1) // batch_count
+        for i in range(batch_count):
+            chunk = auto_select[i * per:(i + 1) * per]
+            if not chunk:
+                break
+            gname = f"测速组-{i + 1:02d}"
+            batch_groups.append(gname)
+            lines.append(f"  - name: {gname}")
+            lines.append("    type: url-test")
+            lines.append('    url: "http://www.gstatic.com/generate_204"')
+            lines.append(f"    interval: {interval}")
+            lines.append(f"    tolerance: {tolerance}")
+            lines.append("    lazy: true")
+            lines.append("    proxies:")
+            for n in chunk:
+                lines.append(f"      - {yaml_str(n['name'])}")
+
+    # --- 自动选择：分批时引用各批次组（比较各组冠军），否则直连全部节点 ---
     lines.append("  - name: 自动选择")
     lines.append("    type: url-test")
     lines.append('    url: "http://www.gstatic.com/generate_204"')
@@ -714,8 +740,12 @@ def build_yaml(pool, auto_select, out_path: str, interval: int = 600, tolerance:
     lines.append(f"    tolerance: {tolerance}")
     lines.append("    lazy: true")
     lines.append("    proxies:")
-    for n in auto_select:
-        lines.append(f"      - {yaml_str(n['name'])}")
+    if batch_groups:
+        for g in batch_groups:
+            lines.append(f"      - {yaml_str(g)}")
+    else:
+        for n in auto_select:
+            lines.append(f"      - {yaml_str(n['name'])}")
     # 全部节点：select，放全量（不做健康检查），首项指向自动选择
     lines.append("  - name: 全部节点")
     lines.append("    type: select")
@@ -744,8 +774,16 @@ def build_yaml(pool, auto_select, out_path: str, interval: int = 600, tolerance:
 
 def build_v2ray_sub(nodes, out_path: str):
     """生成 v2rayN / v2rayNG / NekoBox 等通用的订阅格式：
-    原始 vmess://、vless://、trojan://、ss:// 链接拼一起，整体 base64 编码。"""
-    raws = [n["_raw"] for n in nodes if n.get("_raw")]
+    原始 vmess://、vless://、trojan://、ss:// 链接拼一起，整体 base64 编码。
+
+    hysteria2 节点一律过滤掉：v2rayN 的 Xray 核心不支持 hy2 协议，
+    导入后只会显示成连不上的死节点（实测印度 fastervpn 节点即此问题），
+    Clash 配置里已包含 hy2，需要 hy2 请用 Clash/Mihomo 客户端订阅。"""
+    raws = [n["_raw"] for n in nodes
+            if n.get("_raw") and n.get("type") not in ("hysteria2", "tuic")]
+    dropped = sum(1 for n in nodes if n.get("type") in ("hysteria2", "tuic"))
+    if dropped:
+        print(f"v2ray 订阅：过滤掉 {dropped} 个 hysteria2/tuic 节点（Xray 核心不支持，避免死节点）")
     blob = "\n".join(raws).encode("utf-8")
     b64 = base64.b64encode(blob).decode("ascii")
     with open(out_path, "w", encoding="utf-8") as f:
@@ -801,6 +839,13 @@ def main():
     ap.add_argument("--tolerance", type=int, default=100,
                      help="「自动选择」组的延迟容差（毫秒），默认 100："
                           "只有当更快的节点比当前节点快超过这个值才切换，调大可避免频繁跳节点")
+    ap.add_argument("--test-batch-size", type=int, default=100,
+                     help="分批测速组：每批放多少个节点（默认 100）。"
+                          "把进测速的节点切成多个独立 url-test 组，各批测出冠军后再由"
+                          "「自动选择」汇总组比较各组冠军取最快，分摊并发避免单组过载")
+    ap.add_argument("--test-batch-count", type=int, default=0,
+                     help="分批测速组：强制切成多少批（默认 0=按 batch-size 自动算）。"
+                          "比如 3000 节点设 30 批 = 每批 100 个")
     ap.add_argument("--dead-threshold", type=int, default=DEAD_THRESHOLD,
                      help="节点连续多少轮未出现就从稳定度统计里剔除（默认 3）")
     args = ap.parse_args()
@@ -927,10 +972,24 @@ def main():
         print("想强制看到全部节点的话，加 --reset-history 或者 --no-history。")
         sys.exit(0)
 
+    # 分批测速：节点量大时不分批会互相争抢导致大量超时误判。
+    # 默认 --test-batch-size 100：auto_select 300 个 → 3 批，每批独立 url-test，
+    # 「自动选择」汇总组只比较 3 个批次冠军，测速又快又稳。
+    batch_size = args.test_batch_size
+    batch_count = args.test_batch_count
+    # auto_select 少于一批的量就没必要分批，直接单组
+    if auto_select and batch_size > 0 and len(auto_select) <= batch_size and batch_count == 0:
+        batch_size = 0
+
     build_yaml(pool, auto_select, args.out,
-               interval=args.interval, tolerance=args.tolerance)
-    print(f"\n✅ 已生成: {args.out}（全量 {len(pool)} 个节点，其中 {len(auto_select)} 个进入「自动选择」测速组）")
-    print("导入 Clash Meta 后：日常用「自动选择」策略组，客户端会对组内节点做 url-test 并挑延迟最低的；"
+               interval=args.interval, tolerance=args.tolerance,
+               batch_size=batch_size, batch_count=batch_count)
+    n_batches = 0
+    if batch_size > 0 or batch_count > 0:
+        n_batches = max(1, (len(auto_select) + (batch_size or 1) - 1) // (batch_size or 1)) if batch_count == 0 else batch_count
+    print(f"\n✅ 已生成: {args.out}（全量 {len(pool)} 个节点，{len(auto_select)} 个进测速"
+          + (f"，分成 {n_batches} 个批次组并行测速" if n_batches else "") + "）")
+    print("导入 Clash Meta 后：日常用「自动选择」策略组（汇总各批次冠军取最快）；"
           "想手动挑就用「全部节点」或「地区-xxx」子组。")
 
     v2ray_out = args.out_v2ray
